@@ -5,7 +5,7 @@ import React, { FormEvent } from "react";
 import LoginForm from "./component/form";
 const Login = () => {
   return (
-    <section className="w-100 h-screen overflow-hidden flex items-center justify-between">
+    <section className="w-100 h-screen overflow-hidden flex items-center justify-between bg-black">
       <div className="hidden md:block flex-1 ">
         <div className="clipBoard relative text-white  px-[90px]">
           <div className="absolute top-10">
