@@ -15,12 +15,12 @@ export default function Editor() {
   const editor = useCreateBlockNote({
     initialContent: [
       {
-        type: "paragraph",
-        content: "Welcome to this demo!",
+        type: "heading",
+        content: "Chief Complain",
       },
       {
         type: "paragraph",
-        content: "<- Notice the new button in the side menu",
+        content: "Chief Complain Goes here",
       },
       {
         type: "paragraph",
@@ -41,7 +41,12 @@ export default function Editor() {
   console.log(markdown);
   // Renders the editor instance.
   return (
-    <BlockNoteView editor={editor} sideMenu={true} onBlur={onChange}>
+    <BlockNoteView
+      editor={editor}
+      sideMenu={true}
+      onBlur={onChange}
+      theme="light"
+    >
       <SideMenuController
         sideMenu={(props) => (
           <SideMenu {...props}>
