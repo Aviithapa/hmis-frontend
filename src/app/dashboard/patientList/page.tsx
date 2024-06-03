@@ -53,6 +53,11 @@ const columns = [
     dataIndex: "address",
     key: "address",
   },
+  {
+    title: "Phone Number",
+    dataIndex: "phone_number",
+    key: "phone_number",
+  },
 ];
 
 const onChange = (value: string) => {

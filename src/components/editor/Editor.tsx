@@ -27,7 +27,8 @@ export default function Editor() {
         content: "Click it to remove the hovered block",
       },
       {
-        type: "paragraph",
+        type: "heading",
+        content: "Hopi",
       },
     ],
   });

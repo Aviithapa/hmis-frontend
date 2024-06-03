@@ -239,7 +239,7 @@ const PatientRegister = () => {
                 />
               </Form.Item>
             </Col>
-            <Col span={2}>
+            <Col span={4}>
               <Form.Item>
                 <Button
                   type="primary"
@@ -251,7 +251,7 @@ const PatientRegister = () => {
                 </Button>
               </Form.Item>
             </Col>
-            <Col span={2}>
+            <Col span={4}>
               <Form.Item>
                 <Button
                   type="dashed"

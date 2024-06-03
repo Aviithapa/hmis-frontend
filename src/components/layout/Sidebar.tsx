@@ -1,16 +1,13 @@
 "use client";
-import { Layout, Menu, Affix } from "antd";
-import { MenuOutlined } from "@ant-design/icons";
+import { Layout, Menu } from "antd";
 import React, { createElement, useState } from "react";
-import Clock from "@/utils/clock";
-import DropdownMenu from "./DropdownMenu";
 import urls from "@/config/urls";
 import { Roles } from "@/utils/enums";
 
 import type { MenuProps } from "antd";
 import { usePathname, useRouter } from "next/navigation";
 
-const { Header, Content, Sider } = Layout;
+const { Content, Sider } = Layout;
 
 type Props = {
   role: string | null | undefined;

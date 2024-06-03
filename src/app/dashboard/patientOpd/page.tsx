@@ -16,9 +16,11 @@ import {
   Row,
   Select,
 } from "antd";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { useReactToPrint } from "react-to-print";
 import Editor from "@/components/editor/Editor";
+import AddPrescriptionModal from "@/components/modal/AddPrescriptionModal";
+import AddLabRequestModal from "@/components/modal/AddLabRequestModal";
 
 const HeaderItems = [
   {
@@ -32,40 +34,24 @@ const HeaderItems = [
 ];
 
 const PatientOpd = () => {
-  const printRef = useRef<HTMLDivElement>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isLabModalOpen, setIsLabModalOpen] = useState(false);
 
-  const handlePrint = useReactToPrint({
-    content: () => printRef.current,
-    documentTitle: "Patient Detail",
-    pageStyle: `
-      @page {
-        size: landscape;
-      }
-    `,
-  });
+  const handleModalOpenClose = () => {
+    setIsModalOpen(!isModalOpen);
+  };
+
+  const handleLabModalOpenClose = () => {
+    setIsLabModalOpen(!isLabModalOpen);
+  };
 
   const onFinish = (values: any) => {
     console.log("Success:", values);
-    handlePrint();
   };
 
   const onFinishFailed = (errorInfo: any) => {
     console.log("Failed:", errorInfo);
   };
-
-  const onChange = (value: string) => {
-    console.log(`selected ${value}`);
-  };
-
-  const onSearch = (value: string) => {
-    console.log("search:", value);
-  };
-
-  // Filter `option.label` match the user type `input`
-  const filterOption = (
-    input: string,
-    option?: { label: string; value: string }
-  ) => (option?.label ?? "").toLowerCase().includes(input.toLowerCase());
 
   return (
     <SidebarLayout role={Roles.RECEPTION}>
@@ -93,6 +79,19 @@ const PatientOpd = () => {
               <span className="font-semibold">Religion :</span>
               <span>Hindu</span>
             </List.Item>
+            <List.Item>
+              <span className="font-semibold">
+                <Button onClick={handleModalOpenClose}>Add Medicine </Button>
+              </span>
+            </List.Item>
+
+            <List.Item>
+              <span className="font-semibold">
+                <Button type="primary" onClick={handleLabModalOpenClose}>
+                  Add Lab
+                </Button>
+              </span>
+            </List.Item>
           </List>
         </div>
         <Form
@@ -106,7 +105,14 @@ const PatientOpd = () => {
           <Editor />
         </Form>
 
-        <PrintPatientRegistration ref={printRef} />
+        <AddPrescriptionModal
+          handleCancel={handleModalOpenClose}
+          isModalOpen={isModalOpen}
+        />
+        <AddLabRequestModal
+          handleCancel={handleLabModalOpenClose}
+          isModalOpen={isLabModalOpen}
+        />
       </div>
     </SidebarLayout>
   );
