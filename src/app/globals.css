@@ -70,7 +70,7 @@ body {
 }
 
 .ant-table-thead>tr>th {
-  background-color: #fff !important;
+  background-color: #fffefe !important;
   padding: 10px 16px !important;
   text-transform: uppercase;
   font-size: 12px !important;
@@ -100,4 +100,41 @@ body {
 
 .bn-container[data-theming-css-demo] .bn-editor * {
   color: blue;
+}
+
+.ant-menu-light .ant-menu-item{
+  width: 100%;
+  margin:0px;
+  border-radius: 0px;
+  color: white;
+}
+
+
+
+.bg-red{
+  background-color: red !important;
+}
+.bg-blue{
+  background-color: rgb(61, 188, 247) !important;
+}
+.bg-green{
+    background-color: rgb(243, 92, 195) !important;
+}
+
+.bg-orang{
+    background-color: rgb(224, 67, 32) !important;
+}
+
+.bg-purple{
+    background-color: #854ad8 !important;
+
+
+}
+
+.ant-menu-light .ant-menu-item-selected, .ant-menu-light>.ant-menu .ant-menu-item-selected {
+  border-left: 4px solid #fff;
+}
+
+.rounded-8 {
+  border-radius: 8px !important;
 }

@@ -20,7 +20,7 @@ import { MdOutlineAppRegistration } from "react-icons/md";
 const Dashboard = () => {
   return (
     <SidebarLayout role={Roles.RECEPTION}>
-      <div style={{ marginTop: "20px", marginLeft: "20px" }}>
+      <div className="shadow-lg rounded-md" style={{ margin: "20px" }}>
         <h1
           style={{ textAlign: "center", fontWeight: "600", fontSize: "26px" }}
         >
@@ -35,27 +35,29 @@ const Dashboard = () => {
         </div>
       </div>
       <Card
+        className="shadow-lg"
         title="Shortcut"
         style={{
           background: "white",
           margin: "20px",
         }}
       >
-        <div className="flex w-[100%]">
+        <div className="flex w-[100%] ">
           <div className="w-full">
             <Row gutter={[16, 16]} className="gap-6">
               <Col
                 xs={12}
                 sm={8}
                 md={5}
-                style={{ background: "orange", color: "white" }}
+                style={{ background: "orange", color: "white", borderRadius: "4px" }}
               >
                 <Link href="#">
                   <Tooltip title={"Dashboard"}>
-                    <div className="flex flex-col items-center justify-center">
+                    <div className="flex flex-col items-center justify-center ">
                       <Avatar
                         size={94}
                         shape="square"
+
                         icon={<HomeOutlined />}
                         style={{ backgroundColor: "orange" }}
                       />
@@ -73,7 +75,7 @@ const Dashboard = () => {
                 xs={12}
                 sm={8}
                 md={5}
-                style={{ background: "#4DABF7", color: "white" }}
+                style={{ background: "#4DABF7", color: "white", borderRadius: "4px" }}
               >
                 <Link href="/dashboard/patientOpd">
                   <Tooltip title={"Dashboard"}>
@@ -98,7 +100,7 @@ const Dashboard = () => {
                 xs={12}
                 sm={8}
                 md={5}
-                style={{ background: "#34d399", color: "white" }}
+                style={{ background: "#34d399", color: "white", borderRadius: "4px" }}
               >
                 <Link href="/dashboard/patientList">
                   <Tooltip title={"Dashboard"}>
@@ -123,7 +125,7 @@ const Dashboard = () => {
                 xs={12}
                 sm={8}
                 md={5}
-                style={{ background: "#0bc5ea", color: "white" }}
+                style={{ background: "#0bc5ea", color: "white", borderRadius: "4px" }}
               >
                 <Link href="/dashboard/patientRegister">
                   <Tooltip title={"Dashboard"}>
