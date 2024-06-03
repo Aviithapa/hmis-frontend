@@ -58,7 +58,7 @@ const PatientOpd = () => {
       <PageHeader items={HeaderItems} titleContent="Patient Opd" />
 
       <div className="grid grid-cols-4 gap-6">
-        <div className="p-6 ml-4 bg-white shadow-box rounded-sm ">
+        <div className="p-6 ml-4 bg-white shadow-lg rounded-md ">
           <div className="flex justify-center">
             <Avatar size={114} icon={<UserOutlined />} />
           </div>
@@ -86,7 +86,7 @@ const PatientOpd = () => {
             </List.Item>
 
             <List.Item>
-              <span className="font-semibold">
+              <span className="font-semibold rounded-md">
                 <Button type="primary" onClick={handleLabModalOpenClose}>
                   Add Lab
                 </Button>
@@ -100,7 +100,7 @@ const PatientOpd = () => {
           layout="vertical"
           onFinish={onFinish}
           onFinishFailed={onFinishFailed}
-          className="col-span-3 h-[100vh] bg-white p-10"
+          className="col-span-3 h-[100vh] bg-white p-10 rounded-md shadow-lg"
         >
           <Editor />
         </Form>

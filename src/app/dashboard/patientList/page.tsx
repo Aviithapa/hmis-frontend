@@ -5,6 +5,7 @@ import SidebarLayout from "@/components/layout/Sidebar";
 import { HomeOutlined } from "@ant-design/icons";
 import { Roles } from "@/utils/enums";
 import { Button, Col, Form, Input, Row, Select, Table } from "antd";
+import { Black_And_White_Picture } from "next/font/google";
 
 const HeaderItems = [
   {
@@ -78,21 +79,23 @@ const PatientList = () => {
   return (
     <SidebarLayout role={Roles.RECEPTION}>
       <PageHeader items={HeaderItems} titleContent="Patient List" />
-      <div className="bg-white ml-5 mr-5 p-4 ">
+      <div className="bg-white ml-5 mr-5 p-4 rounded-md shadow-lg ">
         <Form layout="vertical">
           <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
             <Col span={7}>
-              <Form.Item name="Search" label="First Name">
-                <Input />
+
+              <Form.Item className="rounded-md" name="Search" label="First Name">
+                <Input className="rounded-8" />
               </Form.Item>
             </Col>
             <Col span={7}>
-              <Form.Item name="Search" label="Contact Number">
-                <Input />
+              <Form.Item className="rounded-md" name="Search" label="Contact Number">
+
+                <Input className="rounded-8" />
               </Form.Item>
             </Col>
             <Col span={7}>
-              <Form.Item label="Doctor" name="doctor">
+              <Form.Item className="rounded-md" label="Doctor" name="doctor">
                 <Select
                   showSearch
                   placeholder="Select Doctor"
@@ -125,9 +128,13 @@ const PatientList = () => {
                   htmlType="submit"
                   className="w-[100%]"
                   style={{
-                    borderRadius: "0px",
+                    borderRadius: "10px",
                     height: "35px",
                     marginTop: "30px",
+                    padding: "10px",
+                    display: "flex",
+                    alignItems: "center"
+
                   }}
                 >
                   Reset Filter
@@ -137,7 +144,7 @@ const PatientList = () => {
           </Row>
         </Form>
       </div>
-      <div className="bg-white p-4 ml-5 mr-5 mt-5">
+      <div className="bg-white p-4 ml-5 mr-5 mt-5 rounded-md shadow-lg">
         <Table dataSource={dataSource} columns={columns} />
       </div>
     </SidebarLayout>

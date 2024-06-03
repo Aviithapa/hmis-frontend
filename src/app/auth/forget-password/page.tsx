@@ -4,7 +4,7 @@ const ForgetPassword = () => {
       <div className="hidden md:block flex-1 ">
         <div className="clipBoard relative text-white  px-[90px]">
           <div className="absolute top-10">
-            <h1 className="font-[700] text-[65px] leading-[1]">
+            <h1 className="font-[700] text-[60px] leading-[1]">
               Padma Hospital, Attariya
             </h1>
             <p className=" font-[400] pt-4">
@@ -22,7 +22,7 @@ const ForgetPassword = () => {
       <div className=" px-8 flex-1 flex justify-center">
         <form
           action=""
-          className="bg-[rgb(255,255,255)] px-5 py-5 max-w-[400px] shadow-lg rounded-[15px]"
+          className="bg-[rgb(255,255,255)] px-5 py-5 max-w-[400px] shadow-2xl rounded-md"
         >
           <div className="mb-3">
             <h1 className="font-[700] text-[35px]">Forget Password?</h1>
@@ -35,7 +35,7 @@ const ForgetPassword = () => {
             <div className="password relative">
               <label className="text-[#1976D2]">Email:</label>
               <input
-                className="w-full py-3  px-[39px] rounded-[10px] bg-[#EEF1F6] focus:outline-[#9CA3AF]"
+                className="w-full py-2 px-[39px] rounded-md bg-[#EEF1F6] focus:outline-[#9CA3AF]"
                 type="email"
                 placeholder="Enter your email"
               />
@@ -47,7 +47,7 @@ const ForgetPassword = () => {
 
           <div className="button-section font-[400] text-[11px]">
             <div className="text-center">
-              <button className="bg-[#1976D2] w-full py-3 rounded-[10px] text-[13px] text-white">
+              <button className="bg-[#1976D2] w-full py-2 rounded-md text-[13px] text-white">
                 NEXT
               </button>
             </div>

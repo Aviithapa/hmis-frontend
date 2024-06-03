@@ -20,6 +20,7 @@ type routeItemProp = {
   icon?: any;
   key?: string;
   children?: routeItemProp[];
+  color?: string;
 };
 
 type MenuItem = Required<MenuProps>["items"][number];
@@ -29,33 +30,33 @@ const items: (
   navItems: routeItemProp[],
   isChild?: boolean
 ) => MenuItem[] = (router, navItems, isChild = false) =>
-  navItems.map((ni) => {
-    const key = ni.title;
-    const isSelected = ni.path === router.pathname;
-    const hasChildren = !!ni?.children;
-    const className = isChild ? "navbar-child-item" : "navbar-parent-item";
-    return {
-      label: ni.title,
-      ...(ni.path && { onClick: () => ni.path && router.push(ni.path) }),
-      icon:
-        ni.icon &&
-        createElement(ni.icon, {
-          style: { width: 25, fontSize: 18 },
-        }),
-      key,
-      // eslint-disable-next-line no-nested-ternary
-      className: `${className} ${
-        isSelected
+    navItems.map((ni) => {
+      const key = ni.title;
+      const isSelected = ni.path === router.pathname;
+      const hasChildren = !!ni?.children;
+      const color = ni?.color
+      const className = isChild ? "navbar-child-item" : "navbar-parent-item";
+      return {
+        label: ni.title,
+        ...(ni.path && { onClick: () => ni.path && router.push(ni.path) }),
+        icon:
+          ni.icon &&
+          createElement(ni.icon, {
+            style: { width: 25, fontSize: 18 },
+          }),
+        key,
+        // eslint-disable-next-line no-nested-ternary
+        className: `${color} ${className} ${isSelected
           ? isChild
             ? "navbar-item-selected-child"
             : "navbar-item-selected"
           : ""
-      }`,
-      ...(hasChildren && {
-        children: ni.children && items(router, ni?.children, true),
-      }),
-    };
-  });
+          }`,
+        ...(hasChildren && {
+          children: ni.children && items(router, ni?.children, true),
+        }),
+      };
+    });
 
 const SidebarLayout: React.FC<Props> = ({ role, children }) => {
   const [collapsed, setCollapsed] = useState(true);
@@ -63,17 +64,17 @@ const SidebarLayout: React.FC<Props> = ({ role, children }) => {
 
   const navItems: routeItemProp[] = role
     ? [
-        ...(urls?.commonNavItems || []).filter(
-          (item) => item.title !== "Holiday"
-        ), // filter out Holiday item
-        ...(role === Roles.ADMIN || role === Roles.SUPERADMIN
-          ? urls.adminNavitems
-          : role === Roles.RECEPTION
+      ...(urls?.commonNavItems || []).filter(
+        (item) => item.title !== "Holiday"
+      ), // filter out Holiday item
+      ...(role === Roles.ADMIN || role === Roles.SUPERADMIN
+        ? urls.adminNavitems
+        : role === Roles.RECEPTION
           ? urls.receptionNavItems
           : urls.employeeNavitems),
-        ...(urls?.commonNavItems?.filter((item) => item.title === "Holiday") ||
-          []),
-      ]
+      ...(urls?.commonNavItems?.filter((item) => item.title === "Holiday") ||
+        []),
+    ]
     : [];
 
   const pathName = usePathname();
@@ -95,7 +96,7 @@ const SidebarLayout: React.FC<Props> = ({ role, children }) => {
           left: 0,
           top: 0,
           bottom: 0,
-          background: "#1976D2",
+          background: "#328ce7",
         }}
       >
         <div
@@ -109,6 +110,7 @@ const SidebarLayout: React.FC<Props> = ({ role, children }) => {
             justifyItems: "center",
             color: "white",
             height: "60px",
+
           }}
         >
           {collapsed ? (
@@ -133,7 +135,7 @@ const SidebarLayout: React.FC<Props> = ({ role, children }) => {
         </div>
         <Menu
           mode="inline"
-          style={{ background: "#1976D2" }}
+          style={{ background: "#328ce7" }}
           defaultSelectedKeys={["1"]}
           selectedKeys={navItems
             .filter((it) => it.path === pathName)
