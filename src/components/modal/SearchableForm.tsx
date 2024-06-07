@@ -24,88 +24,137 @@ const SearchableForm: React.FC<SearchableFormProps> = ({ form, onFinish }) => {
     setSearchTerm(e.target.value);
   };
 
+  const filteredHematologyOptions = HematologyTestOption.filter(option =>
+    option.label.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  const filteredMicrobiologyOptions = MicrobiologyTestOption.filter(option =>
+    option.label.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  const filteredPathologyOptions = PathologyTestOption.filter(option =>
+    option.label.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  const filteredBioChemistryOptions = BioChemistryTestOption.filter(option =>
+    option.label.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  const filteredPhysiometryOptions = PhysiometryTestOption.filter(option =>
+    option.label.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  const filteredRadiologyOptions = RadiologyTestOption.filter(option =>
+    option.label.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
-    <div style={{ height: "100%", display: "flex", flexDirection: "column", position: "relative" }}>
+    <div className="p-4  space-y-2" style={{ height: "100%", display: "flex", flexDirection: "column", position: "relative" }}>
+      {/* search bar section  */}
       <Input
         placeholder="Search all tests..."
         value={searchTerm}
         onChange={handleSearch}
-        style={{ marginBottom: "20px", position: "sticky", top: 0, zIndex: 2, backgroundColor: "white", padding: "7px", margin: "15px" }}
+        style={{ backgroundColor: "white", padding: "7px" }}
       />
-      <div style={{ flex: 1, overflowY: "auto" }}>
+
+      {/* form section  */}
+      <div>
         <Form
           name="lab-test-form"
           layout="vertical"
           onFinish={onFinish}
           form={form}
+          className=" max-h-[350px]  scrollbar-track-emerald-400 overflow-hidden overflow-y-auto flex grow-0 shrink-0"
+        >
+          <div style={{}}>
+            <Row gutter={[16, 16]}>
+              {filteredHematologyOptions.length > 0 && (
+                <Col span={24}>
+                  <Card title="Hematology" size="small">
+                    <Form.Item name="hematology">
+                      <SearchableCheckboxGroup options={filteredHematologyOptions} searchTerm={searchTerm} />
+                    </Form.Item>
+                  </Card>
+                </Col>
+              )}
+              {filteredMicrobiologyOptions.length > 0 && (
+                <Col span={24}>
+                  <Card title="Microbiology" size="small">
+                    <Form.Item name="microbiology">
+                      <SearchableCheckboxGroup options={filteredMicrobiologyOptions} searchTerm={searchTerm} />
+                    </Form.Item>
+                  </Card>
+                </Col>
+              )}
+              {filteredPathologyOptions.length > 0 && (
+                <Col span={24}>
+                  <Card title="Pathology" size="small">
+                    <Form.Item name="pathology">
+                      <SearchableCheckboxGroup options={filteredPathologyOptions} searchTerm={searchTerm} />
+                    </Form.Item>
+                  </Card>
+                </Col>
+              )}
+              {filteredBioChemistryOptions.length > 0 && (
+                <Col span={24}>
+                  <Card title="BioChemistry" size="small">
+                    <Form.Item name="bioChemistry">
+                      <SearchableCheckboxGroup options={filteredBioChemistryOptions} searchTerm={searchTerm} />
+                    </Form.Item>
+                  </Card>
+                </Col>
+              )}
+              {filteredPhysiometryOptions.length > 0 && (
+                <Col span={24}>
+                  <Card title="Physiometry" size="small">
+                    <Form.Item name="physiometry">
+                      <SearchableCheckboxGroup options={filteredPhysiometryOptions} searchTerm={searchTerm} />
+                    </Form.Item>
+                  </Card>
+                </Col>
+              )}
+              {filteredRadiologyOptions.length > 0 && (
+                <Col span={24}>
+                  <Card title="Radiology" size="small">
+                    <Form.Item name="radiology">
+                      <SearchableCheckboxGroup options={filteredRadiologyOptions} searchTerm={searchTerm} />
+                    </Form.Item>
+                  </Card>
+                </Col>
+              )}
+            </Row>
+          </div>
+        </Form>
+
+        {/* add btn section  */}
+        <div
+
           style={{
-            padding: "15px 30px",
+            display: "flex",
+            justifyContent: "flex-end",
+            padding: "10px",
+            backgroundColor: "white",
+            position: "sticky",
+            bottom: 0,
+            zIndex: 2,
           }}
         >
-          <Row gutter={[16, 16]}>
-            <Col span={24}>
-              <Card title="Hematology" size="small">
-                <Form.Item name="hematology">
-                  <SearchableCheckboxGroup options={HematologyTestOption} searchTerm={searchTerm} />
-                </Form.Item>
-              </Card>
-            </Col>
-            <Col span={24}>
-              <Card title="Microbiology" size="small">
-                <Form.Item name="microbiology">
-                  <SearchableCheckboxGroup options={MicrobiologyTestOption} searchTerm={searchTerm} />
-                </Form.Item>
-              </Card>
-            </Col>
-            <Col span={24}>
-              <Card title="Pathology" size="small">
-                <Form.Item name="pathology">
-                  <SearchableCheckboxGroup options={PathologyTestOption} searchTerm={searchTerm} />
-                </Form.Item>
-              </Card>
-            </Col>
-            <Col span={24}>
-              <Card title="BioChemistry" size="small">
-                <Form.Item name="bioChemistry">
-                  <SearchableCheckboxGroup options={BioChemistryTestOption} searchTerm={searchTerm} />
-                </Form.Item>
-              </Card>
-            </Col>
-            <Col span={24}>
-              <Card title="Physiometry" size="small">
-                <Form.Item name="physiometry">
-                  <SearchableCheckboxGroup options={PhysiometryTestOption} searchTerm={searchTerm} />
-                </Form.Item>
-              </Card>
-            </Col>
-            <Col span={24}>
-              <Card title="Radiology" size="small">
-                <Form.Item name="radiology">
-                  <SearchableCheckboxGroup options={RadiologyTestOption} searchTerm={searchTerm} />
-                </Form.Item>
-              </Card>
-            </Col>
-          </Row>
-        </Form>
-      </div>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "flex-end",
-          padding: "10px",
-          borderTop: "1px solid #e8e8e8",
-          backgroundColor: "white",
-          position: "sticky",
-          bottom: 0,
-          zIndex: 2,
-        }}
-      >
-        <Button style={{ color: "black", padding: "5px 15px" }} size="large" htmlType="submit">
-          Add
-        </Button>
+          <Button style={{ color: "black", padding: "5px 15px" }} size="large" htmlType="submit">
+            Add
+          </Button>
+        </div>
       </div>
     </div>
   );
 };
 
 export default SearchableForm;
+
+
+
+
+
+
+
+

@@ -34,9 +34,9 @@ const AddLabRequestModal: React.FC<AddLabRequestModalProps> = ({
       onCancel={handleCancel}
       width={1080}
       footer={null}
-      styles={{ body: { overflowY: "auto", maxHeight: "calc(100vh - 200px)" } }}
+      styles={{ body: { overflow: "hidden", maxHeight: "calc(100vh - 200px)" } }}
     >
-      <div>
+      <div >
         <SearchableForm form={form} onFinish={handleSubmit} />
       </div>
     </Modal>
