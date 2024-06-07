@@ -84,18 +84,18 @@ const PatientList = () => {
           <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
             <Col span={7}>
 
-              <Form.Item className="rounded-md" name="Search" label="First Name">
-                <Input className="rounded-8" />
+              <Form.Item name="first_name" label="First Name">
+                <Input />
               </Form.Item>
             </Col>
             <Col span={7}>
-              <Form.Item className="rounded-md" name="Search" label="Contact Number">
+              <Form.Item name="phone_mumber" label="Contact Number">
 
-                <Input className="rounded-8" />
+                <Input />
               </Form.Item>
             </Col>
             <Col span={7}>
-              <Form.Item className="rounded-md" label="Doctor" name="doctor">
+              <Form.Item label="Doctor" name="doctor">
                 <Select
                   showSearch
                   placeholder="Select Doctor"
@@ -128,7 +128,7 @@ const PatientList = () => {
                   htmlType="submit"
                   className="w-[100%]"
                   style={{
-                    borderRadius: "10px",
+
                     height: "35px",
                     marginTop: "30px",
                     padding: "10px",

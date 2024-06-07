@@ -21,6 +21,7 @@ import { useReactToPrint } from "react-to-print";
 import Editor from "@/components/editor/Editor";
 import AddPrescriptionModal from "@/components/modal/AddPrescriptionModal";
 import AddLabRequestModal from "@/components/modal/AddLabRequestModal";
+import SearchableForm from "@/components/modal/SearchableForm";
 
 const HeaderItems = [
   {
@@ -58,11 +59,20 @@ const PatientOpd = () => {
       <PageHeader items={HeaderItems} titleContent="Patient Opd" />
 
       <div className="grid grid-cols-4 gap-6">
-        <div className="p-6 ml-4 bg-white shadow-lg rounded-md ">
+        <div className="p-6 ml-4 bg-white shadow-lg">
           <div className="flex justify-center">
             <Avatar size={114} icon={<UserOutlined />} />
           </div>
           <List className="mt-10">
+
+            <Col span={24}>
+              <Input
+                placeholder="Search all tests..."
+                style={{ marginBottom: "20px" }}
+              />
+            </Col>
+            
+
             <List.Item>
               <span className="font-semibold">Patient Id : </span>
               <span>1234</span>
@@ -86,7 +96,7 @@ const PatientOpd = () => {
             </List.Item>
 
             <List.Item>
-              <span className="font-semibold rounded-md">
+              <span className="font-semibold">
                 <Button type="primary" onClick={handleLabModalOpenClose}>
                   Add Lab
                 </Button>

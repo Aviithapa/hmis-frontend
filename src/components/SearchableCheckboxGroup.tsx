@@ -25,6 +25,7 @@ const SearchableCheckboxGroup: React.FC<SearchableCheckboxGroupProps> = ({
   useEffect(() => {
     if (value !== selectedValues) {
       setSelectedValues(value || []);
+
     }
   }, [value]);
 
@@ -59,3 +60,21 @@ const SearchableCheckboxGroup: React.FC<SearchableCheckboxGroupProps> = ({
 };
 
 export default SearchableCheckboxGroup;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

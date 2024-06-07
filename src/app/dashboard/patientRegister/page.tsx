@@ -59,7 +59,15 @@ const PatientRegister = () => {
   return (
     <SidebarLayout role={Roles.RECEPTION}>
       <PageHeader items={HeaderItems} titleContent="Patient Registration" />
+
       <div className="bg-white h-[auto] p-5 ml-5 mr-10 rounded-md shadow-lg">
+        <Col span={24}>
+          <Input
+            placeholder="Search all tests..."
+            style={{ marginBottom: "20px" }}
+          />
+        </Col>
+
         <Form
           name="patient_registration"
           autoComplete="true"
@@ -70,44 +78,44 @@ const PatientRegister = () => {
           <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
             <Col span={12}>
               <Form.Item
-                className=" rounded-md"
+
                 label="First Name"
                 name="first_name"
                 rules={[
                   { required: true, message: "Please input your first name!" },
                 ]}
               >
-                <Input className="rounded-8" />
+                <Input />
               </Form.Item>
             </Col>
             <Col span={12}>
               <Form.Item
-                className=" rounded-md"
+
                 label="Last Name"
                 name="last_name"
                 rules={[
                   { required: true, message: "Please input your last name!" },
                 ]}
               >
-                <Input className="rounded-8" />
+                <Input />
               </Form.Item>
             </Col>
           </Row>
 
           <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
             <Col span={12}>
-              <Form.Item className=" rounded-md" label="Email" name="email">
-                <Input className="rounded-8" />
+              <Form.Item label="Email" name="email">
+                <Input />
               </Form.Item>
             </Col>
             <Col span={12}>
-              <Form.Item className=" rounded-md" label="Phone Number" name="phone">
-                <Input className="rounded-8" />
+              <Form.Item label="Phone Number" name="phone">
+                <Input />
               </Form.Item>
             </Col>
             <Col span={12}>
               <Form.Item
-                className=" rounded-md"
+
                 label="Date of Birth"
                 name="dob"
                 rules={[
@@ -117,16 +125,16 @@ const PatientRegister = () => {
                   },
                 ]}
               >
-                <DatePicker className="rounded-8" style={{ width: "100%" }} />
+                <DatePicker style={{ width: "100%" }} />
               </Form.Item>
             </Col>
             <Col span={12}>
-              <Form.Item className=" rounded-md" label="Age" name="age">
-                <Input className="rounded-8" />
+              <Form.Item label="Age" name="age">
+                <Input />
               </Form.Item>
             </Col>
             <Col span={12}>
-              <Form.Item className=" rounded-md" label="Sex" name="sex">
+              <Form.Item label="Sex" name="sex">
                 <Select
                   showSearch
                   placeholder="Select sex"
@@ -153,7 +161,7 @@ const PatientRegister = () => {
               </Form.Item>
             </Col>
             <Col span={12}>
-              <Form.Item className=" rounded-md" label="Religion" name="religion">
+              <Form.Item label="Religion" name="religion">
                 <Select
                   showSearch
                   placeholder="Select Religion"
@@ -181,18 +189,18 @@ const PatientRegister = () => {
 
             <Col span={24}>
               <Form.Item
-                className=" rounded-md"
+
                 label="Address"
                 name="address"
                 rules={[
                   { required: true, message: "Please input your address!" },
                 ]}
               >
-                <Input className="rounded-8" />
+                <Input />
               </Form.Item>
             </Col>
             <Col span={12}>
-              <Form.Item className=" rounded-md" label="Doctor" name="doctor">
+              <Form.Item label="Doctor" name="doctor">
                 <Select
                   showSearch
                   placeholder="Select Doctor"
@@ -250,7 +258,7 @@ const PatientRegister = () => {
                   type="primary"
                   htmlType="submit"
                   className="w-[90%] bg-gradient-to-r from-cyan-500 to-blue-500 "
-                  style={{ borderRadius: "10px", height: "40px" }}
+                  style={{ height: "40px" }}
                 >
                   Add Now
                 </Button>
@@ -262,7 +270,7 @@ const PatientRegister = () => {
                   type="dashed"
                   htmlType="submit"
                   className="w-[70%] border border-[rgba(247,122,88,0.75)] "
-                  style={{ borderRadius: "10px", height: "40px" }}
+                  style={{ height: "40px" }}
                 >
                   Cancel
                 </Button>
