@@ -15,28 +15,40 @@ export default function Editor() {
   const editor = useCreateBlockNote({
     initialContent: [
       {
-        type: "heading",
-        content: "Chief Complain",
+        type: "paragraph",
+        content: [
+          {
+            type: "text",
+            text: "Chief Complain:",
+            styles: { bold: true, underline: true },
+          },
+        ],
       },
       {
         type: "paragraph",
-        content: "Chief Complain Goes here",
+        content: "",
       },
       {
         type: "paragraph",
-        content: "Click it to remove the hovered block",
+        content: "",
       },
       {
-        type: "heading",
-        content: "Hopi",
+        type: "paragraph",
+        content: [
+          {
+            type: "text",
+            text: "Hopi:",
+            styles: { bold: true, underline: true },
+          },
+        ],
       },
     ],
   });
 
   const onChange = async () => {
     // Converts the editor's contents from Block objects to Markdown and store to state.
-    const markdown = await editor.blocksToMarkdownLossy(editor.document);
-    setMarkdown(markdown);
+    // const markdown = await editor.blocksToMarkdownLossy(editor.document);
+    // setMarkdown(markdown);
   };
 
   console.log(markdown);
@@ -47,6 +59,7 @@ export default function Editor() {
       sideMenu={true}
       onBlur={onChange}
       theme="light"
+      style={{ height: "80vh" }}
     >
       <SideMenuController
         sideMenu={(props) => (

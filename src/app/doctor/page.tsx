@@ -3,7 +3,7 @@ import PageHeader from "@/components/layout/PageHeader";
 import SidebarLayout from "@/components/layout/Sidebar";
 import { HomeOutlined, UserOutlined } from "@ant-design/icons";
 import { Roles } from "@/utils/enums";
-import { Avatar, Button, Form, List } from "antd";
+import { Avatar, Button, Form, Input, List } from "antd";
 import { useState } from "react";
 import Editor from "@/components/editor/Editor";
 import AddPrescriptionModal from "@/components/modal/AddPrescriptionModal";
@@ -41,9 +41,11 @@ const PatientOpd = () => {
   };
 
   return (
-    <SidebarLayout role={Roles.RECEPTION}>
+    <>
       <PageHeader items={HeaderItems} titleContent="Patient Opd" />
-
+      <div className="p-6 ml-4 bg-white shadow-lg rounded-md ">
+        <Input />
+      </div>
       <div className="grid grid-cols-4 gap-6">
         <div className="p-6 ml-4 bg-white shadow-lg rounded-md ">
           <div className="flex justify-center">
@@ -89,7 +91,7 @@ const PatientOpd = () => {
           onFinishFailed={onFinishFailed}
           className="col-span-3 h-[100vh] bg-white p-10 rounded-md shadow-lg"
         >
-          {/* <Editor /> */}
+          <Editor />
         </Form>
 
         <AddPrescriptionModal
@@ -101,7 +103,7 @@ const PatientOpd = () => {
           isModalOpen={isLabModalOpen}
         />
       </div>
-    </SidebarLayout>
+    </>
   );
 };
 

@@ -9,8 +9,8 @@ import {
   UserOutlined,
   FileTextOutlined,
 } from "@ant-design/icons";
-import { redirect } from "next/dist/server/api-utils";
 import { MdOutlineAppRegistration } from "react-icons/md";
+import { ImLab } from "react-icons/im";
 
 const urls = {
   login: "/auth/login",
@@ -22,7 +22,7 @@ const urls = {
       title: "Dashboard",
       path: "/dashboard",
       icon: HomeOutlined,
-      color: 'bg-purple'
+      color: "bg-purple",
     },
   ],
   receptionNavItems: [
@@ -30,21 +30,25 @@ const urls = {
       title: "Patient Registration",
       path: "/dashboard/patientRegister",
       icon: MdOutlineAppRegistration,
-      color: 'bg-red'
+      color: "bg-red",
     },
     {
       title: "Patient List",
       path: "/dashboard/patientList",
       icon: UserOutlined,
-      color: 'bg-blue'
-
+      color: "bg-blue",
     },
     {
       title: "Patient Opd",
       path: "/dashboard/patientOpd",
       icon: FileTextOutlined,
-      color: 'bg-green'
-
+      color: "bg-green",
+    },
+    {
+      title: "Lab",
+      path: "/dashboard/lab",
+      icon: ImLab,
+      color: "bg-green",
     },
   ],
   employeeNavitems: [

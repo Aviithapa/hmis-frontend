@@ -3,7 +3,6 @@
 import React from "react";
 import { Layout } from "antd";
 import { theme } from "antd";
-import Clock from "@/utils/clock";
 import DropdownMenu from "./layout/DropdownMenu";
 
 const { Header, Content } = Layout;
@@ -33,9 +32,6 @@ const PageLayout: React.FC<Props> = ({ children }) => {
         }}
       >
         <div style={{ right: 0, textAlign: "right" }}>
-          <span style={{ marginRight: "20px", fontSize: 16, fontWeight: 600 }}>
-            <Clock />
-          </span>
           <DropdownMenu />
         </div>
       </Header>

@@ -1,35 +1,61 @@
+"use client";
+
 import React, { forwardRef } from "react";
 
-type Props = {};
+export type PatientData = {
+  id?: number;
+  first_name?: string;
+  last_name?: string;
+  age?: number;
+  sex?: string;
+  phone?: string;
+  address?: string;
+  doctor?: string;
+  type?: string;
+};
+
+type Props = {
+  patientData: PatientData;
+};
 
 const PrintPatientRegistration = forwardRef<HTMLDivElement, Props>(
-  function PrintPatientRegistration(props, ref) {
-    const now = new Date();
+  function PrintPatientRegistration({ patientData }, ref) {
+    function getRandomInt(min: number, max: number) {
+      min = Math.ceil(min);
+      max = Math.floor(max);
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
     return (
       <div style={{ display: "none" }}>
         <div ref={ref}>
           <div
-            className="flex justify-center bg-white h-screen "
+            className="flex justify-center bg-white h-screen"
             style={{ color: "black" }}
           >
             <div className="text-left">
               <div className="text-3xl leading-tight">
-                {now.toLocaleDateString()} &nbsp;
-                {now.toLocaleTimeString()} <br />
-                <span className="font-bold">Dr Philip Shyam Ranjit</span>
+                <span className="font-bold">{patientData?.doctor}</span>
                 <br />
                 <span className="text-lg">
-                  Patient Id : <span className="font-bold">1230</span>
+                  Patient Id :{" "}
+                  <span className="font-bold">{getRandomInt(1, 1000)}</span>
                 </span>{" "}
                 <br />
-                <span className="text-lg">
-                  Name : <span className="font-bold">Abhishek Thapa</span>
-                </span>
+                <div className="text-2xl leading-tight mt-2">
+                  Name :
+                  <span className="font-bold">
+                    {patientData.first_name} {patientData.last_name}
+                  </span>{" "}
+                  &nbsp; &nbsp; &nbsp;
+                  <span>Type : {patientData.type}</span>
+                </div>
+                <span className="text-lg"></span>
               </div>
               <div className="text-2xl leading-tight mt-2">
-                Age/Sex : 25 Y/M <span className="ml-7">9867739191</span>
+                Age/Sex : {patientData.age} Y/{patientData.sex}{" "}
+                <span className="ml-7">{patientData.phone}</span>
                 <br />
-                <span className="">Address : Lalitpur Imadol</span>
+                <span>Address : {patientData.address}</span>
               </div>
             </div>
           </div>

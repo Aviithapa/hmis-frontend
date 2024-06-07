@@ -1,7 +1,8 @@
 "use client";
 
 import { login } from "@/api/auth";
-import { Button, Form, Input } from "antd";
+import { Button, Form, Input, message } from "antd";
+import { redirect, useRouter } from "next/navigation";
 import React from "react";
 
 interface LoginPayload {
@@ -9,9 +10,25 @@ interface LoginPayload {
   password: string;
 }
 const LoginForm = () => {
+  const router = useRouter();
   const onFinish = async (value: LoginPayload) => {
     try {
-      const res = await login(value);
+      // const res = await login(value);
+      if (value?.staff_id === "1234" && value?.password === "Nepal@123") {
+        router.push("/dashboard");
+      } else if (
+        value?.staff_id === "reception" &&
+        value?.password === "Nepal@123"
+      ) {
+        router.push("/reception");
+      } else if (
+        value?.staff_id === "doctor" &&
+        value?.password === "Nepal@123"
+      ) {
+        router.push("/doctor");
+      } else {
+        message.error("Invalid Username or Password");
+      }
     } catch (error) {
       console.log(error);
     }
@@ -43,7 +60,11 @@ const LoginForm = () => {
       </Form.Item>
 
       <Form.Item>
-        <Button type="primary" htmlType="submit" className="w-[100%] rounded-md ">
+        <Button
+          type="primary"
+          htmlType="submit"
+          className="w-[100%] rounded-md "
+        >
           Submit
         </Button>
       </Form.Item>

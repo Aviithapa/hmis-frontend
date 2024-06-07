@@ -11,7 +11,7 @@ export default function Home() {
     if (router === "/") {
       redirect("/auth/login");
     }
-  }, []);
+  }, [router]);
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24"></main>
   );

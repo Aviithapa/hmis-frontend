@@ -8,19 +8,11 @@ const { useToken } = theme;
 
 const items: MenuProps["items"] = [
   {
-    key: "1",
-    label: (
-      <Link href="/employee/my-profile">
-        <ManOutlined /> My Profile
-      </Link>
-    ),
-  },
-  {
     key: "2",
     label: (
-      <Typography.Link>
+      <Link href="/auth/login">
         <PoweroffOutlined /> Logout
-      </Typography.Link>
+      </Link>
     ),
   },
 ];

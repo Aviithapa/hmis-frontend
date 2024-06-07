@@ -1,12 +1,24 @@
 "use client";
 
+import DropdownMenu from "@/components/layout/DropdownMenu";
 import PageHeader from "@/components/layout/PageHeader";
 import SidebarLayout from "@/components/layout/Sidebar";
-import PrintPatientRegistration from "@/components/print/PrintPatientRegistration";
+import PrintPatientRegistration, {
+  PatientData,
+} from "@/components/print/PrintPatientRegistration";
 import { HomeOutlined } from "@ant-design/icons";
-import { Roles } from "@/utils/enums";
-import { Button, Col, DatePicker, Form, Input, Row, Select } from "antd";
-import { useRef } from "react";
+import {
+  Affix,
+  Button,
+  Col,
+  DatePicker,
+  Form,
+  Input,
+  Layout,
+  Row,
+  Select,
+} from "antd";
+import { useRef, useState, useEffect } from "react";
 import { useReactToPrint } from "react-to-print";
 
 const HeaderItems = [
@@ -22,6 +34,26 @@ const HeaderItems = [
 
 const PatientRegister = () => {
   const printRef = useRef<HTMLDivElement>(null);
+  const [data, setData] = useState<PatientData>({
+    id: 1230,
+    first_name: "Abhishek",
+    last_name: "Thapa",
+    age: 25,
+    sex: "M",
+    phone: "9867739191",
+    address: "Lalitpur Imadol",
+    type: "new",
+  });
+  const [shouldPrint, setShouldPrint] = useState(false);
+  const [patientCount, setPatientCount] = useState<number>(0);
+
+  useEffect(() => {
+    if (shouldPrint) {
+      handlePrint();
+      setShouldPrint(false);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data, shouldPrint]);
 
   const handlePrint = useReactToPrint({
     content: () => printRef.current,
@@ -35,7 +67,9 @@ const PatientRegister = () => {
 
   const onFinish = (values: any) => {
     console.log("Success:", values);
-    handlePrint();
+    setData(values);
+    setShouldPrint(true);
+    setPatientCount((prevCount) => prevCount + 1); // Increment the patient count
   };
 
   const onFinishFailed = (errorInfo: any) => {
@@ -50,16 +84,50 @@ const PatientRegister = () => {
     console.log("search:", value);
   };
 
-  // Filter `option.label` match the user type `input`
   const filterOption = (
     input: string,
     option?: { label: string; value: string }
   ) => (option?.label ?? "").toLowerCase().includes(input.toLowerCase());
 
   return (
-    <SidebarLayout role={Roles.RECEPTION}>
+    <>
+      <Layout className="site-layout">
+        <Affix offsetTop={0}>
+          <div
+            style={{
+              padding: 0,
+              background: "#cefad0",
+              top: 0,
+              paddingRight: "25px",
+              paddingLeft: "25px",
+              alignItems: "center",
+              display: "flex",
+              justifyContent: "space-between",
+              boxShadow: " 0px 0px 4px rgba(0, 0, 0, 0.2)",
+              height: "56px",
+            }}
+          >
+            <div />
+            <div style={{ right: 0, textAlign: "right" }}>
+              <span
+                style={{
+                  marginRight: "20px",
+                  fontSize: 16,
+                  fontWeight: 600,
+                }}
+              ></span>
+              <DropdownMenu />
+            </div>
+          </div>
+        </Affix>
+      </Layout>
       <PageHeader items={HeaderItems} titleContent="Patient Registration" />
       <div className="bg-white h-[auto] p-5 ml-5 mr-10 rounded-md shadow-lg">
+        <div className="mb-4">
+          <span className="text-lg font-bold">
+            Total Patients Registered Today: {patientCount}
+          </span>
+        </div>
         <Form
           name="patient_registration"
           autoComplete="true"
@@ -70,26 +138,26 @@ const PatientRegister = () => {
           <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
             <Col span={12}>
               <Form.Item
-                className=" rounded-md"
+                className="rounded-md"
                 label="First Name"
                 name="first_name"
                 rules={[
                   { required: true, message: "Please input your first name!" },
                 ]}
               >
-                <Input className="rounded-8" />
+                <Input />
               </Form.Item>
             </Col>
             <Col span={12}>
               <Form.Item
-                className=" rounded-md"
+                className="rounded-md"
                 label="Last Name"
                 name="last_name"
                 rules={[
                   { required: true, message: "Please input your last name!" },
                 ]}
               >
-                <Input className="rounded-8" />
+                <Input />
               </Form.Item>
             </Col>
           </Row>
@@ -97,40 +165,41 @@ const PatientRegister = () => {
           <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
             <Col span={12}>
               <Form.Item className="rounded-md" label="Email" name="email">
-                <Input className="rounded-8" />
+                <Input />
               </Form.Item>
             </Col>
             <Col span={12}>
               <Form.Item
-                className=" rounded-md"
+                className="rounded-md"
                 label="Phone Number"
                 name="phone"
               >
-                <Input className="rounded-8" />
+                <Input />
               </Form.Item>
             </Col>
             <Col span={12}>
-              <Form.Item
-                className=" rounded-md"
-                label="Date of Birth"
-                name="dob"
-                rules={[
-                  {
-                    required: true,
-                    message: "Please select your date of birth!",
-                  },
-                ]}
-              >
-                <DatePicker className="rounded-8" style={{ width: "100%" }} />
+              <Form.Item className="rounded-md" label="Type" name="type">
+                <Select
+                  showSearch
+                  placeholder="Select Type"
+                  optionFilterProp="children"
+                  onChange={onChange}
+                  onSearch={onSearch}
+                  filterOption={filterOption}
+                  options={[
+                    { value: "New", label: "New" },
+                    { value: "Re-visit", label: "Re-Visit" },
+                  ]}
+                />
               </Form.Item>
             </Col>
             <Col span={12}>
-              <Form.Item className=" rounded-md" label="Age" name="age">
-                <Input className="rounded-8" />
+              <Form.Item className="rounded-md" label="Age" name="age">
+                <Input />
               </Form.Item>
             </Col>
             <Col span={12}>
-              <Form.Item className=" rounded-md" label="Sex" name="sex">
+              <Form.Item className="rounded-md" label="Sex" name="sex">
                 <Select
                   showSearch
                   placeholder="Select sex"
@@ -139,25 +208,16 @@ const PatientRegister = () => {
                   onSearch={onSearch}
                   filterOption={filterOption}
                   options={[
-                    {
-                      value: "Male",
-                      label: "male",
-                    },
-                    {
-                      value: "Female",
-                      label: "Female",
-                    },
-                    {
-                      value: "Other",
-                      label: "other",
-                    },
+                    { value: "Male", label: "Male" },
+                    { value: "Female", label: "Female" },
+                    { value: "Other", label: "Other" },
                   ]}
                 />
               </Form.Item>
             </Col>
             <Col span={12}>
               <Form.Item
-                className=" rounded-md"
+                className="rounded-md"
                 label="Religion"
                 name="religion"
               >
@@ -169,18 +229,9 @@ const PatientRegister = () => {
                   onSearch={onSearch}
                   filterOption={filterOption}
                   options={[
-                    {
-                      value: "hindu",
-                      label: "Hindu",
-                    },
-                    {
-                      value: "Muslim",
-                      label: "muslim",
-                    },
-                    {
-                      value: "Christian",
-                      label: "christian",
-                    },
+                    { value: "Hindu", label: "Hindu" },
+                    { value: "Muslim", label: "Muslim" },
+                    { value: "Christian", label: "Christian" },
                   ]}
                 />
               </Form.Item>
@@ -188,7 +239,7 @@ const PatientRegister = () => {
 
             <Col span={24}>
               <Form.Item
-                className=" rounded-md"
+                className="rounded-md"
                 label="Address"
                 name="address"
                 rules={[
@@ -199,7 +250,7 @@ const PatientRegister = () => {
               </Form.Item>
             </Col>
             <Col span={12}>
-              <Form.Item className=" rounded-md" label="Doctor" name="doctor">
+              <Form.Item className="rounded-md" label="Doctor" name="doctor">
                 <Select
                   showSearch
                   placeholder="Select Doctor"
@@ -217,8 +268,8 @@ const PatientRegister = () => {
                       label: "Rajendra Mouny (Gastro)",
                     },
                     {
-                      value: "Dr shyam bahadur (Clino)",
-                      label: "Dr shyam bahadur (Clino)",
+                      value: "Dr Shyam Bahadur (Clino)",
+                      label: "Dr Shyam Bahadur (Clino)",
                     },
                   ]}
                 />
@@ -233,20 +284,10 @@ const PatientRegister = () => {
                   onChange={onChange}
                   onSearch={onSearch}
                   filterOption={filterOption}
-                  style={{ borderRadius: "0px" }}
                   options={[
-                    {
-                      value: "Gyano",
-                      label: "Gyano",
-                    },
-                    {
-                      value: "Opticals",
-                      label: "Opticals",
-                    },
-                    {
-                      value: "Gastro",
-                      label: "Gastro",
-                    },
+                    { value: "Gyano", label: "Gyano" },
+                    { value: "Opticals", label: "Opticals" },
+                    { value: "Gastro", label: "Gastro" },
                   ]}
                 />
               </Form.Item>
@@ -256,7 +297,7 @@ const PatientRegister = () => {
                 <Button
                   type="primary"
                   htmlType="submit"
-                  className="w-[90%] bg-gradient-to-r from-cyan-500 to-blue-500 "
+                  className="w-[90%] bg-gradient-to-r from-cyan-500 to-blue-500"
                   style={{ borderRadius: "10px", height: "40px" }}
                 >
                   Add Now
@@ -268,7 +309,7 @@ const PatientRegister = () => {
                 <Button
                   type="dashed"
                   htmlType="submit"
-                  className="w-[70%] border border-[rgba(247,122,88,0.75)] "
+                  className="w-[70%] border border-[rgba(247,122,88,0.75)]"
                   style={{ borderRadius: "10px", height: "40px" }}
                 >
                   Cancel
@@ -278,9 +319,9 @@ const PatientRegister = () => {
           </Row>
         </Form>
 
-        <PrintPatientRegistration ref={printRef} />
+        <PrintPatientRegistration ref={printRef} patientData={data} />
       </div>
-    </SidebarLayout>
+    </>
   );
 };
 

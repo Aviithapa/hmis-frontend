@@ -26,7 +26,7 @@ const SearchableCheckboxGroup: React.FC<SearchableCheckboxGroupProps> = ({
     if (value !== selectedValues) {
       setSelectedValues(value || []);
     }
-  }, [value]);
+  }, [value, selectedValues]);
 
   const filteredOptions = options.filter((option) =>
     option.label.toLowerCase().includes(searchTerm.toLowerCase())
