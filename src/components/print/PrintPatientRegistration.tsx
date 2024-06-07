@@ -44,18 +44,18 @@ const PrintPatientRegistration = forwardRef<HTMLDivElement, Props>(
                 <div className="text-2xl leading-tight mt-2">
                   Name :
                   <span className="font-bold">
-                    {patientData.first_name} {patientData.last_name}
+                    {patientData?.first_name} {patientData?.last_name}
                   </span>{" "}
                   &nbsp; &nbsp; &nbsp;
-                  <span>Type : {patientData.type}</span>
+                  <span>Type : {patientData?.type}</span>
                 </div>
                 <span className="text-lg"></span>
               </div>
               <div className="text-2xl leading-tight mt-2">
-                Age/Sex : {patientData.age} Y/{patientData.sex}{" "}
-                <span className="ml-7">{patientData.phone}</span>
+                Age/Sex : {patientData?.age} Y/{patientData?.sex}{" "}
+                <span className="ml-7">{patientData?.phone}</span>
                 <br />
-                <span>Address : {patientData.address}</span>
+                <span>Address : {patientData?.address}</span>
               </div>
             </div>
           </div>
