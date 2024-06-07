@@ -1,5 +1,4 @@
 "use client";
-
 import PageHeader from "@/components/layout/PageHeader";
 import SidebarLayout from "@/components/layout/Sidebar";
 import PrintPatientRegistration from "@/components/print/PrintPatientRegistration";
@@ -278,7 +277,17 @@ const PatientRegister = () => {
           </Row>
         </Form>
 
-        <PrintPatientRegistration ref={printRef} />
+        <PrintPatientRegistration ref={printRef} patientData={{
+          id: undefined,
+          first_name: undefined,
+          last_name: undefined,
+          age: undefined,
+          sex: undefined,
+          phone: undefined,
+          address: undefined,
+          doctor: undefined,
+          type: undefined
+        }} />
       </div>
     </SidebarLayout>
   );

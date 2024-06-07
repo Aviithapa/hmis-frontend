@@ -49,6 +49,55 @@ const patientData = [
     gender: "F",
     religion: "Jewish",
   },
+  {
+    patientId: "123456",
+    name: "David Cohen",
+    age: "28Y",
+    gender: "M",
+    religion: "Jewish"
+  },
+  {
+    patientId: "987654",
+    name: "Sarah Levy",
+    age: "36Y",
+    gender: "F",
+    religion: "Jewish"
+  },
+  {
+    patientId: "456789",
+    nam: "John Johnson",
+    age: "50Y",
+    gender: "M",
+    religion: "Christian"
+  },
+  {
+    patientId: "654321",
+    name: "Rachel Green",
+    age: "42Y",
+    gender: "F",
+    religion: "Jewish"
+  },
+  {
+    patientId: "445566",
+    name: "Emily White",
+    age: "27Y",
+    gender: "F",
+    religion: "Christian"
+  },
+  {
+    patientId: "112233",
+    name: "Michael Taylor",
+    age: "31Y",
+    gender: "M",
+    religion: "Christian"
+  },
+  {
+    patientId: "778899",
+    name: "Daniel Brown",
+    age: "48Y",
+    gender: "M",
+    religion: "Jewish"
+  },
 ];
 
 const PatientOpd = () => {
@@ -149,7 +198,7 @@ const PatientOpd = () => {
                   </span>
                 </List.Item>
                 <List.Item>
-                  <span className="font-semibold rounded-md">
+                  <span className="font-semibold p-3 rounded-md">
                     <Button type="primary" onClick={handleLabModalOpenClose}>
                       Add Lab
                     </Button>

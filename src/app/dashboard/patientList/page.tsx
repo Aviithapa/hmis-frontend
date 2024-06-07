@@ -24,6 +24,7 @@ const dataSource = [
     name: "Mike",
     age: 32,
     address: "10 Downing Street",
+    Phone_Number: "325850195"
   },
   {
     key: "2",
@@ -31,6 +32,132 @@ const dataSource = [
     age: 42,
     address: "10 Downing Street",
   },
+  {
+    key: "3",
+    name: "Sophia",
+    age: 39,
+    address: "14 Oak Lane"
+  },
+  {
+    key: "4",
+    name: "Sophia",
+    age: 39,
+    address: "14 Oak Lane"
+  },
+  {
+    key: "5",
+    name: "Ava",
+    age: 25,
+    address: "9 Cedar Court"
+  },
+
+  {
+    key: "6",
+    name: "James",
+    age: 56,
+    address: "11 Birch Street"
+  },
+  {
+    key: "7",
+    name: "Olivia",
+    age: 31,
+    address: "16 Maple Avenue"
+  },
+  {
+    key: "8",
+    name: "Jacob",
+    age: 43,
+    address: "5 Elm Lane"
+  },
+  {
+    key: "9",
+    name: "Emma",
+    age: 38,
+    address: "22 Oak Road"
+  },
+  {
+    key: "10",
+    name: "Michael",
+    age: 29,
+    address: "8 Pine Court"
+  },
+
+  {
+    key: "11",
+    name: "William",
+    age: 27,
+    address: "10 Downing Street"
+  },
+
+  {
+    key: "12",
+    name: "Mia",
+    age: 45,
+    address: "10 Downing Street"
+  },
+  {
+    key: "13",
+    name: "Charlotte",
+    age: 33,
+    address: "10 Downing Street"
+  },
+  {
+    key: "14",
+    name: "Sophia",
+    age: 42,
+    address: "11 Birch Street"
+  },
+  {
+    key: "15",
+    name: "Ethan",
+    age: 35,
+    address: "11 Birch Street"
+  },
+  {
+    key: "16",
+    name: "Isabella",
+    age: 28,
+    address: "11 Birch Street"
+  },
+  {
+    key: "17",
+    name: "Charlotte",
+    age: 47,
+    address: "11 Birch Street"
+  },
+
+
+  {
+    key: "18",
+    name: "William",
+    age: 25,
+    address: "11 Birch Street"
+  },
+  {
+    key: "19",
+    name: "Michael",
+    age: 48,
+    address: "11 Birch Street"
+  },
+  {
+    key: "20",
+    name: "James",
+    age: 46,
+    address: "11 Birch Street"
+  },
+
+  {
+    key: "21",
+    name: "Sophia",
+    age: 27,
+    address: "11 Birch Street"
+  }
+
+
+
+
+
+
 ];
 
 const columns = [
@@ -111,6 +238,42 @@ const PatientList = () => {
                     {
                       value: "Rajendra Mouny (Gastro)",
                       label: "Rajendra Mouny (Gastro)",
+                    },
+                    {
+                      value: "Dr shyam bahadur (Clino)",
+                      label: "Dr shyam bahadur (Clino)",
+                    },
+                    {
+                      value: "Dr shyam bahadur (Clino)",
+                      label: "Dr shyam bahadur (Clino)",
+                    },
+                    {
+                      value: "Dr shyam bahadur (Clino)",
+                      label: "Dr shyam bahadur (Clino)",
+                    },
+                    {
+                      value: "Dr shyam bahadur (Clino)",
+                      label: "Dr shyam bahadur (Clino)",
+                    },
+                    {
+                      value: "Dr shyam bahadur (Clino)",
+                      label: "Dr shyam bahadur (Clino)",
+                    },
+                    {
+                      value: "Dr shyam bahadur (Clino)",
+                      label: "Dr shyam bahadur (Clino)",
+                    },
+                    {
+                      value: "Dr shyam bahadur (Clino)",
+                      label: "Dr shyam bahadur (Clino)",
+                    },
+                    {
+                      value: "Dr shyam bahadur (Clino)",
+                      label: "Dr shyam bahadur (Clino)",
+                    },
+                    {
+                      value: "Dr shyam bahadur (Clino)",
+                      label: "Dr shyam bahadur (Clino)",
                     },
                     {
                       value: "Dr shyam bahadur (Clino)",
