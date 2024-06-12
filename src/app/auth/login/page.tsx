@@ -1,20 +1,18 @@
 "use client";
 
-import { Button } from "antd";
-import Image from "next/image";
-import { useRouter } from "next/router";
-import React, { FormEvent } from "react";
+import React from "react";
 import LoginForm from "./component/form";
 const Login = () => {
   return (
-    <section className="w-100 h-screen overflow-hidden flex items-center justify-between bg-black">
-      <div className="hidden md:block flex-1 ">
-        <div className="clipBoard relative text-white  px-[90px]">
-          <div className="absolute top-10">
+    <section className="w-100 h-screen overflow-hidden flex items-center justify-between relative bg-[url('/img/login.jpg')] bg-cover bg-center">
+      <div className="absolute inset-0 bg-gradient-to-r from-green-400 to-white-100 opacity-75"></div>
+      <div className="flex-1 z-10">
+        <div className="clipBoard relative text-white px-[90px]">
+          <div className="absolute">
             <h1 className="font-[700] text-[65px] leading-[1]">
               Padma Hospital, Attariya
             </h1>
-            <p className=" font-[400] pt-4">
+            <p className="font-[400] pt-4">
               Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aperiam
               sapiente praesentium iusto voluptatum aspernatur eaque sunt
               corrupti nemo eius facere, tenetur placeat pariatur fuga similique
@@ -25,8 +23,7 @@ const Login = () => {
           </div>
         </div>
       </div>
-
-      <div className=" px-8 flex-1 flex justify-center">
+      <div className="px-8 flex-1 flex justify-center z-10">
         <LoginForm />
       </div>
     </section>

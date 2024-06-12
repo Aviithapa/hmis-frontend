@@ -278,7 +278,10 @@ const PatientRegister = () => {
           </Row>
         </Form>
 
-        <PrintPatientRegistration ref={printRef} />
+        <PrintPatientRegistration
+          ref={printRef}
+          patientData={{ first_name: "abhishek", last_name: "thapa" }}
+        />
       </div>
     </SidebarLayout>
   );

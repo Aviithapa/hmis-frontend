@@ -14,7 +14,7 @@ const LoginForm = () => {
   const onFinish = async (value: LoginPayload) => {
     try {
       // const res = await login(value);
-      if (value?.staff_id === "1234" && value?.password === "Nepal@123") {
+      if (value?.staff_id === "admin" && value?.password === "Nepal@123") {
         router.push("/dashboard");
       } else if (
         value?.staff_id === "reception" &&
@@ -26,6 +26,8 @@ const LoginForm = () => {
         value?.password === "Nepal@123"
       ) {
         router.push("/doctor");
+      } else if (value?.staff_id === "lab" && value?.password === "Nepal@123") {
+        router.push("/lab");
       } else {
         message.error("Invalid Username or Password");
       }
@@ -44,27 +46,21 @@ const LoginForm = () => {
       <Form.Item
         label="Staff Id"
         name="staff_id"
-        className="rounded-md "
         rules={[{ required: true, message: "Please input your staff id!" }]}
       >
-        <Input className="rounded-8" />
+        <Input />
       </Form.Item>
 
       <Form.Item
         label="Password"
         name="password"
-        className="rounded-md"
         rules={[{ required: true, message: "Please input your password!" }]}
       >
         <Input.Password />
       </Form.Item>
 
       <Form.Item>
-        <Button
-          type="primary"
-          htmlType="submit"
-          className="w-[100%] rounded-md "
-        >
+        <Button type="primary" htmlType="submit" className="w-[100%]">
           Submit
         </Button>
       </Form.Item>

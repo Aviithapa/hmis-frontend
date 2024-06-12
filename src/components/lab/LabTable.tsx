@@ -215,6 +215,7 @@ const LabTestTable: React.FC = () => {
         bordered
         dataSource={dataSource}
         columns={columns as ColumnTypes}
+        pagination={false}
       />
     </div>
   );

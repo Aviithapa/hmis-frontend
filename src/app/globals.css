@@ -149,3 +149,26 @@ body {
 .ant-list .ant-list-item {
   padding: 6px 0;
 }
+
+.ant-input-affix-wrapper {
+  border-radius: 0px;
+}
+
+
+.ant-menu-dark .ant-menu-item {
+  color: black;
+  font-weight: 700;
+}
+
+.ant-menu-dark.ant-menu-horizontal>.ant-menu-item-selected {
+  color: green;
+  background-color: #66BB6A;
+}
+
+.ant-menu-dark .ant-menu-item:not(.ant-menu-item-selected):not(.ant-menu-submenu-selected):hover {
+  color: green;
+}
+
+.ant-menu-dark.ant-menu-horizontal>.ant-menu-item-selected:hover {
+  background-color: transparent;
+}

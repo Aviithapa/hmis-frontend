@@ -5,7 +5,6 @@ import SidebarLayout from "@/components/layout/Sidebar";
 import { HomeOutlined } from "@ant-design/icons";
 import { Roles } from "@/utils/enums";
 import { Button, Col, Form, Input, Row, Select, Table } from "antd";
-import { Black_And_White_Picture } from "next/font/google";
 
 const HeaderItems = [
   {
@@ -83,14 +82,20 @@ const PatientList = () => {
         <Form layout="vertical">
           <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
             <Col span={7}>
-
-              <Form.Item className="rounded-md" name="Search" label="First Name">
+              <Form.Item
+                className="rounded-md"
+                name="Search"
+                label="First Name"
+              >
                 <Input className="rounded-8" />
               </Form.Item>
             </Col>
             <Col span={7}>
-              <Form.Item className="rounded-md" name="Search" label="Contact Number">
-
+              <Form.Item
+                className="rounded-md"
+                name="Search"
+                label="Contact Number"
+              >
                 <Input className="rounded-8" />
               </Form.Item>
             </Col>
@@ -133,8 +138,7 @@ const PatientList = () => {
                     marginTop: "30px",
                     padding: "10px",
                     display: "flex",
-                    alignItems: "center"
-
+                    alignItems: "center",
                   }}
                 >
                   Reset Filter

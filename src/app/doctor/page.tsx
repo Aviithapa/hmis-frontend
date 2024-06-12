@@ -2,9 +2,8 @@
 
 import { useState, useEffect } from "react";
 import PageHeader from "@/components/layout/PageHeader";
-import SidebarLayout from "@/components/layout/Sidebar";
 import { HomeOutlined, UserOutlined } from "@ant-design/icons";
-import { AutoComplete, Avatar, Button, Form, Input, List } from "antd";
+import { AutoComplete, Avatar, Button, Form, List } from "antd";
 import Editor from "@/components/editor/Editor";
 import AddPrescriptionModal from "@/components/modal/AddPrescriptionModal";
 import AddLabRequestModal from "@/components/modal/AddLabRequestModal";

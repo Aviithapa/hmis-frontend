@@ -36,7 +36,18 @@ const urls = {
       title: "Patient List",
       path: "/dashboard/patientList",
       icon: UserOutlined,
-      color: "bg-blue",
+      children: [
+        {
+          title: "My Attendance",
+          path: "/employee/attendance",
+          key: "attendance-list",
+        },
+        {
+          title: "Team Attendance",
+          path: "/employee/attendance/list",
+          key: "summary",
+        },
+      ],
     },
     {
       title: "Patient Opd",
