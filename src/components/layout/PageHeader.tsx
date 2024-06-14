@@ -1,8 +1,6 @@
 import { LeftCircleOutlined } from "@ant-design/icons";
 import { Breadcrumb, Button, Space } from "antd";
 import { BreadcrumbItemType } from "antd/es/breadcrumb/Breadcrumb";
-import Link from "next/link";
-import { useRouter } from "next/router";
 import React, { ReactNode } from "react";
 
 interface BreadcrumbItem {
@@ -44,25 +42,26 @@ const PageHeader = ({
   const getButton = () => (
     <Button
       type="primary"
-      className="bg-primary-bg text-white shadow-none"
+      className="text-green-800 shadow-none  bg-green-300 hover:bg-green-200  hover:text-green-300 "
       icon={icon || ""}
       onClick={() => buttonCb && buttonCb()}
+      style={{ borderRadius: "0px", marginTop: "-10px", paddingTop: "-10px" }}
     >
       {buttonLabel}
     </Button>
   );
 
   return (
-    <div className="bg-gray p-5 pb-2">
+    <div className="bg-gray p-5 pb-2 pr-10">
       <Breadcrumb items={items}></Breadcrumb>
       <div className="flex justify-between items-center">
         <h2 className="text-xl">
           {goBack && (
-            <LeftCircleOutlined className="text-gray-500 hover:text-gray-700 cursor-pointer" />
+            <LeftCircleOutlined className="text-gray-500 hover:text-green-700 cursor-pointer" />
           )}{" "}
           {titleContent}
         </h2>
-        <Space>
+        <Space style={{ marginTop: "-20px" }}>
           {buttonLabel && getButton()}
           {secondButtonLabel && (
             <Button

@@ -1055,6 +1055,11 @@ balanced-match@^1.0.0:
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-1.0.2.tgz#e83e3a7e3f300b34cb9d87f615fa0cbf357690ee"
   integrity sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==
 
+bikram-sambat-js@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/bikram-sambat-js/-/bikram-sambat-js-1.0.1.tgz#5299de4613767537a23a6e5a7840bb4292e760c8"
+  integrity sha512-d1hdHN0F2BdlJYzT866/FTHX7G+rsJ5AKggJlch4lU1kL7o6AVnbaeJ9JrEUusRwAM4vQhXmCEtPRRCrdnuPRA==
+
 binary-extensions@^2.0.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/binary-extensions/-/binary-extensions-2.3.0.tgz#f6e14a97858d327252200242d4ccfe522c445522"
@@ -3250,6 +3255,19 @@ natural-compare@^1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/natural-compare/-/natural-compare-1.4.0.tgz#4abebfeed7541f2c27acfb29bdbbd15c8d5ba4f7"
   integrity sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==
+
+nepali-datepicker-reactjs@^1.1.5:
+  version "1.1.5"
+  resolved "https://registry.yarnpkg.com/nepali-datepicker-reactjs/-/nepali-datepicker-reactjs-1.1.5.tgz#6c65e02ae7ba128f4057fc3548f6200db7b75506"
+  integrity sha512-E+zo9Bt81trrLvEAWjDqWT7Ht5dK83GTLxC78fVIzB0W710u1e2w7E61FGXvk5eWZ/DqlSZurw+SS4/uZ0Jeaw==
+  dependencies:
+    bikram-sambat-js "^1.0.1"
+    nepali-number "^1.0.3"
+
+nepali-number@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/nepali-number/-/nepali-number-1.0.3.tgz#3d0079f77f0a85dfb86f54a0a716fd346a276ff3"
+  integrity sha512-Vb6aMQM/xtE7KiiEhemgDcACxIMaDn18Ub/imWXB6JlhDwc2qVDnGW+sR0gDLPQmyiyk06bkKze1oK88FxWIjw==
 
 next-auth@^4.24.7:
   version "4.24.7"

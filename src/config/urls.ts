@@ -27,10 +27,20 @@ const urls = {
   ],
   receptionNavItems: [
     {
-      title: "Patient Registration",
-      path: "/dashboard/patientRegister",
+      title: "Opd Patient",
       icon: MdOutlineAppRegistration,
-      color: "bg-red",
+      children: [
+        {
+          title: "Opd Patient List",
+          path: "/dashboard/opd-patient",
+          key: "opd-patient",
+        },
+        {
+          title: "Add New Opd Patient",
+          path: "/dashboard/opd-patient/add",
+          key: "opd-patient-add",
+        },
+      ],
     },
     {
       title: "Patient List",
@@ -57,9 +67,19 @@ const urls = {
     },
     {
       title: "Lab",
-      path: "/dashboard/lab",
       icon: ImLab,
-      color: "bg-green",
+      children: [
+        {
+          title: "Test",
+          path: "/dashboard/lab/test",
+          key: "test",
+        },
+        {
+          title: "Lab",
+          path: "/dashboard/lab",
+          key: "lab",
+        },
+      ],
     },
   ],
   employeeNavitems: [

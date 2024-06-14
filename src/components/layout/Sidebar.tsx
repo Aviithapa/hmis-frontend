@@ -1,5 +1,5 @@
 "use client";
-import { Image, Layout, Menu } from "antd";
+import { Image, Layout, Menu, Popover } from "antd";
 import React, { Children, createElement, useState } from "react";
 import urls from "@/config/urls";
 import { Roles } from "@/utils/enums";
@@ -39,26 +39,25 @@ const items: (
 ) => MenuItem[] = (router, navItems, isChild = false) =>
   navItems.map((ni) => {
     const key = ni.title;
-    const isSelected = ni.path === router.pathname;
     const hasChildren = !!ni?.children;
-    const className = isChild ? "navbar-child-item" : "navbar-parent-item";
+    const iconElement = ni.icon
+      ? createElement(ni.icon, {
+          style: { width: 25, fontSize: 22 },
+        })
+      : null;
+
+    const iconWithPopover =
+      !hasChildren && iconElement ? (
+        <Popover content={ni.title}>{iconElement}</Popover>
+      ) : (
+        iconElement
+      );
     return {
-      label: ni.title,
+      label: isChild && ni.title,
       ...(ni.path && { onClick: () => ni.path && router.push(ni.path) }),
-      icon:
-        ni.icon &&
-        createElement(ni.icon, {
-          style: { width: 25, fontSize: 18 },
-        }),
+      icon: iconWithPopover,
       key,
-      // eslint-disable-next-line no-nested-ternary
-      className: `${className} text-black${
-        isSelected
-          ? isChild
-            ? "navbar-item-selected-child"
-            : "navbar-item-selected"
-          : ""
-      }`,
+      className: `text-black`,
       ...(hasChildren && {
         children: ni.children && items(router, ni?.children, true),
       }),
@@ -66,14 +65,13 @@ const items: (
   });
 
 const SidebarLayout: React.FC<Props> = ({ role, children }) => {
-  const [collapsed, setCollapsed] = useState(true);
   const router = useRouter();
 
   const navItems: routeItemProp[] = role
     ? [
         ...(urls?.commonNavItems || []).filter(
           (item) => item.title !== "Holiday"
-        ), // filter out Holiday item
+        ),
         ...(role === Roles.ADMIN || role === Roles.SUPERADMIN
           ? urls.adminNavitems
           : role === Roles.RECEPTION
@@ -83,8 +81,6 @@ const SidebarLayout: React.FC<Props> = ({ role, children }) => {
           []),
       ]
     : [];
-
-  const pathName = usePathname();
 
   return (
     <Layout className="bg-gradient-to-t from-green-400 to-white-100 opacity-75">
@@ -98,7 +94,7 @@ const SidebarLayout: React.FC<Props> = ({ role, children }) => {
         }}
       >
         <Image
-          src="img/logo.svg"
+          src="/img/logo.svg"
           width="150px"
           height="50px"
           alt="HMIS"

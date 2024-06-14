@@ -168,7 +168,7 @@ const PatientOpd = () => {
           onFinishFailed={onFinishFailed}
           className="col-span-3 h-[100vh] bg-white p-10 rounded-md shadow-lg"
         >
-          <Editor />
+          {/* <Editor /> */}
         </Form>
 
         <AddPrescriptionModal
