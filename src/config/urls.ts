@@ -8,8 +8,8 @@ import {
   SettingOutlined,
   UserOutlined,
   FileTextOutlined,
+  UserAddOutlined,
 } from "@ant-design/icons";
-import { MdOutlineAppRegistration } from "react-icons/md";
 import { ImLab } from "react-icons/im";
 
 const urls = {
@@ -27,35 +27,39 @@ const urls = {
   ],
   receptionNavItems: [
     {
-      title: "Opd Patient",
-      icon: MdOutlineAppRegistration,
+      title: "Out Patient",
+      icon: UserOutlined,
       children: [
         {
-          title: "Opd Patient List",
+          title: "Out Patient List",
           path: "/dashboard/opd-patient",
           key: "opd-patient",
         },
         {
-          title: "Add New Opd Patient",
+          title: "Add New Out Patient",
           path: "/dashboard/opd-patient/add",
           key: "opd-patient-add",
         },
       ],
     },
     {
-      title: "Patient List",
-      path: "/dashboard/patientList",
-      icon: UserOutlined,
+      title: "In Patient",
+      icon: UserAddOutlined,
       children: [
         {
-          title: "My Attendance",
-          path: "/employee/attendance",
-          key: "attendance-list",
+          title: "In Patient List",
+          path: "/dashboard/in-patient",
+          key: "in-patient",
         },
         {
-          title: "Team Attendance",
-          path: "/employee/attendance/list",
-          key: "summary",
+          title: "Admit New Patient",
+          path: "/dashboard/opd-patient/add",
+          key: "opd-patient-add",
+        },
+        {
+          title: "Discharge",
+          path: "/dashboard/opd-patient/add",
+          key: "opd-patient-add",
         },
       ],
     },
@@ -70,14 +74,19 @@ const urls = {
       icon: ImLab,
       children: [
         {
-          title: "Test",
+          title: "Test List",
           path: "/dashboard/lab/test",
           key: "test",
         },
         {
-          title: "Lab",
+          title: "Lab ",
           path: "/dashboard/lab",
           key: "lab",
+        },
+        {
+          title: "Lab Report",
+          path: "/dashboard/lab/result",
+          key: "lab-result",
         },
       ],
     },

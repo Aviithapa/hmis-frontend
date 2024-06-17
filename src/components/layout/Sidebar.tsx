@@ -1,5 +1,5 @@
 "use client";
-import { Image, Layout, Menu, Popover } from "antd";
+import { Image, Layout, Menu, Popover, Slider } from "antd";
 import React, { Children, createElement, useState } from "react";
 import urls from "@/config/urls";
 import { Roles } from "@/utils/enums";
@@ -53,7 +53,7 @@ const items: (
         iconElement
       );
     return {
-      label: isChild && ni.title,
+      label: ni.title,
       ...(ni.path && { onClick: () => ni.path && router.push(ni.path) }),
       icon: iconWithPopover,
       key,
@@ -83,46 +83,51 @@ const SidebarLayout: React.FC<Props> = ({ role, children }) => {
     : [];
 
   return (
-    <Layout className="bg-gradient-to-t from-green-400 to-white-100 opacity-75">
-      <Header
-        style={{
-          display: "flex",
-          alignItems: "center",
-          background: "#e0ece4 !important",
-          justifyItems: "center",
-          position: "sticky",
-        }}
-      >
+    <Layout className="bg-green-400 to-white-100 opacity-75">
+      <Sider className="bg-green-400 to-white-100 opacity-75">
         <Image
           src="/img/logo.svg"
           width="150px"
-          height="50px"
+          height="60px"
           alt="HMIS"
+          className="ml-3"
           preview={false}
         />
         <Menu
           theme="dark"
-          mode="horizontal"
+          mode="vertical"
           defaultSelectedKeys={["2"]}
           items={items(router, navItems)}
           style={{
             flex: 1,
             minWidth: 0,
             color: "black !important",
-            background: "#e0ece4 !important",
             justifyContent: "center",
+            marginTop: "10px",
           }}
         />
-        <div className="sticky top-0 flex items-center justify-between p-0 h-14 px-6">
-          <div />
-          <div className="text-right">
-            <span className="mr-5 text-lg font-semibold"></span>
-            <DropdownMenu />
+      </Sider>
+      <Layout className="bg-green-100">
+        <Header
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyItems: "center",
+            justifyContent: "flex-end",
+            position: "sticky",
+          }}
+        >
+          <div className="sticky top-0 flex items-center justify-between p-0 h-14 px-6">
+            <div />
+            <div className="text-right">
+              <span className="mr-5 text-lg font-semibold"></span>
+              <DropdownMenu />
+            </div>
           </div>
-        </div>
-      </Header>
+        </Header>
 
-      <Content style={{ minHeight: "100vh" }}>{children}</Content>
+        <Content style={{ minHeight: "100vh" }}>{children}</Content>
+      </Layout>
     </Layout>
   );
 };

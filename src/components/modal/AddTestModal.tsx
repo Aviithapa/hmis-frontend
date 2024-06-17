@@ -1,5 +1,6 @@
 import {
   Button,
+  Checkbox,
   Col,
   Form,
   Input,
@@ -9,7 +10,7 @@ import {
   Space,
   TreeSelect,
 } from "antd";
-import React from "react";
+import React, { useState } from "react";
 import { DeleteOutlined, PlusCircleFilled } from "@ant-design/icons";
 import FormItem from "antd/es/form/FormItem";
 import { TreeNode } from "antd/es/tree-select";
@@ -133,6 +134,23 @@ const AddTestModal = ({ isModalOpen, handleCancel }: Props) => {
                   return (
                     <div style={{ position: "relative" }} key={i}>
                       <Row style={{ justifyContent: "space-between" }}>
+                        <Col span={5} md={10} lg={4} sm={24} xs={24}>
+                          <Form.Item
+                            className="rounded-md"
+                            label={i === 0 && "Sex"}
+                            name={[field.name, "sex"]}
+                          >
+                            <Select
+                              showSearch
+                              placeholder="Select sex"
+                              optionFilterProp="children"
+                              options={[
+                                { value: "Male", label: "Male" },
+                                { value: "Female", label: "Female" },
+                              ]}
+                            />
+                          </Form.Item>
+                        </Col>
                         <Col span={6} md={12} lg={6} sm={24} xs={24}>
                           <Space.Compact block>
                             <FormItem

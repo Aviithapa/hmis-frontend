@@ -228,10 +228,6 @@ const TestList = () => {
     setIsModalOpen(!isModalOpen);
   };
 
-  const handlePatientRegistration = () => {
-    router.push("opd-patient/add");
-  };
-
   return (
     <SidebarLayout role={Roles.RECEPTION}>
       <PageHeader
