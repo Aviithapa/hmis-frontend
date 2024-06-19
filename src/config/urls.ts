@@ -61,6 +61,11 @@ const urls = {
           path: "/dashboard/opd-patient/add",
           key: "opd-patient-add",
         },
+        {
+          title: "Ward Management",
+          path: "/dashboard/ward",
+          key: "ward",
+        },
       ],
     },
     {

@@ -194,24 +194,12 @@ const InPatientList = () => {
       </div>
 
       <Row className="ml-5 mr-10 mt-5">
-        <Col lg={18} md={24} xs={24} sm={24} className="bg-white p-5 ">
+        <Col lg={24} md={24} xs={24} sm={24} className="bg-white p-5 ">
           <Table
             dataSource={dataSource}
             columns={columns}
             scroll={{ x: 1000 }}
           />
-        </Col>
-
-        <Col lg={6} md={24} xs={24} sm={24} className="sm:max-lg:mt-3">
-          <Card
-            className={`bg-white flex ml-10 sm:max-lg:ml-0 sm:max-lg:mb-0  items-center justify-center text-center`}
-          >
-            <div className="text-4xl mb-2 flex justify-center">
-              <BiWallet />
-            </div>
-            <div className="text-3xl font-bold">Rs 10000</div>
-            <div className="text-sm text-gray-400 font-bold">Total Revenue</div>
-          </Card>
         </Col>
       </Row>
     </SidebarLayout>
