@@ -7,6 +7,7 @@ import { Roles } from "@/utils/enums";
 import { Button, Col, Form, Input, Row, Select, Table, Tag } from "antd";
 import "nepali-datepicker-reactjs/dist/index.css";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 const HeaderItems = [
   {
@@ -15,95 +16,58 @@ const HeaderItems = [
   },
   {
     href: "#",
-    title: "In Patient",
+    title: "OT Patient",
   },
 ];
 
-const dataSource = [
-  {
-    key: "1",
-    name: "Mike",
-    age: "32 / M",
-    address: "10 Downing Street",
-    phone_number: "9867739191",
-    ticket_type: "New",
-    amount_paid: "Rs 30",
-  },
-  {
-    key: "2",
-    name: "John",
-    age: "42 / M",
-    address: "10 Downing Street",
-    phone_number: "9867739191",
-    ticket_type: "Re-Visit",
-    amount_paid: "Rs 20",
-  },
-  {
-    key: "3",
-    name: "John",
-    age: "23 / M",
-    address: "10 Downing Street",
-    phone_number: "9867739191",
-    ticket_type: "Emergency",
-    amount_paid: "Rs 20",
-  },
-];
+ 
 
 const columns = [
-  {
-    title: "#",
-    dataIndex: "key",
-    key: "sn",
-  },
-  {
-    title: "Name",
-    dataIndex: "name",
-    key: "name",
-  },
-  {
-    title: "Age / Gender",
-    dataIndex: "age",
-    key: "age",
-  },
-  {
-    title: "Address",
-    dataIndex: "address",
-    key: "address",
-  },
-  {
-    title: "Admit Date",
-    dataIndex: "admit_date",
-    key: "admit_date",
-  },
-  {
-    title: "Phone Number",
-    dataIndex: "phone_number",
-    key: "phone_number",
-  },
-  {
-    title: "Ticket Type",
-    dataIndex: "ticket_type",
-    key: "ticket_type",
-    render: (text: string) => <Tag color="green">{text}</Tag>,
-  },
-  {
-    title: "Doctor In-charge",
-    dataIndex: "doctor_in_charge",
-    key: "doctor_in_charge",
-  },
-  {
-    title: "Advance Amount",
-    dataIndex: "advance_paid",
-    key: "advance_paid",
-  },
-  {
-    title: "Amount Paid",
-    dataIndex: "amount_paid",
-    key: "amount_paid",
-  },
-];
+    {
+      title: 'Surgery ID',
+      dataIndex: 'surgery_id',
+      key: 'surgery_id',
+    },
+    {
+      title: 'Patient',
+      dataIndex: 'patient_name',
+      key: 'patient_name',
+    },
+    {
+      title: 'Surgery Type',
+      dataIndex: 'surgery_type',
+      key: 'surgery_type',
+    },
+    {
+      title: 'Surgeon',
+      dataIndex: 'surgeon_name',
+      key: 'surgeon_name',
+    },
+    {
+      title: 'Anesthetist',
+      dataIndex: 'anesthetist_name',
+      key: 'anesthetist_name',
+    },
+    {
+      title: 'Operating Room',
+      dataIndex: 'operating_room',
+      key: 'operating_room',
+    },
+    {
+      title: 'Action',
+      key: 'action',
+      render: (text, record) => (
+        <Button type="primary">Edit</Button>
+      ),
+    },
+  ];
 
-const InPatientList = () => {
+const OtPatientList = () => {
+    const [surgeries, setSurgeries] = useState([
+        { surgery_id: 1, patient_name: 'John Doe', surgery_type: 'Appendectomy', surgeon_name: 'Dr. Smith', anesthetist_name: 'Dr. Brown', operating_room: 'OR-1' },
+        { surgery_id: 2, patient_name: 'Jane Smith', surgery_type: 'Knee Replacement', surgeon_name: 'Dr. Johnson', anesthetist_name: 'Dr. White', operating_room: 'OR-2' },
+      ]);
+    
   const router = useRouter();
 
   const onChange = (value: string) => {
@@ -120,15 +84,15 @@ const InPatientList = () => {
   ) => (option?.label ?? "").toLowerCase().includes(input.toLowerCase());
 
   const handlePatientRegistration = () => {
-    router.push("in-patient/add");
+    router.push("operation-theater/add");
   };
 
   return (
     <SidebarLayout role={Roles.RECEPTION}>
       <PageHeader
         items={HeaderItems}
-        titleContent="In Patient List"
-        buttonLabel="Admit New Patient"
+        titleContent="Ot Patient List"
+        buttonLabel="Book New OT"
         buttonCb={handlePatientRegistration}
       />
       <div className="bg-white h-[auto] p-5 ml-5 mr-10  shadow-lg">
@@ -193,7 +157,7 @@ const InPatientList = () => {
       <Row className="ml-5 mr-10 mt-5">
         <Col lg={24} md={24} xs={24} sm={24} className="bg-white p-5 ">
           <Table
-            dataSource={dataSource}
+        dataSource={surgeries}
             columns={columns}
             scroll={{ x: 1000 }}
           />
@@ -203,4 +167,4 @@ const InPatientList = () => {
   );
 };
 
-export default InPatientList;
+export default OtPatientList;

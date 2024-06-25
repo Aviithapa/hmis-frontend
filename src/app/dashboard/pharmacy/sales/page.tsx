@@ -1,10 +1,11 @@
 "use client";
 
+import React, { useState } from "react";
 import PageHeader from "@/components/layout/PageHeader";
 import SidebarLayout from "@/components/layout/Sidebar";
 import { HomeOutlined } from "@ant-design/icons";
 import { Roles } from "@/utils/enums";
-import { Button, Col, Form, Input, Row, Select, Table, Tag } from "antd";
+import { Button, Col, Form, Input, Modal, Row, Select, Table } from "antd";
 import "nepali-datepicker-reactjs/dist/index.css";
 import { useRouter } from "next/navigation";
 
@@ -15,96 +16,45 @@ const HeaderItems = [
   },
   {
     href: "#",
-    title: "In Patient",
+    title: "Pharmacy",
+  },
+  {
+    href: "#",
+    title: "Sales",
   },
 ];
 
-const dataSource = [
+
+
+const initialSuppliers = [
   {
-    key: "1",
-    name: "Mike",
-    age: "32 / M",
-    address: "10 Downing Street",
-    phone_number: "9867739191",
-    ticket_type: "New",
-    amount_paid: "Rs 30",
+    key: '1',
+    customer_name: 'Ram Gopal',
+    phone_number: '1234567890',
+    address: '123 Main St, City',
+    patient_type: 'in-patient',
+    total_amount: '500',
+    status: "Paid",
+    payment_mode: "cash"
   },
   {
-    key: "2",
-    name: "John",
-    age: "42 / M",
-    address: "10 Downing Street",
-    phone_number: "9867739191",
-    ticket_type: "Re-Visit",
-    amount_paid: "Rs 20",
-  },
-  {
-    key: "3",
-    name: "John",
-    age: "23 / M",
-    address: "10 Downing Street",
-    phone_number: "9867739191",
-    ticket_type: "Emergency",
-    amount_paid: "Rs 20",
+    key: '2',
+    customer_name: 'Ramesh',
+    phone_number: '1234567890',
+    address: '123 Main St, City',
+    patient_type: 'out-patient',
+    total_amount: '500',
+    status: "Paid",
+    payment_mode: "esewa"
   },
 ];
 
-const columns = [
-  {
-    title: "#",
-    dataIndex: "key",
-    key: "sn",
-  },
-  {
-    title: "Name",
-    dataIndex: "name",
-    key: "name",
-  },
-  {
-    title: "Age / Gender",
-    dataIndex: "age",
-    key: "age",
-  },
-  {
-    title: "Address",
-    dataIndex: "address",
-    key: "address",
-  },
-  {
-    title: "Admit Date",
-    dataIndex: "admit_date",
-    key: "admit_date",
-  },
-  {
-    title: "Phone Number",
-    dataIndex: "phone_number",
-    key: "phone_number",
-  },
-  {
-    title: "Ticket Type",
-    dataIndex: "ticket_type",
-    key: "ticket_type",
-    render: (text: string) => <Tag color="green">{text}</Tag>,
-  },
-  {
-    title: "Doctor In-charge",
-    dataIndex: "doctor_in_charge",
-    key: "doctor_in_charge",
-  },
-  {
-    title: "Advance Amount",
-    dataIndex: "advance_paid",
-    key: "advance_paid",
-  },
-  {
-    title: "Amount Paid",
-    dataIndex: "amount_paid",
-    key: "amount_paid",
-  },
-];
-
-const InPatientList = () => {
+const SalesList = () => {
   const router = useRouter();
+  const [suppliers, setSuppliers] = useState(initialSuppliers);
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [isEdit, setIsEdit] = useState(false);
+  const [form] = Form.useForm();
 
   const onChange = (value: string) => {
     console.log(`selected ${value}`);
@@ -119,19 +69,87 @@ const InPatientList = () => {
     option?: { label: string; value: string }
   ) => (option?.label ?? "").toLowerCase().includes(input.toLowerCase());
 
-  const handlePatientRegistration = () => {
-    router.push("in-patient/add");
+  const handleAddSupplier = () => {
+    router.push('/dashboard/pharmacy/sales/add');
   };
+
+  const handleEditSupplier = (record : any) => {
+    setIsEdit(true);
+    form.setFieldsValue(record);
+    setIsModalVisible(true);
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
+
+  const handleOk = () => {
+    form.validateFields().then(values => {
+      if (isEdit) {
+        setSuppliers(suppliers.map(supplier => supplier.key === values.key ? values : supplier));
+      } else {
+        setSuppliers([...suppliers, { ...values, key: suppliers.length + 1 }]);
+      }
+      form.resetFields();
+      setIsModalVisible(false);
+    });
+  };
+
+  const columns = [
+    {
+      title: 'Name',
+      dataIndex: 'customer_name',
+      key: 'customer_name',
+    },
+    
+    {
+      title: 'Phone Number',
+      dataIndex: 'phone_number',
+      key: 'phone_number',
+    },
+    {
+      title: 'Patient Type',
+      dataIndex: 'patient_type',
+      key: 'patient_type',
+    },
+    {
+        title: 'Total Amount',
+        dataIndex: 'total_amount',
+        key: 'total_amount',
+    },
+    {
+      title: 'Address',
+      dataIndex: 'address',
+      key: 'address',
+    },
+    {
+        title: 'Status',
+        dataIndex: 'status',
+        key: 'status',
+    },
+    {
+        title: 'Payment Mode',
+        dataIndex: 'payment_mode',
+        key: 'payment_mode',
+    },
+    {
+      title: 'Action',
+      key: 'action',
+      render: (_text : string, record : any) => (
+        <Button type="primary" onClick={() => handleEditSupplier(record)}>Edit</Button>
+      ),
+    },
+  ];
 
   return (
     <SidebarLayout role={Roles.RECEPTION}>
       <PageHeader
         items={HeaderItems}
-        titleContent="In Patient List"
-        buttonLabel="Admit New Patient"
-        buttonCb={handlePatientRegistration}
+        titleContent="Sales List"
+        buttonLabel="Add New Sale"
+        buttonCb={handleAddSupplier}
       />
-      <div className="bg-white h-[auto] p-5 ml-5 mr-10  shadow-lg">
+      <div className="bg-white h-[auto] p-5 ml-5 mr-10 shadow-lg">
         <Form layout="vertical">
           <Row gutter={{ sm: 16, md: 24, lg: 32 }}>
             <Col span={6} xs={24} sm={12} md={12} lg={6}>
@@ -170,7 +188,6 @@ const InPatientList = () => {
                 />
               </Form.Item>
             </Col>
-
             <Col span={5} xs={24} sm={24} lg={4}>
               <Form.Item>
                 <Button
@@ -193,14 +210,16 @@ const InPatientList = () => {
       <Row className="ml-5 mr-10 mt-5">
         <Col lg={24} md={24} xs={24} sm={24} className="bg-white p-5 ">
           <Table
-            dataSource={dataSource}
+            dataSource={suppliers}
             columns={columns}
             scroll={{ x: 1000 }}
           />
         </Col>
       </Row>
+
+      
     </SidebarLayout>
   );
 };
 
-export default InPatientList;
+export default SalesList;

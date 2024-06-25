@@ -271,3 +271,21 @@
 .ant-layout-header {
   background-color: #ceefd9 !important;
 }
+
+
+.expired-row  .ant-table-cell  {
+  background-color: red !important;
+  color: white !important;
+}
+
+.expired-row .ant-table-cell {
+  color: white !important;
+}
+
+.ant-table-thead > tr > th {
+  background-color: #f5f5f5;
+}
+
+.less-amount .ant-table-cell  {
+  background-color: yellow !important;
+}

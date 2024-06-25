@@ -4,7 +4,7 @@ import PageHeader from "@/components/layout/PageHeader";
 import SidebarLayout from "@/components/layout/Sidebar";
 import { HomeOutlined } from "@ant-design/icons";
 import { Roles } from "@/utils/enums";
-import { Button, Col, DatePicker, Form, Input, Row, Select, Modal } from "antd";
+import { Button, Col, DatePicker, Form, Input, Row, Select, Modal, TimePicker } from "antd";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { FormInstance } from "antd/lib/form";
@@ -56,7 +56,7 @@ const columns = [
   {
     title: 'Action',
     key: 'action',
-    render: (text, record) => (
+    render: (text: any, record : any) => (
       <Button type="primary">Edit</Button>
     ),
   },
@@ -78,7 +78,7 @@ const AddOtPatient = () => {
   };
 
   const handleOk = () => {
-    patientForm.validateFields().then((values : any) => {
+    patientForm.validateFields().then(values => {
       const newPatient = { value: `${values.first_name} ${values.last_name}`, label: `${values.first_name} ${values.last_name}` };
       setPatients([...patients, newPatient]);
       setIsModalVisible(false);
@@ -98,6 +98,19 @@ const AddOtPatient = () => {
     console.log('Surgery data:', newSurgery);
     router.push('/'); // Redirect after submission
   };
+
+  const onChange = (value: string) => {
+    console.log(`selected ${value}`);
+  };
+
+  const onSearch = (value: string) => {
+    console.log("search:", value);
+  };
+
+  const filterOption = (
+    input: string,
+    option?: { label: string; value: string }
+  ) => (option?.label ?? "").toLowerCase().includes(input.toLowerCase());
 
   return (
     <SidebarLayout role={Roles.RECEPTION}>
@@ -168,6 +181,15 @@ const AddOtPatient = () => {
                 rules={[{ required: true, message: 'Please select surgery date' }]}
               >
                 <DatePicker style={{ width: '100%' }} />
+              </Form.Item>
+            </Col>
+            <Col span={12} xs={24} sm={12} md={12} lg={12}>
+              <Form.Item
+                name="surgery_time"
+                label="Surgery Time"
+                rules={[{ required: true, message: 'Please select surgery date' }]}
+              >
+                <TimePicker style={{ width: '100%' }} />
               </Form.Item>
             </Col>
           </Row>
@@ -356,7 +378,27 @@ const AddOtPatient = () => {
                 />
               </Form.Item>
             </Col>
-            
+            <Col span={12} xs={24} md={12} sm={12}>
+              <Form.Item
+                className="rounded-md"
+                label="Religion"
+                name="religion"
+              >
+                <Select
+                  showSearch
+                  placeholder="Select Religion"
+                  optionFilterProp="children"
+                  onChange={onChange}
+                  onSearch={onSearch}
+                  filterOption={filterOption}
+                  options={[
+                    { value: "Hindu", label: "Hindu" },
+                    { value: "Muslim", label: "Muslim" },
+                    { value: "Christian", label: "Christian" },
+                  ]}
+                />
+              </Form.Item>
+            </Col>
 
             <Col span={24} xs={24}>
               <Form.Item
@@ -370,8 +412,49 @@ const AddOtPatient = () => {
                 <Input className="rounded-8" />
               </Form.Item>
             </Col>
-          
-            
+            <Col span={12} xs={24} md={12} sm={12}>
+              <Form.Item className="rounded-md" label="Doctor" name="doctor">
+                <Select
+                  showSearch
+                  placeholder="Select Doctor"
+                  optionFilterProp="children"
+                  onChange={onChange}
+                  onSearch={onSearch}
+                  filterOption={filterOption}
+                  options={[
+                    {
+                      value: "Ram Kumar Yadav (Opticals)",
+                      label: "Ram Kumar Yadav (Opticals)",
+                    },
+                    {
+                      value: "Rajendra Mouny (Gastro)",
+                      label: "Rajendra Mouny (Gastro)",
+                    },
+                    {
+                      value: "Dr Shyam Bahadur (Clino)",
+                      label: "Dr Shyam Bahadur (Clino)",
+                    },
+                  ]}
+                />
+              </Form.Item>
+            </Col>
+            <Col span={12} xs={24} md={12} sm={12}>
+              <Form.Item label="Department" name="department">
+                <Select
+                  showSearch
+                  placeholder="Select Department"
+                  optionFilterProp="children"
+                  onChange={onChange}
+                  onSearch={onSearch}
+                  filterOption={filterOption}
+                  options={[
+                    { value: "Gyano", label: "Gyano" },
+                    { value: "Opticals", label: "Opticals" },
+                    { value: "Gastro", label: "Gastro" },
+                  ]}
+                />
+              </Form.Item>
+            </Col>
           </Row>
         </Form>
       </Modal>

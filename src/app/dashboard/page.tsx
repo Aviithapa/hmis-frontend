@@ -6,8 +6,8 @@ import { Roles } from "@/utils/enums";
 const Dashboard = () => {
   return (
     <SidebarLayout role={Roles.RECEPTION}>
-      <div className="w-full h-full pl-[10%] pr-[10%]">
-        <div className="w-full h-full mt-20">
+      <div className="w-full h-full pl-[2%] pr-[2%]">
+        <div className="w-full h-full mt-8">
           <div className="rounded-md">
             <h1 className="text-center text-3xl font-bold">
               Hospital Management Information System

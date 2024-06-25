@@ -9,6 +9,8 @@ import {
   UserOutlined,
   FileTextOutlined,
   UserAddOutlined,
+  AlertOutlined,
+  MedicineBoxOutlined
 } from "@ant-design/icons";
 import { ImLab } from "react-icons/im";
 
@@ -53,7 +55,7 @@ const urls = {
         },
         {
           title: "Admit New Patient",
-          path: "/dashboard/opd-patient/add",
+          path: "/dashboard/in-patient/add",
           key: "opd-patient-add",
         },
         {
@@ -67,6 +69,11 @@ const urls = {
           key: "ward",
         },
       ],
+    },
+    {
+      title: "OT",
+      icon: AlertOutlined ,
+      path: "/dashboard/operation-theater",
     },
     {
       title: "Patient Opd",
@@ -94,6 +101,77 @@ const urls = {
           key: "lab-result",
         },
       ],
+    },
+    {
+      title: "Pharmacy",
+      icon: MedicineBoxOutlined,
+      children: [
+        {
+          title: "Supplier",
+          path: "/dashboard/pharmacy/supplier",
+          key: "supplier",
+        },
+        {
+          title: "Medicine Classification ",
+          path: "/dashboard/pharmacy/medicine-classification",
+          key: "medicine-classification",
+        },
+        {
+          title: "Receiving",
+          key: "medicine",
+          children: [
+            {
+              title: "Receiving List",
+              path: "/dashboard/pharmacy/receiving",
+              key: "receiving",
+            },
+            {
+              title: "Add New Receiving",
+              path: "/dashboard/pharmacy/receiving/add",
+              key: "receiving-add",
+            },
+          
+          ],
+        },
+        {
+          title: "Inventory",
+          key: "inventory",
+          children: [
+            {
+              title: "Inventory List",
+              path: "/dashboard/pharmacy/inventory",
+              key: "receiving",
+            },
+            {
+              title: "Expired Medicine List",
+              path: "/dashboard/pharmacy/inventory/expired",
+              key: "expired",
+            },
+            {
+              title: "Low quantity medicine",
+              path: "/dashboard/pharmacy/inventory/low-quantity-medicine",
+              key: "low-quantity-medicine",
+            },
+          ],
+        },
+        {
+          title: "Sales",
+          key: "sales",
+          children: [
+            {
+              title: "Sales List",
+              path: "/dashboard/pharmacy/sales",
+              key: "sales",
+            }
+          ],
+        },
+      ],
+    },
+    {
+      title: "Staff",
+      key: "staff",
+      icon: MedicineBoxOutlined,
+      path: "/dashboard/staff",
     },
   ],
   employeeNavitems: [
