@@ -107,7 +107,6 @@ const AddOtPatient = () => {
       ...values,
       surgery_date: values.surgery_date.format("YYYY-MM-DD"),
     };
-    console.log("Surgery data:", newSurgery);
     router.push("/"); // Redirect after submission
   };
 

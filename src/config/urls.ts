@@ -66,7 +66,7 @@ const urls = {
         {
           title: "wardManagement",
           path: "/dashboard/ward",
-          key: "ward",
+          key: "ward-management",
         },
       ],
     },
@@ -91,9 +91,9 @@ const urls = {
           key: "test",
         },
         {
-          title: "lab",
+          title: "Lab List",
           path: "/dashboard/lab",
-          key: "lab",
+          key: "lab-list",
         },
         {
           title: "labReport",
@@ -118,12 +118,12 @@ const urls = {
         },
         {
           title: "receiving",
-          key: "medicine",
+          key: "receiving",
           children: [
             {
               title: "receivingList",
               path: "/dashboard/pharmacy/receiving",
-              key: "receiving",
+              key: "receiving-list",
             },
             {
               title: "addNewReceiving",
@@ -139,12 +139,12 @@ const urls = {
             {
               title: "inventoryList",
               path: "/dashboard/pharmacy/inventory",
-              key: "receiving",
+              key: "inventory-list",
             },
             {
               title: "expiredMedicineList",
               path: "/dashboard/pharmacy/inventory/expired",
-              key: "expired",
+              key: "expired-medicine-list",
             },
             {
               title: "lowQuantityMedicine",

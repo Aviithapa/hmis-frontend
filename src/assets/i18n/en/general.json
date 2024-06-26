@@ -35,5 +35,22 @@
     "sales": "Sales",
     "salesList": "Sales List",
     "staff": "Staff"
+  },
+  "stats": {
+    "totalPatients": "Total Patients",
+    "opdVisitsPerDay": "OPD Visits/Day",
+    "doctors": "Doctors",
+    "admittedPatient": "Admitted Patient",
+    "treatmentsSurgeries": "Treatments/Surgeries",
+    "totalDischarged": "Total Discharged",
+    "avgTreatmentTime": "Avg. Treatment Time",
+    "pharmacyOutlets": "Pharmacy Outlets",
+    "totalRevenueToday": "Total Revenue / Today",
+    "totalRevenue": "Total Revenue",
+    "totalLabToday": "Total Lab/ Today",
+    "totalLab": "Total Lab",
+    "labRevenue": "Lab Revenue",
+    "refundedAmount": "Refunded Amount",
+    "refundedBillList": "Refunded Bill List"
   }
 }

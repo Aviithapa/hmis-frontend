@@ -1,9 +1,7 @@
 "use client";
 
 import PageHeader from "@/components/layout/PageHeader";
-
 import { HomeOutlined } from "@ant-design/icons";
-import { Roles } from "@/utils/enums";
 import {
   Button,
   Col,
@@ -32,44 +30,6 @@ const HeaderItems = [
   },
 ];
 
-const columns = [
-  {
-    title: "Surgery ID",
-    dataIndex: "surgery_id",
-    key: "surgery_id",
-  },
-  {
-    title: "Patient",
-    dataIndex: "patient_name",
-    key: "patient_name",
-  },
-  {
-    title: "Surgery Type",
-    dataIndex: "surgery_type",
-    key: "surgery_type",
-  },
-  {
-    title: "Surgeon",
-    dataIndex: "surgeon_name",
-    key: "surgeon_name",
-  },
-  {
-    title: "Anesthetist",
-    dataIndex: "anesthetist_name",
-    key: "anesthetist_name",
-  },
-  {
-    title: "Operating Room",
-    dataIndex: "operating_room",
-    key: "operating_room",
-  },
-  {
-    title: "Action",
-    key: "action",
-    render: (text: any, record: any) => <Button type="primary">Edit</Button>,
-  },
-];
-
 const AddOtPatient = () => {
   const [form] = Form.useForm<FormInstance>();
   const [patientForm] = Form.useForm<FormInstance>();
@@ -86,10 +46,10 @@ const AddOtPatient = () => {
   };
 
   const handleOk = () => {
-    patientForm.validateFields().then((values) => {
+    patientForm.validateFields().then((values: any) => {
       const newPatient = {
-        value: `${values.first_name} ${values.last_name}`,
-        label: `${values.first_name} ${values.last_name}`,
+        value: `${values?.first_name} ${values?.last_name}`,
+        label: `${values?.first_name} ${values?.last_name}`,
       };
       setPatients([...patients, newPatient]);
       setIsModalVisible(false);

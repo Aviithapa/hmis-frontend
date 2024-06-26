@@ -2,7 +2,7 @@ import StatsCards from "@/components/card/StatsCard";
 import TranslationText from "@/components/translation/TranslationText";
 const Dashboard = () => {
   return (
-    <div className="w-full h-full pl-[2%] pr-[2%]">
+    <div className="w-full h-full">
       <div className="rounded-md">
         <h1 className="text-center text-3xl font-bold">
           <TranslationText namespace="general" text="appTitle" />

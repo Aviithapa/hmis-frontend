@@ -6,6 +6,7 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+  --primary-color: #53cc96;
 }
 
 @media (prefers-color-scheme: light) {
@@ -143,13 +144,13 @@
 }
 
 .ant-menu-dark .ant-menu-item {
-  color: black;
+  color: white;
   font-weight: 700;
 }
 
 .ant-menu-dark.ant-menu-horizontal > .ant-menu-item-selected {
-  color: green;
-  background-color: rgb(74 222 128);
+  color: black;
+  background-color: white !important;
 }
 
 .ant-menu-dark
@@ -171,18 +172,17 @@
   font-weight: 700;
 }
 
-.ant-layout-header,
 .ant-menu-dark {
-  background: rgb(74 222 128) !important;
+  background: white !important;
 }
 
 .ant-menu-submenu-popup {
-  background-color: #e0ece4 !important;
+  background-color: white !important;
   /* Change to your desired color */
 }
 
 .ant-menu-sub {
-  background-color: rgb(74 222 128) !important;
+  background-color: white !important;
 }
 
 .ant-menu-submenu-title:hover {
@@ -191,7 +191,7 @@
 }
 
 .ant-menu-item {
-  background-color: rgb(74 222 128) !important;
+  background-color: white !important;
 }
 
 .ant-menu-submenu-title:hover,
@@ -229,8 +229,8 @@
 .ant-menu-dark > .ant-menu.ant-menu-horizontal > .ant-menu-item-selected,
 .ant-menu-dark.ant-menu-horizontal > .ant-menu-submenu-selected,
 .ant-menu-dark > .ant-menu.ant-menu-horizontal > .ant-menu-submenu-selected {
-  color: green !important;
-  background-color: #e0ece4;
+  color: var(--primary-color) !important;
+  background-color: var(--primary-color);
 }
 
 .ant-menu-dark .ant-menu-submenu-selected > .ant-menu-submenu-title,
@@ -238,7 +238,7 @@
   > .ant-menu
   .ant-menu-submenu-selected
   > .ant-menu-submenu-title {
-  color: black !important;
+  color: green !important;
 }
 
 .ant-menu-dark.ant-menu-horizontal > .ant-menu-item-selected:hover,
@@ -262,12 +262,8 @@
   }
 }
 
-.ant-layout-sider-children {
-  background-color: #e0ece4 !important;
-}
-
 .ant-layout-header {
-  background-color: rgb(74 222 128) !important;
+  background: var(--primary-color) !important;
 }
 
 .expired-row .ant-table-cell {

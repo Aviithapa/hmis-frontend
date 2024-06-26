@@ -35,5 +35,22 @@
     "sales": "बिक्री",
     "salesList": "बिक्री सूची",
     "staff": "कर्मचारीहरू"
+  },
+  "stats": {
+    "totalPatients": "कुल बिरामी",
+    "opdVisitsPerDay": "ओपीडी भ्रमण/दिन",
+    "doctors": "डाक्टरहरू",
+    "admittedPatient": "भर्ना बिरामी",
+    "treatmentsSurgeries": "उपचार/शल्यक्रिया",
+    "totalDischarged": "कुल डिस्चार्ज",
+    "avgTreatmentTime": "औसत उपचार समय",
+    "pharmacyOutlets": "फार्मेसी आउटलेट्स",
+    "totalRevenueToday": "कुल राजस्व / आज",
+    "totalRevenue": "कुल राजस्व",
+    "totalLabToday": "कुल ल्याब/ आज",
+    "totalLab": "कुल ल्याब",
+    "labRevenue": "ल्याब राजस्व",
+    "refundedAmount": "फिर्ता गरिएको रकम",
+    "refundedBillList": "फिर्ता गरिएको बिल सूची"
   }
 }
