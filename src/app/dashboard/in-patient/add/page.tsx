@@ -1,16 +1,24 @@
 "use client";
 
-import SidebarLayout from '@/components/layout/Sidebar';
 import PageHeader from "@/components/layout/PageHeader";
 import { HomeOutlined } from "@ant-design/icons";
-import { Roles } from '@/utils/enums'
-import React, { useEffect, useState } from 'react';
-import { Button, Checkbox, Col, Form, Input, Row, Select, Space, Steps, message } from 'antd';
-import { useRouter } from 'next/navigation';
-
+import { Roles } from "@/utils/enums";
+import React, { useEffect, useState } from "react";
+import {
+  Button,
+  Checkbox,
+  Col,
+  Form,
+  Input,
+  Row,
+  Select,
+  Space,
+  Steps,
+  message,
+} from "antd";
+import { useRouter } from "next/navigation";
 
 const { Option } = Select;
-
 
 const HeaderItems = [
   {
@@ -28,54 +36,46 @@ const HeaderItems = [
 ];
 
 const dummyPatientData = {
-  '123': {
-    first_name: 'John',
-    last_name: 'Doe',
-    email: 'john.doe@example.com',
-    phone: '123-456-7890',
-    type: 'Re-visit',
-    age: '30',
-    sex: 'Male',
-    religion: 'Christian',
-    address: '123 Main St',
-    doctor: 'Ram Kumar Yadav (Opticals)',
-    department: 'Opticals',
-    case_type: 'Routine Checkup',
-    ward_allocation: 'Ward 1',
-    contact_personal_details: 'Jane Doe, 987-654-3210',
+  "123": {
+    first_name: "John",
+    last_name: "Doe",
+    email: "john.doe@example.com",
+    phone: "123-456-7890",
+    type: "Re-visit",
+    age: "30",
+    sex: "Male",
+    religion: "Christian",
+    address: "123 Main St",
+    doctor: "Ram Kumar Yadav (Opticals)",
+    department: "Opticals",
+    case_type: "Routine Checkup",
+    ward_allocation: "Ward 1",
+    contact_personal_details: "Jane Doe, 987-654-3210",
   },
   // Add more dummy data here if needed
 };
 
 const wards = [
   {
-    name: 'Ward General - 201',
+    name: "Ward General - 201",
     beds: [
       { bedNumber: 201 },
       { bedNumber: 202 },
       { bedNumber: 203 },
       { bedNumber: 205 },
-
     ],
   },
   {
-    name: 'Ward Emergency - 301',
-    beds: [
-      { bedNumber: 301 },
-      { bedNumber: 302 },
-      { bedNumber: 303 },
-    ],
+    name: "Ward Emergency - 301",
+    beds: [{ bedNumber: 301 }, { bedNumber: 302 }, { bedNumber: 303 }],
   },
   {
-    name: 'Dulex - 402',
-     
+    name: "Dulex - 402",
   },
   {
-    name: 'Dulex - 404',
-     
+    name: "Dulex - 404",
   },
 ];
-
 
 const AddInPatients = () => {
   const router = useRouter();
@@ -84,25 +84,22 @@ const AddInPatients = () => {
   const [selectedWard, setSelectedWard] = useState(null);
   const [availableBeds, setAvailableBeds] = useState([]);
 
-  const handleWardChange = (ward : any) => {
+  const handleWardChange = (ward: any) => {
     setSelectedWard(ward);
-    const selectedWardData : any = wards.find((w) => w.name === ward);
+    const selectedWardData: any = wards.find((w) => w.name === ward);
     setAvailableBeds(selectedWardData ? selectedWardData.beds : []);
   };
 
-
-  const onChange = (value : any) => {
+  const onChange = (value: any) => {
     console.log(`selected ${value}`);
   };
 
-  const onSearch = (value : any) => {
+  const onSearch = (value: any) => {
     console.log("search:", value);
   };
 
-  const filterOption = (
-    input : any,
-    option : any
-  ) => (option?.label ?? "").toLowerCase().includes(input.toLowerCase());
+  const filterOption = (input: any, option: any) =>
+    (option?.label ?? "").toLowerCase().includes(input.toLowerCase());
 
   useEffect(() => {
     if (patientId) {
@@ -110,27 +107,22 @@ const AddInPatients = () => {
       if (patientData) {
         form.setFieldsValue(patientData);
       } else {
-        message.error('No patient found with this ID');
+        message.error("No patient found with this ID");
         form.resetFields();
       }
     }
   }, [patientId, form]);
 
-  const onFinish = (values : any) => {
-    
-  };
+  const onFinish = (values: any) => {};
 
-  const handlePatientIdChange = (e : any) => {
+  const handlePatientIdChange = (e: any) => {
     setPatientId(e.target.value);
   };
 
   return (
-    <SidebarLayout role={Roles.RECEPTION}>
-      <PageHeader
-        items={HeaderItems}
-        titleContent="Add New In Patient"
-      />
-      <div className="bg-white h-[auto] p-5 ml-5 mr-10 shadow-lg">
+    <>
+      <PageHeader items={HeaderItems} titleContent="Add New In Patient" />
+      <div className="bg-white h-[auto] p-5  shadow-lg">
         <Form
           form={form}
           name="patient_registration"
@@ -195,7 +187,7 @@ const AddInPatients = () => {
                 <Input />
               </Form.Item>
             </Col>
-            
+
             <Col span={12} xs={24} md={12} sm={12}>
               <Form.Item className="rounded-md" label="Sex" name="sex">
                 <Select
@@ -215,7 +207,11 @@ const AddInPatients = () => {
             </Col>
 
             <Col span={12} xs={24} md={12} sm={12}>
-              <Form.Item className="rounded-md" label="Marital Status" name="martial_status">
+              <Form.Item
+                className="rounded-md"
+                label="Marital Status"
+                name="martial_status"
+              >
                 <Select
                   showSearch
                   placeholder="Select Marital Status"
@@ -232,8 +228,12 @@ const AddInPatients = () => {
             </Col>
 
             <Col span={12} xs={24} md={12} sm={12}>
-              <Form.Item className="rounded-md" label="Blood Group" name="blood_group">
-              <Select
+              <Form.Item
+                className="rounded-md"
+                label="Blood Group"
+                name="blood_group"
+              >
+                <Select
                   showSearch
                   placeholder="Select Blood Group"
                   optionFilterProp="children"
@@ -253,9 +253,13 @@ const AddInPatients = () => {
                 />
               </Form.Item>
             </Col>
-            
+
             <Col span={12} xs={24} md={12} sm={12}>
-              <Form.Item className="rounded-md" label="Case Type" name="case_type">
+              <Form.Item
+                className="rounded-md"
+                label="Case Type"
+                name="case_type"
+              >
                 <Select
                   showSearch
                   placeholder="Select Type"
@@ -272,13 +276,11 @@ const AddInPatients = () => {
               </Form.Item>
             </Col>
             <Col span={12} xs={24} md={12} sm={12}>
-              <Form.Item className="rounded-md mt-8"  name="call_police">
-                <Checkbox > Call Police</Checkbox>
+              <Form.Item className="rounded-md mt-8" name="call_police">
+                <Checkbox> Call Police</Checkbox>
               </Form.Item>
             </Col>
 
-            
-            
             <Col span={12} xs={24} md={12} sm={12}>
               <Form.Item
                 className="rounded-md"
@@ -301,38 +303,38 @@ const AddInPatients = () => {
               </Form.Item>
             </Col>
             <Col span={12} xs={24} md={12} sm={12}>
-            <Form.Item
-              className="rounded-md"
-              label="Ward Allocation"
-              name="ward_allocation"
-            >
-              <Select onChange={handleWardChange} placeholder="Select Ward">
-                {wards.map((ward) => (
-                  <Option key={ward.name} value={ward.name}>
-                    {ward.name}
-                  </Option>
-                ))}
-              </Select>
-            </Form.Item>
-          </Col>
-
-          {availableBeds?.length > 0 && (
-            <Col span={12} xs={24} md={24} sm={24}>
               <Form.Item
                 className="rounded-md"
-                label="Select Available Bed"
-                name="available_bed"
+                label="Ward Allocation"
+                name="ward_allocation"
               >
-                <Select placeholder="Select Bed">
-                  {availableBeds.map((bed : any) => (
-                    <Option key={bed.bedNumber} value={bed.bedNumber}>
-                      {`${selectedWard} - Bed Number ${bed.bedNumber}`}
+                <Select onChange={handleWardChange} placeholder="Select Ward">
+                  {wards.map((ward) => (
+                    <Option key={ward.name} value={ward.name}>
+                      {ward.name}
                     </Option>
                   ))}
                 </Select>
               </Form.Item>
             </Col>
-          )}
+
+            {availableBeds?.length > 0 && (
+              <Col span={12} xs={24} md={24} sm={24}>
+                <Form.Item
+                  className="rounded-md"
+                  label="Select Available Bed"
+                  name="available_bed"
+                >
+                  <Select placeholder="Select Bed">
+                    {availableBeds.map((bed: any) => (
+                      <Option key={bed.bedNumber} value={bed.bedNumber}>
+                        {`${selectedWard} - Bed Number ${bed.bedNumber}`}
+                      </Option>
+                    ))}
+                  </Select>
+                </Form.Item>
+              </Col>
+            )}
 
             <Col span={24} xs={24}>
               <Form.Item
@@ -343,7 +345,7 @@ const AddInPatients = () => {
                   { required: true, message: "Please input your address!" },
                 ]}
               >
-                <Input  />
+                <Input />
               </Form.Item>
             </Col>
             <Col span={12} xs={24} md={12} sm={12}>
@@ -398,17 +400,14 @@ const AddInPatients = () => {
                 <Input.TextArea rows={4} />
               </Form.Item>
             </Col>
-            
-            
+
             <Steps
               current={1}
               status="error"
               items={[
                 {
-                  title: 'Contact Personal Details',
-                
+                  title: "Contact Personal Details",
                 },
-                
               ]}
             />
             <Space />
@@ -417,7 +416,6 @@ const AddInPatients = () => {
                 className="rounded-md"
                 label="First Name"
                 name="first_name"
-                
               >
                 <Input />
               </Form.Item>
@@ -427,7 +425,6 @@ const AddInPatients = () => {
                 className="rounded-md"
                 label="Last Name"
                 name="last_name"
-                
               >
                 <Input />
               </Form.Item>
@@ -437,7 +434,6 @@ const AddInPatients = () => {
                 className="rounded-md"
                 label="Contact Number"
                 name="contact_number"
-                
               >
                 <Input />
               </Form.Item>
@@ -451,9 +447,15 @@ const AddInPatients = () => {
                 <Input />
               </Form.Item>
             </Col>
-            
+
             <Col span={24} md={24} sm={24} xs={24}>
-              <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '10px' }}>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "flex-end",
+                  gap: "10px",
+                }}
+              >
                 <Form.Item>
                   <Button
                     type="primary"
@@ -480,7 +482,7 @@ const AddInPatients = () => {
           </Row>
         </Form>
       </div>
-    </SidebarLayout>
+    </>
   );
 };
 

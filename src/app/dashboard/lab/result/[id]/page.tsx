@@ -2,7 +2,7 @@
 
 import React, { useRef, useState } from "react";
 import PageHeader from "@/components/layout/PageHeader";
-import SidebarLayout from "@/components/layout/Sidebar";
+
 import { HomeOutlined, SendOutlined } from "@ant-design/icons";
 import { Roles } from "@/utils/enums";
 import { Button, Card, List, Tag, message } from "antd";
@@ -198,7 +198,7 @@ const PatientList = () => {
   };
 
   return (
-    <SidebarLayout role={Roles.RECEPTION}>
+    <>
       <PageHeader items={HeaderItems} titleContent="Patient Result" />
       <div className="bg-white ml-5 mr-5 mt-5 p-4">
         <Card
@@ -295,7 +295,7 @@ const PatientList = () => {
           <PrintPatientLabReport ref={printRef} data={data} />
         </div>
       </div>
-    </SidebarLayout>
+    </>
   );
 };
 

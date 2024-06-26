@@ -2,11 +2,20 @@
 
 import React, { useState } from "react";
 import PageHeader from "@/components/layout/PageHeader";
-import SidebarLayout from "@/components/layout/Sidebar";
+
 import { HomeOutlined } from "@ant-design/icons";
 import { Roles } from "@/utils/enums";
-import { Button, Col, Form, Input, Modal, Row, Select, Table, DatePicker } from "antd";
-import "nepali-datepicker-reactjs/dist/index.css";
+import {
+  Button,
+  Col,
+  Form,
+  Input,
+  Modal,
+  Row,
+  Select,
+  Table,
+  DatePicker,
+} from "antd";
 import { useRouter } from "next/navigation";
 import TextArea from "antd/es/input/TextArea";
 
@@ -16,7 +25,6 @@ interface Receiving {
   supplier_name: string;
   received_date: string;
   total_buying_amount: number;
- 
 }
 
 const HeaderItems = [
@@ -34,25 +42,20 @@ const HeaderItems = [
   },
 ];
 
-
-
 const initialReceivings: Receiving[] = [
   {
-    key: '1',
-    ref_id: 'REF123',
-    supplier_name: 'Supplier A',
-    received_date: '2024-06-01',
+    key: "1",
+    ref_id: "REF123",
+    supplier_name: "Supplier A",
+    received_date: "2024-06-01",
     total_buying_amount: 1000,
-    
-   
   },
   {
-    key: '2',
-    ref_id: 'REF124',
-    supplier_name: 'Supplier B',
-    received_date: '2024-06-02',
+    key: "2",
+    ref_id: "REF124",
+    supplier_name: "Supplier B",
+    received_date: "2024-06-02",
     total_buying_amount: 2000,
-    
   },
 ];
 
@@ -64,7 +67,7 @@ const ReceivingList = () => {
   const [form] = Form.useForm();
 
   const handleAddReceiving = () => {
-    router.push('/dashboard/pharmacy/receiving/add')
+    router.push("/dashboard/pharmacy/receiving/add");
   };
 
   const handleEditReceiving = (record: Receiving) => {
@@ -78,11 +81,18 @@ const ReceivingList = () => {
   };
 
   const handleOk = () => {
-    form.validateFields().then(values => {
+    form.validateFields().then((values) => {
       if (isEdit) {
-        setReceivings(receivings.map(receiving => receiving.key === values.key ? values : receiving));
+        setReceivings(
+          receivings.map((receiving) =>
+            receiving.key === values.key ? values : receiving
+          )
+        );
       } else {
-        setReceivings([...receivings, { ...values, key: (receivings.length + 1).toString() }]);
+        setReceivings([
+          ...receivings,
+          { ...values, key: (receivings.length + 1).toString() },
+        ]);
       }
       form.resetFields();
       setIsModalVisible(false);
@@ -91,43 +101,45 @@ const ReceivingList = () => {
 
   const columns = [
     {
-      title: 'Ref Id',
-      dataIndex: 'ref_id',
-      key: 'ref_id',
+      title: "Ref Id",
+      dataIndex: "ref_id",
+      key: "ref_id",
     },
     {
-      title: 'Supplier Name',
-      dataIndex: 'supplier_name',
-      key: 'supplier_name',
+      title: "Supplier Name",
+      dataIndex: "supplier_name",
+      key: "supplier_name",
     },
     {
-      title: 'Received Date',
-      dataIndex: 'received_date',
-      key: 'received_date',
+      title: "Received Date",
+      dataIndex: "received_date",
+      key: "received_date",
     },
     {
-      title: 'Total Buying Amount',
-      dataIndex: 'total_buying_amount',
-      key: 'total_buying_amount',
+      title: "Total Buying Amount",
+      dataIndex: "total_buying_amount",
+      key: "total_buying_amount",
     },
     {
-      title: 'Action',
-      key: 'action',
+      title: "Action",
+      key: "action",
       render: (text: string, record: Receiving) => (
-        <Button type="primary" onClick={() => handleEditReceiving(record)}>Edit</Button>
+        <Button type="primary" onClick={() => handleEditReceiving(record)}>
+          Edit
+        </Button>
       ),
     },
   ];
 
   return (
-    <SidebarLayout role={Roles.RECEPTION}>
+    <>
       <PageHeader
         items={HeaderItems}
         titleContent="Receiving List"
         buttonLabel="Add New Receiving"
         buttonCb={handleAddReceiving}
       />
-      <div className="bg-white h-[auto] p-5 ml-5 mr-10 shadow-lg">
+      <div className="bg-white h-[auto] p-5  shadow-lg">
         <Form layout="vertical">
           <Row gutter={{ sm: 16, md: 24, lg: 32 }}>
             <Col span={20} xs={24} sm={12} md={12} lg={20}>
@@ -154,7 +166,7 @@ const ReceivingList = () => {
         </Form>
       </div>
 
-      <Row className="ml-5 mr-10 mt-5">
+      <Row className=" mt-5">
         <Col lg={24} md={24} xs={24} sm={24} className="bg-white p-5 ">
           <Table
             dataSource={receivings}
@@ -164,31 +176,78 @@ const ReceivingList = () => {
         </Col>
       </Row>
 
-      <Modal title={isEdit ? "Edit Receiving" : "Add New Receiving"} visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
+      <Modal
+        title={isEdit ? "Edit Receiving" : "Add New Receiving"}
+        visible={isModalVisible}
+        onOk={handleOk}
+        onCancel={handleCancel}
+      >
         <Form form={form} layout="vertical">
           <Row gutter={16}>
             <Col span={12}>
-              <Form.Item name="ref_id" label="Ref Id" rules={[{ required: true, message: 'Please input the Ref Id!' }]}>
+              <Form.Item
+                name="ref_id"
+                label="Ref Id"
+                rules={[
+                  { required: true, message: "Please input the Ref Id!" },
+                ]}
+              >
                 <Input />
               </Form.Item>
             </Col>
             <Col span={12}>
-              <Form.Item name="supplier_name" label="Supplier Name" rules={[{ required: true, message: 'Please input the Supplier Name!' }]}>
+              <Form.Item
+                name="supplier_name"
+                label="Supplier Name"
+                rules={[
+                  {
+                    required: true,
+                    message: "Please input the Supplier Name!",
+                  },
+                ]}
+              >
                 <Input />
               </Form.Item>
             </Col>
             <Col span={12}>
-              <Form.Item name="received_date" label="Received Date" rules={[{ required: true, message: 'Please input the Received Date!' }]}>
+              <Form.Item
+                name="received_date"
+                label="Received Date"
+                rules={[
+                  {
+                    required: true,
+                    message: "Please input the Received Date!",
+                  },
+                ]}
+              >
                 <DatePicker />
               </Form.Item>
             </Col>
             <Col span={12}>
-              <Form.Item name="total_buying_amount" label="Total Buying Amount" rules={[{ required: true, message: 'Please input the Total Buying Amount!' }]}>
+              <Form.Item
+                name="total_buying_amount"
+                label="Total Buying Amount"
+                rules={[
+                  {
+                    required: true,
+                    message: "Please input the Total Buying Amount!",
+                  },
+                ]}
+              >
                 <Input />
               </Form.Item>
             </Col>
             <Col span={12}>
-              <Form.Item name="classification_name" label="Classification Name" rules={[{ required: true, message: 'Please input the Classification Name!' }]}>
+              <Form.Item
+                name="classification_name"
+                label="Classification Name"
+                rules={[
+                  {
+                    required: true,
+                    message: "Please input the Classification Name!",
+                  },
+                ]}
+              >
                 <Input />
               </Form.Item>
             </Col>
@@ -198,7 +257,11 @@ const ReceivingList = () => {
               </Form.Item>
             </Col>
             <Col span={12}>
-              <Form.Item name="type" label="Type" rules={[{ required: true, message: 'Please select the type!' }]}>
+              <Form.Item
+                name="type"
+                label="Type"
+                rules={[{ required: true, message: "Please select the type!" }]}
+              >
                 <Select>
                   <Select.Option value="type">Type</Select.Option>
                   <Select.Option value="category">Category</Select.Option>
@@ -213,7 +276,7 @@ const ReceivingList = () => {
           </Row>
         </Form>
       </Modal>
-    </SidebarLayout>
+    </>
   );
 };
 

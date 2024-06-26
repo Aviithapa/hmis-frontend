@@ -2,11 +2,20 @@
 
 import React, { useState } from "react";
 import PageHeader from "@/components/layout/PageHeader";
-import SidebarLayout from "@/components/layout/Sidebar";
+
 import { HomeOutlined } from "@ant-design/icons";
 import { Roles } from "@/utils/enums";
-import { Button, Col, Form, Input, Modal, Row, Select, Switch, Table } from "antd";
-import "nepali-datepicker-reactjs/dist/index.css";
+import {
+  Button,
+  Col,
+  Form,
+  Input,
+  Modal,
+  Row,
+  Select,
+  Switch,
+  Table,
+} from "antd";
 import { useRouter } from "next/navigation";
 import TextArea from "antd/es/input/TextArea";
 
@@ -39,26 +48,26 @@ const HeaderItems = [
 
 const initialMedicines: Medicine[] = [
   {
-    key: '1',
-    name: 'Paracetamol',
-    generic_name: 'Acetaminophen',
-    sku: 'MED123',
-    power_measurement: '500mg',
+    key: "1",
+    name: "Paracetamol",
+    generic_name: "Acetaminophen",
+    sku: "MED123",
+    power_measurement: "500mg",
     needed_doctor_prescription: false,
-    type: 'Tablet',
-    category: 'Painkiller',
-    description: 'Used to treat pain and fever',
+    type: "Tablet",
+    category: "Painkiller",
+    description: "Used to treat pain and fever",
   },
   {
-    key: '2',
-    name: 'Amoxicillin',
-    generic_name: 'Amoxicillin',
-    sku: 'MED124',
-    power_measurement: '250mg',
+    key: "2",
+    name: "Amoxicillin",
+    generic_name: "Amoxicillin",
+    sku: "MED124",
+    power_measurement: "250mg",
     needed_doctor_prescription: true,
-    type: 'Capsule',
-    category: 'Antibiotic',
-    description: 'Used to treat bacterial infections',
+    type: "Capsule",
+    category: "Antibiotic",
+    description: "Used to treat bacterial infections",
   },
 ];
 
@@ -86,74 +95,81 @@ const MedicineList = () => {
   };
 
   const handleOk = () => {
-    form.validateFields().then(values => {
+    form.validateFields().then((values) => {
       if (isEdit) {
-        setMedicines(medicines.map(medicine => medicine.key === values.key ? values : medicine));
+        setMedicines(
+          medicines.map((medicine) =>
+            medicine.key === values.key ? values : medicine
+          )
+        );
       } else {
-        setMedicines([...medicines, { ...values, key: (medicines.length + 1).toString() }]);
+        setMedicines([
+          ...medicines,
+          { ...values, key: (medicines.length + 1).toString() },
+        ]);
       }
       form.resetFields();
       setIsModalVisible(false);
     });
   };
 
-
-const columns = [
+  const columns = [
     {
-      title: 'Name',
-      dataIndex: 'name',
-      key: 'name',
+      title: "Name",
+      dataIndex: "name",
+      key: "name",
     },
     {
-      title: 'Generic Name',
-      dataIndex: 'generic_name',
-      key: 'generic_name',
+      title: "Generic Name",
+      dataIndex: "generic_name",
+      key: "generic_name",
     },
     {
-      title: 'SKU',
-      dataIndex: 'sku',
-      key: 'sku',
+      title: "SKU",
+      dataIndex: "sku",
+      key: "sku",
     },
     {
-      title: 'Power Measurement',
-      dataIndex: 'power_measurement',
-      key: 'power_measurement',
+      title: "Power Measurement",
+      dataIndex: "power_measurement",
+      key: "power_measurement",
     },
     {
-      title: 'Needed Doctor Prescription',
-      dataIndex: 'needed_doctor_prescription',
-      key: 'needed_doctor_prescription',
-      render: (text: string) => (text ? 'Yes' : 'No'),
+      title: "Needed Doctor Prescription",
+      dataIndex: "needed_doctor_prescription",
+      key: "needed_doctor_prescription",
+      render: (text: string) => (text ? "Yes" : "No"),
     },
     {
-      title: 'Type',
-      dataIndex: 'type',
-      key: 'type',
+      title: "Type",
+      dataIndex: "type",
+      key: "type",
     },
     {
-      title: 'Category',
-      dataIndex: 'category',
-      key: 'category',
+      title: "Category",
+      dataIndex: "category",
+      key: "category",
     },
     {
-      title: 'Action',
-      key: 'action',
-      render: (text : string, record : Medicine) => (
-        <Button type="primary" onClick={() => handleEditMedicine(record)}>Edit</Button>
+      title: "Action",
+      key: "action",
+      render: (text: string, record: Medicine) => (
+        <Button type="primary" onClick={() => handleEditMedicine(record)}>
+          Edit
+        </Button>
       ),
     },
   ];
-  
 
   return (
-    <SidebarLayout role={Roles.RECEPTION}>
+    <>
       <PageHeader
         items={HeaderItems}
         titleContent="Medicine List"
         buttonLabel="Add New Medicine"
         buttonCb={handleAddMedicine}
       />
-      <div className="bg-white h-[auto] p-5 ml-5 mr-10 shadow-lg">
+      <div className="bg-white h-[auto] p-5  shadow-lg">
         <Form layout="vertical">
           <Row gutter={{ sm: 16, md: 24, lg: 32 }}>
             <Col span={6} xs={24} sm={12} md={12} lg={6}>
@@ -180,7 +196,7 @@ const columns = [
         </Form>
       </div>
 
-      <Row className="ml-5 mr-10 mt-5">
+      <Row className=" mt-5">
         <Col lg={24} md={24} xs={24} sm={24} className="bg-white p-5 ">
           <Table
             dataSource={medicines}
@@ -190,36 +206,77 @@ const columns = [
         </Col>
       </Row>
 
-      <Modal title={isEdit ? "Edit Medicine" : "Add New Medicine"} visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
+      <Modal
+        title={isEdit ? "Edit Medicine" : "Add New Medicine"}
+        visible={isModalVisible}
+        onOk={handleOk}
+        onCancel={handleCancel}
+      >
         <Form form={form} layout="vertical">
           <Row gutter={16}>
             <Col span={12}>
-              <Form.Item name="name" label="Name" rules={[{ required: true, message: 'Please input the medicine name!' }]}>
+              <Form.Item
+                name="name"
+                label="Name"
+                rules={[
+                  {
+                    required: true,
+                    message: "Please input the medicine name!",
+                  },
+                ]}
+              >
                 <Input />
               </Form.Item>
             </Col>
             <Col span={12}>
-              <Form.Item name="generic_name" label="Generic Name" rules={[{ required: true, message: 'Please input the generic name!' }]}>
+              <Form.Item
+                name="generic_name"
+                label="Generic Name"
+                rules={[
+                  { required: true, message: "Please input the generic name!" },
+                ]}
+              >
                 <Input />
               </Form.Item>
             </Col>
             <Col span={12}>
-              <Form.Item name="sku" label="SKU" rules={[{ required: true, message: 'Please input the SKU!' }]}>
+              <Form.Item
+                name="sku"
+                label="SKU"
+                rules={[{ required: true, message: "Please input the SKU!" }]}
+              >
                 <Input />
               </Form.Item>
             </Col>
             <Col span={12}>
-              <Form.Item name="power_measurement" label="Power Measurement" rules={[{ required: true, message: 'Please input the power measurement!' }]}>
+              <Form.Item
+                name="power_measurement"
+                label="Power Measurement"
+                rules={[
+                  {
+                    required: true,
+                    message: "Please input the power measurement!",
+                  },
+                ]}
+              >
                 <Input />
               </Form.Item>
             </Col>
             <Col span={12}>
-              <Form.Item name="needed_doctor_prescription" label="Needed Doctor Prescription" valuePropName="checked">
+              <Form.Item
+                name="needed_doctor_prescription"
+                label="Needed Doctor Prescription"
+                valuePropName="checked"
+              >
                 <Switch />
               </Form.Item>
             </Col>
             <Col span={12}>
-              <Form.Item name="type" label="Type" rules={[{ required: true, message: 'Please select the type!' }]}>
+              <Form.Item
+                name="type"
+                label="Type"
+                rules={[{ required: true, message: "Please select the type!" }]}
+              >
                 <Select>
                   <Select.Option value="Tablet">Tablet</Select.Option>
                   <Select.Option value="Syrup">Syrup</Select.Option>
@@ -229,24 +286,38 @@ const columns = [
               </Form.Item>
             </Col>
             <Col span={12}>
-              <Form.Item name="category" label="Category" rules={[{ required: true, message: 'Please select the category!' }]}>
+              <Form.Item
+                name="category"
+                label="Category"
+                rules={[
+                  { required: true, message: "Please select the category!" },
+                ]}
+              >
                 <Select>
                   <Select.Option value="Painkiller">Painkiller</Select.Option>
                   <Select.Option value="Antibiotic">Antibiotic</Select.Option>
-                  <Select.Option value="Anti-inflammatory">Anti-inflammatory</Select.Option>
+                  <Select.Option value="Anti-inflammatory">
+                    Anti-inflammatory
+                  </Select.Option>
                   <Select.Option value="Antipyretic">Antipyretic</Select.Option>
                 </Select>
               </Form.Item>
             </Col>
             <Col span={24}>
-              <Form.Item name="description" label="Description" rules={[{ required: true, message: 'Please input the description!' }]}>
+              <Form.Item
+                name="description"
+                label="Description"
+                rules={[
+                  { required: true, message: "Please input the description!" },
+                ]}
+              >
                 <TextArea />
               </Form.Item>
             </Col>
           </Row>
         </Form>
       </Modal>
-    </SidebarLayout>
+    </>
   );
 };
 

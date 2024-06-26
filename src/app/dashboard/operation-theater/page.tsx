@@ -1,11 +1,9 @@
 "use client";
 
 import PageHeader from "@/components/layout/PageHeader";
-import SidebarLayout from "@/components/layout/Sidebar";
+
 import { HomeOutlined } from "@ant-design/icons";
-import { Roles } from "@/utils/enums";
-import { Button, Col, Form, Input, Row, Select, Table, Tag } from "antd";
-import "nepali-datepicker-reactjs/dist/index.css";
+import { Button, Col, Form, Input, Row, Select, Table } from "antd";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -20,54 +18,64 @@ const HeaderItems = [
   },
 ];
 
- 
-
 const columns = [
-    {
-      title: 'Surgery ID',
-      dataIndex: 'surgery_id',
-      key: 'surgery_id',
-    },
-    {
-      title: 'Patient',
-      dataIndex: 'patient_name',
-      key: 'patient_name',
-    },
-    {
-      title: 'Surgery Type',
-      dataIndex: 'surgery_type',
-      key: 'surgery_type',
-    },
-    {
-      title: 'Surgeon',
-      dataIndex: 'surgeon_name',
-      key: 'surgeon_name',
-    },
-    {
-      title: 'Anesthetist',
-      dataIndex: 'anesthetist_name',
-      key: 'anesthetist_name',
-    },
-    {
-      title: 'Operating Room',
-      dataIndex: 'operating_room',
-      key: 'operating_room',
-    },
-    {
-      title: 'Action',
-      key: 'action',
-      render: (text, record) => (
-        <Button type="primary">Edit</Button>
-      ),
-    },
-  ];
+  {
+    title: "Surgery ID",
+    dataIndex: "surgery_id",
+    key: "surgery_id",
+  },
+  {
+    title: "Patient",
+    dataIndex: "patient_name",
+    key: "patient_name",
+  },
+  {
+    title: "Surgery Type",
+    dataIndex: "surgery_type",
+    key: "surgery_type",
+  },
+  {
+    title: "Surgeon",
+    dataIndex: "surgeon_name",
+    key: "surgeon_name",
+  },
+  {
+    title: "Anesthetist",
+    dataIndex: "anesthetist_name",
+    key: "anesthetist_name",
+  },
+  {
+    title: "Operating Room",
+    dataIndex: "operating_room",
+    key: "operating_room",
+  },
+  {
+    title: "Action",
+    key: "action",
+    render: (text: string, record: any) => <Button type="primary">Edit</Button>,
+  },
+];
 
 const OtPatientList = () => {
-    const [surgeries, setSurgeries] = useState([
-        { surgery_id: 1, patient_name: 'John Doe', surgery_type: 'Appendectomy', surgeon_name: 'Dr. Smith', anesthetist_name: 'Dr. Brown', operating_room: 'OR-1' },
-        { surgery_id: 2, patient_name: 'Jane Smith', surgery_type: 'Knee Replacement', surgeon_name: 'Dr. Johnson', anesthetist_name: 'Dr. White', operating_room: 'OR-2' },
-      ]);
-    
+  const [surgeries, setSurgeries] = useState([
+    {
+      surgery_id: 1,
+      patient_name: "John Doe",
+      surgery_type: "Appendectomy",
+      surgeon_name: "Dr. Smith",
+      anesthetist_name: "Dr. Brown",
+      operating_room: "OR-1",
+    },
+    {
+      surgery_id: 2,
+      patient_name: "Jane Smith",
+      surgery_type: "Knee Replacement",
+      surgeon_name: "Dr. Johnson",
+      anesthetist_name: "Dr. White",
+      operating_room: "OR-2",
+    },
+  ]);
+
   const router = useRouter();
 
   const onChange = (value: string) => {
@@ -88,14 +96,14 @@ const OtPatientList = () => {
   };
 
   return (
-    <SidebarLayout role={Roles.RECEPTION}>
+    <>
       <PageHeader
         items={HeaderItems}
         titleContent="Ot Patient List"
         buttonLabel="Book New OT"
         buttonCb={handlePatientRegistration}
       />
-      <div className="bg-white h-[auto] p-5 ml-5 mr-10  shadow-lg">
+      <div className="bg-white h-[auto] p-5 shadow-lg">
         <Form layout="vertical">
           <Row gutter={{ sm: 16, md: 24, lg: 32 }}>
             <Col span={6} xs={24} sm={12} md={12} lg={6}>
@@ -154,16 +162,16 @@ const OtPatientList = () => {
         </Form>
       </div>
 
-      <Row className="ml-5 mr-10 mt-5">
+      <Row className=" mt-5">
         <Col lg={24} md={24} xs={24} sm={24} className="bg-white p-5 ">
           <Table
-        dataSource={surgeries}
+            dataSource={surgeries}
             columns={columns}
             scroll={{ x: 1000 }}
           />
         </Col>
       </Row>
-    </SidebarLayout>
+    </>
   );
 };
 

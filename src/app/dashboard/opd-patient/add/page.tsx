@@ -1,7 +1,7 @@
 "use client";
 
 import PageHeader from "@/components/layout/PageHeader";
-import SidebarLayout from "@/components/layout/Sidebar";
+
 import { HomeOutlined } from "@ant-design/icons";
 import { Roles } from "@/utils/enums";
 import { Button, Col, DatePicker, Form, Input, Row, Select, Modal } from "antd";
@@ -24,41 +24,39 @@ const HeaderItems = [
 
 const columns = [
   {
-    title: 'Surgery ID',
-    dataIndex: 'surgery_id',
-    key: 'surgery_id',
+    title: "Surgery ID",
+    dataIndex: "surgery_id",
+    key: "surgery_id",
   },
   {
-    title: 'Patient',
-    dataIndex: 'patient_name',
-    key: 'patient_name',
+    title: "Patient",
+    dataIndex: "patient_name",
+    key: "patient_name",
   },
   {
-    title: 'Surgery Type',
-    dataIndex: 'surgery_type',
-    key: 'surgery_type',
+    title: "Surgery Type",
+    dataIndex: "surgery_type",
+    key: "surgery_type",
   },
   {
-    title: 'Surgeon',
-    dataIndex: 'surgeon_name',
-    key: 'surgeon_name',
+    title: "Surgeon",
+    dataIndex: "surgeon_name",
+    key: "surgeon_name",
   },
   {
-    title: 'Anesthetist',
-    dataIndex: 'anesthetist_name',
-    key: 'anesthetist_name',
+    title: "Anesthetist",
+    dataIndex: "anesthetist_name",
+    key: "anesthetist_name",
   },
   {
-    title: 'Operating Room',
-    dataIndex: 'operating_room',
-    key: 'operating_room',
+    title: "Operating Room",
+    dataIndex: "operating_room",
+    key: "operating_room",
   },
   {
-    title: 'Action',
-    key: 'action',
-    render: (text, record) => (
-      <Button type="primary">Edit</Button>
-    ),
+    title: "Action",
+    key: "action",
+    render: (text: string, record: any) => <Button type="primary">Edit</Button>,
   },
 ];
 
@@ -67,19 +65,33 @@ const AddOtPatient = () => {
   const [patientForm] = Form.useForm<FormInstance>();
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [patients, setPatients] = useState([
-    { value: 'John Doe', label: 'John Doe' },
-    { value: 'Jane Smith', label: 'Jane Smith' },
+    { value: "John Doe", label: "John Doe" },
+    { value: "Jane Smith", label: "Jane Smith" },
   ]);
-  
+
   const router = useRouter();
 
   const showModal = () => {
     setIsModalVisible(true);
   };
 
+  const onChange = (value: any) => {
+    console.log(`selected ${value}`);
+  };
+
+  const onSearch = (value: any) => {
+    console.log("search:", value);
+  };
+
+  const filterOption = (input: any, option: any) =>
+    (option?.label ?? "").toLowerCase().includes(input.toLowerCase());
+
   const handleOk = () => {
-    patientForm.validateFields().then((values : any) => {
-      const newPatient = { value: `${values.first_name} ${values.last_name}`, label: `${values.first_name} ${values.last_name}` };
+    patientForm.validateFields().then((values: any) => {
+      const newPatient = {
+        value: `${values.first_name} ${values.last_name}`,
+        label: `${values.first_name} ${values.last_name}`,
+      };
       setPatients([...patients, newPatient]);
       setIsModalVisible(false);
       patientForm.resetFields();
@@ -93,28 +105,28 @@ const AddOtPatient = () => {
   const onFinish = (values: any) => {
     const newSurgery = {
       ...values,
-      surgery_date: values.surgery_date.format('YYYY-MM-DD'),
+      surgery_date: values.surgery_date.format("YYYY-MM-DD"),
     };
-    console.log('Surgery data:', newSurgery);
-    router.push('/'); // Redirect after submission
+    console.log("Surgery data:", newSurgery);
+    router.push("/"); // Redirect after submission
   };
 
   return (
-    <SidebarLayout role={Roles.RECEPTION}>
+    <>
       <PageHeader
         items={HeaderItems}
         titleContent="Ot Patient List"
         buttonLabel="Book New OT"
         buttonCb={showModal}
       />
-      <div className="bg-white h-[auto] p-5 ml-5 mr-10 shadow-lg">
+      <div className="bg-white h-[auto] p-5  shadow-lg">
         <Form
           form={form}
           layout="vertical"
           name="surgery_form"
           onFinish={onFinish}
           initialValues={{
-            modifier: 'public',
+            modifier: "public",
           }}
         >
           <Row gutter={{ sm: 16, md: 24, lg: 32 }}>
@@ -122,13 +134,13 @@ const AddOtPatient = () => {
               <Form.Item
                 name="patient_name"
                 label="Patient Name"
-                rules={[{ required: true, message: 'Please select a patient' }]}
+                rules={[{ required: true, message: "Please select a patient" }]}
               >
                 <Select
                   showSearch
                   placeholder="Select Patient"
                   optionFilterProp="children"
-                  dropdownRender={menu => (
+                  dropdownRender={(menu) => (
                     <>
                       {menu}
                       <Button type="link" onClick={showModal}>
@@ -137,7 +149,7 @@ const AddOtPatient = () => {
                     </>
                   )}
                 >
-                  {patients.map(patient => (
+                  {patients.map((patient) => (
                     <Option key={patient.value} value={patient.value}>
                       {patient.label}
                     </Option>
@@ -149,7 +161,9 @@ const AddOtPatient = () => {
               <Form.Item
                 name="surgery_type"
                 label="Surgery Type"
-                rules={[{ required: true, message: 'Please enter surgery type' }]}
+                rules={[
+                  { required: true, message: "Please enter surgery type" },
+                ]}
               >
                 <Select
                   showSearch
@@ -165,9 +179,11 @@ const AddOtPatient = () => {
               <Form.Item
                 name="surgery_date"
                 label="Surgery Date"
-                rules={[{ required: true, message: 'Please select surgery date' }]}
+                rules={[
+                  { required: true, message: "Please select surgery date" },
+                ]}
               >
-                <DatePicker style={{ width: '100%' }} />
+                <DatePicker style={{ width: "100%" }} />
               </Form.Item>
             </Col>
           </Row>
@@ -177,7 +193,7 @@ const AddOtPatient = () => {
               <Form.Item
                 name="surgeon_name"
                 label="Surgeon"
-                rules={[{ required: true, message: 'Please select a surgeon' }]}
+                rules={[{ required: true, message: "Please select a surgeon" }]}
               >
                 <Select
                   showSearch
@@ -193,7 +209,9 @@ const AddOtPatient = () => {
               <Form.Item
                 name="anesthetist_name"
                 label="Anesthetist"
-                rules={[{ required: true, message: 'Please select an anesthetist' }]}
+                rules={[
+                  { required: true, message: "Please select an anesthetist" },
+                ]}
               >
                 <Select
                   showSearch
@@ -209,7 +227,12 @@ const AddOtPatient = () => {
               <Form.Item
                 name="operating_room"
                 label="Operating Room"
-                rules={[{ required: true, message: 'Please select an operating room' }]}
+                rules={[
+                  {
+                    required: true,
+                    message: "Please select an operating room",
+                  },
+                ]}
               >
                 <Select
                   showSearch
@@ -225,18 +248,21 @@ const AddOtPatient = () => {
 
           <Row gutter={{ sm: 16, md: 24, lg: 32 }}>
             <Col span={24} xs={24} sm={12} md={12} lg={24}>
-              <Form.Item
-                name="notes"
-                label="Notes"
-              >
+              <Form.Item name="notes" label="Notes">
                 <Input.TextArea rows={4} />
               </Form.Item>
             </Col>
           </Row>
-          
+
           <Row gutter={{ sm: 16, md: 24, lg: 32 }}>
             <Col span={24} md={24} sm={24} xs={24}>
-              <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '10px' }}>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "flex-end",
+                  gap: "10px",
+                }}
+              >
                 <Form.Item>
                   <Button
                     type="primary"
@@ -270,11 +296,7 @@ const AddOtPatient = () => {
         onOk={handleOk}
         onCancel={handleCancel}
       >
-        <Form
-          form={patientForm}
-          layout="vertical"
-          name="patient_form"
-        >
+        <Form form={patientForm} layout="vertical" name="patient_form">
           <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
             <Col span={12} xs={24} md={12} sm={12}>
               <Form.Item
@@ -356,7 +378,6 @@ const AddOtPatient = () => {
                 />
               </Form.Item>
             </Col>
-            
 
             <Col span={24} xs={24}>
               <Form.Item
@@ -370,12 +391,10 @@ const AddOtPatient = () => {
                 <Input className="rounded-8" />
               </Form.Item>
             </Col>
-          
-            
           </Row>
         </Form>
       </Modal>
-    </SidebarLayout>
+    </>
   );
 };
 

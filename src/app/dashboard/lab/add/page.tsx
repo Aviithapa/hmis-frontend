@@ -14,7 +14,7 @@ import {
   DatePicker,
   Button,
 } from "antd";
-import SidebarLayout from "@/components/layout/Sidebar";
+
 import PageHeader from "@/components/layout/PageHeader";
 import { HomeOutlined } from "@ant-design/icons";
 import { Roles } from "@/utils/enums";
@@ -143,7 +143,7 @@ const PatientLabAdd: React.FC = () => {
   };
 
   return (
-    <SidebarLayout role={Roles.RECEPTION}>
+    <>
       <PageHeader items={HeaderItems} titleContent="Patient Lab" />
       <div className="ml-5 mr-5 mt-5">
         <div className="bg-white p-4 grid grid-cols-1 md:grid-cols-3 gap-5">
@@ -241,7 +241,7 @@ const PatientLabAdd: React.FC = () => {
       <div style={{ display: "none" }}>
         <PrintPatientLabBill ref={printRef} invoiceData={invoiceData} />
       </div>
-    </SidebarLayout>
+    </>
   );
 };
 

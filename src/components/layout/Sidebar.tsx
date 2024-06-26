@@ -1,13 +1,14 @@
 "use client";
-import { Image, Layout, Menu, Popover, Slider } from "antd";
-import React, { Children, createElement, useState } from "react";
+import { Image, Layout, Menu, Popover } from "antd";
+import React, { createElement } from "react";
 import urls from "@/config/urls";
 import { Roles } from "@/utils/enums";
-
 import type { MenuProps } from "antd";
-import { usePathname, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { Header } from "antd/es/layout/layout";
 import DropdownMenu from "./DropdownMenu";
+import TranslationText from "../translation/TranslationText";
+import LanguageSelector from "../translation/LanguageSelector";
 
 const { Content, Sider } = Layout;
 
@@ -53,7 +54,7 @@ const items: (
         iconElement
       );
     return {
-      label: ni.title,
+      label: <TranslationText namespace="general:menu" text={ni.title} />,
       ...(ni.path && { onClick: () => ni.path && router.push(ni.path) }),
       icon: iconWithPopover,
       key,
@@ -84,15 +85,17 @@ const SidebarLayout: React.FC<Props> = ({ role, children }) => {
 
   return (
     <Layout className="bg-green-400 to-white-100 opacity-75">
-      <Sider className="bg-green-400 to-white-100 opacity-75">
-        <Image
-          src="/img/logo.svg"
-          width="150px"
-          height="60px"
-          alt="HMIS"
-          className="ml-3"
-          preview={false}
-        />
+      <Sider className="bg-green-400 opacity-75" style={{ position: "fixed" }}>
+        <div className="bg-green-400" style={{ marginBottom: "-10px" }}>
+          <Image
+            src="/img/logo.svg"
+            width="150px"
+            height="60px"
+            alt="HMIS"
+            className="ml-3"
+            preview={false}
+          />
+        </div>
         <Menu
           theme="dark"
           mode="vertical"
@@ -104,29 +107,30 @@ const SidebarLayout: React.FC<Props> = ({ role, children }) => {
             color: "black !important",
             justifyContent: "center",
             marginTop: "10px",
+            paddingTop: "40px",
           }}
         />
       </Sider>
-      <Layout className="bg-green-100">
+      <Layout className="bg-green-100" style={{ marginLeft: 200 }}>
         <Header
           style={{
+            position: "fixed",
+            width: "90%",
+            zIndex: 1000,
             display: "flex",
-            alignItems: "center",
-            justifyItems: "center",
             justifyContent: "flex-end",
-            position: "sticky",
+            height: "75px", // Ensure header appears above other content
           }}
         >
-          <div className="sticky top-0 flex items-center justify-between p-0 h-14 px-6">
-            <div />
-            <div className="text-right">
-              <span className="mr-5 text-lg font-semibold"></span>
-              <DropdownMenu />
-            </div>
+          <div className="pr-10">
+            <DropdownMenu />
+            <LanguageSelector />
           </div>
         </Header>
 
-        <Content style={{ minHeight: "100vh" }}>{children}</Content>
+        <Content style={{ minHeight: `calc(100vh - 50px)`, marginTop: "50px" }}>
+          {children}
+        </Content>
       </Layout>
     </Layout>
   );

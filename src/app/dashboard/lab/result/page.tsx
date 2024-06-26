@@ -1,7 +1,7 @@
 "use client";
 
 import PageHeader from "@/components/layout/PageHeader";
-import SidebarLayout from "@/components/layout/Sidebar";
+
 import {
   HomeOutlined,
   SendOutlined,
@@ -118,9 +118,9 @@ const LabResultList = () => {
   ) => (option?.label ?? "").toLowerCase().includes(input.toLowerCase());
 
   return (
-    <SidebarLayout role={Roles.RECEPTION}>
+    <>
       <PageHeader items={HeaderItems} titleContent="Lab Result List" />
-      <div className="bg-white h-[auto] p-5 ml-5 mr-10  shadow-lg">
+      <div className="bg-white h-[auto] p-5   shadow-lg">
         <Form layout="vertical">
           <Row gutter={{ sm: 16, md: 24, lg: 32 }}>
             <Col span={5} xs={24} sm={12} md={12} lg={5}>
@@ -177,7 +177,7 @@ const LabResultList = () => {
             </Col>
           </Row>
         </Form>
-        <Row className="ml-5 mr-10 mt-5">
+        <Row className=" mt-5">
           <Col span={24}>
             <Table
               dataSource={dataSource}
@@ -204,7 +204,7 @@ const LabResultList = () => {
           </Col>
         </Row>
       </div>
-    </SidebarLayout>
+    </>
   );
 };
 

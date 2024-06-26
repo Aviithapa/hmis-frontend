@@ -1,7 +1,7 @@
 "use client";
 
 import PageHeader from "@/components/layout/PageHeader";
-import SidebarLayout from "@/components/layout/Sidebar";
+
 import { HomeOutlined } from "@ant-design/icons";
 import { Roles } from "@/utils/enums";
 import { Button, Col, Form, Input, Modal, Row, Select, Table } from "antd";
@@ -22,9 +22,9 @@ const HeaderItems = [
 const dataSource = [
   {
     key: 1,
-    name: 'Ward A',
-    type: 'General',
-    department: 'Cardiology',
+    name: "Ward A",
+    type: "General",
+    department: "Cardiology",
     bed: 10,
     floor: 1,
     room_number: 101,
@@ -35,9 +35,9 @@ const dataSource = [
   },
   {
     key: 2,
-    name: 'Ward B',
-    type: 'ICU',
-    department: 'Neurology',
+    name: "Ward B",
+    type: "ICU",
+    department: "Neurology",
     bed: 8,
     floor: 2,
     room_number: 202,
@@ -48,9 +48,9 @@ const dataSource = [
   },
   {
     key: 3,
-    name: 'Ward C',
-    type: 'General',
-    department: 'Pediatrics',
+    name: "Ward C",
+    type: "General",
+    department: "Pediatrics",
     bed: 6,
     floor: 1,
     room_number: 103,
@@ -61,9 +61,9 @@ const dataSource = [
   },
   {
     key: 4,
-    name: 'Deluxe Room 1',
-    type: 'Deluxe',
-    department: 'VIP',
+    name: "Deluxe Room 1",
+    type: "Deluxe",
+    department: "VIP",
     bed: 1,
     floor: 3,
     room_number: 301,
@@ -72,13 +72,13 @@ const dataSource = [
     total_beds: 1,
     price_per_day: 500,
     patient: {
-      name: 'John Doe',
+      name: "John Doe",
       age: 45,
-      admission_date: '2024-06-15',
+      admission_date: "2024-06-15",
     },
     doctor: {
-      name: 'Dr. Smith',
-      specialty: 'Internal Medicine',
+      name: "Dr. Smith",
+      specialty: "Internal Medicine",
     },
   },
 ];
@@ -88,7 +88,7 @@ const WardManagementList = () => {
   const [visible, setVisible] = useState(false);
   const [selectedPatient, setSelectedPatient] = useState(null);
 
-  const showModal = (patient : any) => {
+  const showModal = (patient: any) => {
     setSelectedPatient(patient);
     setVisible(true);
   };
@@ -98,22 +98,22 @@ const WardManagementList = () => {
     setSelectedPatient(null);
   };
 
-  const onChange = (value : any) => {
+  const onChange = (value: any) => {
     console.log(`selected ${value}`);
   };
 
-  const onSearch = (value : any) => {
+  const onSearch = (value: any) => {
     console.log("search:", value);
   };
 
-  const filterOption = (input : any, option : any) =>
+  const filterOption = (input: any, option: any) =>
     (option?.label ?? "").toLowerCase().includes(input.toLowerCase());
 
   const handleWardRegistration = () => {
     router.push("ward/add");
   };
 
-  const redirectToWardDetail = (wardKey : string) => {
+  const redirectToWardDetail = (wardKey: string) => {
     router.push(`/dashboard/ward/${wardKey}`);
   };
 
@@ -176,14 +176,16 @@ const WardManagementList = () => {
     {
       title: "Action",
       key: "action",
-      render: (text : string, record : any) => (
+      render: (text: string, record: any) => (
         <span>
           <Button>Edit</Button>
           <Button>Delete</Button>
           {record.total_beds === 1 && record.available === 0 ? (
             <Button onClick={() => showModal(record.patient)}>View</Button>
           ) : (
-            <Button onClick={() => redirectToWardDetail(record.key)}>View</Button>
+            <Button onClick={() => redirectToWardDetail(record.key)}>
+              View
+            </Button>
           )}
         </span>
       ),
@@ -191,14 +193,14 @@ const WardManagementList = () => {
   ];
 
   return (
-    <SidebarLayout role={Roles.RECEPTION}>
+    <>
       <PageHeader
         items={HeaderItems}
         titleContent="Ward List"
         buttonLabel="Add New Ward"
         buttonCb={handleWardRegistration}
       />
-      <div className="bg-white h-[auto] p-5 ml-5 mr-10 shadow-lg">
+      <div className="bg-white h-[auto] p-5  shadow-lg">
         <Form layout="vertical">
           <Row gutter={{ sm: 16, md: 24, lg: 32 }}>
             <Col span={6} xs={24} sm={12} md={12} lg={6}>
@@ -272,9 +274,13 @@ const WardManagementList = () => {
           </Row>
         </Form>
       </div>
-      <Row className="ml-5 mr-10 mt-5">
+      <Row className=" mt-5">
         <Col lg={24} md={24} xs={24} sm={24} className="bg-white p-5">
-          <Table dataSource={dataSource} columns={columns} scroll={{ x: 1000 }} />
+          <Table
+            dataSource={dataSource}
+            columns={columns}
+            scroll={{ x: 1000 }}
+          />
         </Col>
       </Row>
       <Modal
@@ -299,15 +305,23 @@ const WardManagementList = () => {
               <strong>Admission Date:</strong> {selectedPatient.admission_date}
             </p>
             <p>
-              <strong>Doctor In Charge:</strong> {dataSource.find(ward => ward.patient === selectedPatient).doctor.name}
+              <strong>Doctor In Charge:</strong>{" "}
+              {
+                dataSource.find((ward) => ward.patient === selectedPatient)
+                  .doctor.name
+              }
             </p>
             <p>
-              <strong>Doctor Specialty:</strong> {dataSource.find(ward => ward.patient === selectedPatient).doctor.specialty}
+              <strong>Doctor Specialty:</strong>{" "}
+              {
+                dataSource.find((ward) => ward.patient === selectedPatient)
+                  .doctor.specialty
+              }
             </p>
           </div>
         )}
       </Modal>
-    </SidebarLayout>
+    </>
   );
 };
 

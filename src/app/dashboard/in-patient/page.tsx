@@ -1,11 +1,8 @@
 "use client";
 
 import PageHeader from "@/components/layout/PageHeader";
-import SidebarLayout from "@/components/layout/Sidebar";
 import { HomeOutlined } from "@ant-design/icons";
-import { Roles } from "@/utils/enums";
 import { Button, Col, Form, Input, Row, Select, Table, Tag } from "antd";
-import "nepali-datepicker-reactjs/dist/index.css";
 import { useRouter } from "next/navigation";
 
 const HeaderItems = [
@@ -124,14 +121,14 @@ const InPatientList = () => {
   };
 
   return (
-    <SidebarLayout role={Roles.RECEPTION}>
+    <>
       <PageHeader
         items={HeaderItems}
         titleContent="In Patient List"
         buttonLabel="Admit New Patient"
         buttonCb={handlePatientRegistration}
       />
-      <div className="bg-white h-[auto] p-5 ml-5 mr-10  shadow-lg">
+      <div className="bg-white h-[auto] p-5   shadow-lg">
         <Form layout="vertical">
           <Row gutter={{ sm: 16, md: 24, lg: 32 }}>
             <Col span={6} xs={24} sm={12} md={12} lg={6}>
@@ -190,7 +187,7 @@ const InPatientList = () => {
         </Form>
       </div>
 
-      <Row className="ml-5 mr-10 mt-5">
+      <Row className="mt-5">
         <Col lg={24} md={24} xs={24} sm={24} className="bg-white p-5 ">
           <Table
             dataSource={dataSource}
@@ -199,7 +196,7 @@ const InPatientList = () => {
           />
         </Col>
       </Row>
-    </SidebarLayout>
+    </>
   );
 };
 

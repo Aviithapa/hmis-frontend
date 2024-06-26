@@ -1,7 +1,10 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import LoginForm from "./component/form";
+import { useTranslation } from "react-i18next";
+import { useLocale } from "@/provider/LocalProvider";
+import { SupportedLanguage } from "@/config/i18n";
 const Login = () => {
   return (
     <section className="w-100 h-screen overflow-hidden flex items-center justify-between relative bg-[url('/img/login.jpg')] bg-cover bg-center">
@@ -11,6 +14,7 @@ const Login = () => {
           <div className="absolute">
             <h1 className="font-[700] text-[65px] leading-[1]">
               Padma Hospital, Attariya
+              {/* {t("general:language:Language")} */}
             </h1>
             <p className="font-[400] pt-4">
               Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aperiam

@@ -1,7 +1,7 @@
 "use client";
 
 import PageHeader from "@/components/layout/PageHeader";
-import SidebarLayout from "@/components/layout/Sidebar";
+
 import { HomeOutlined } from "@ant-design/icons";
 import { Roles } from "@/utils/enums";
 import { Button, Col, Form, Input, Row, Select, Table } from "antd";
@@ -76,7 +76,7 @@ const filterOption = (
 
 const PatientList = () => {
   return (
-    <SidebarLayout role={Roles.RECEPTION}>
+    <>
       <PageHeader items={HeaderItems} titleContent="Patient List" />
       <div className="bg-white ml-5 mr-5 p-4 rounded-md shadow-lg ">
         <Form layout="vertical">
@@ -151,7 +151,7 @@ const PatientList = () => {
       <div className="bg-white p-4 ml-5 mr-5 mt-5 rounded-md shadow-lg">
         <Table dataSource={dataSource} columns={columns} />
       </div>
-    </SidebarLayout>
+    </>
   );
 };
 

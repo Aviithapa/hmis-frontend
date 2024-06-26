@@ -52,7 +52,7 @@ const PageHeader = ({
   );
 
   return (
-    <div className="bg-gray p-5 pb-2 pr-10">
+    <div className="bg-gray">
       <Breadcrumb items={items}></Breadcrumb>
       <div className="flex justify-between items-center">
         <h2 className="text-xl">

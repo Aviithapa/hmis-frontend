@@ -1,7 +1,7 @@
 "use client";
 
 import PageHeader from "@/components/layout/PageHeader";
-import SidebarLayout from "@/components/layout/Sidebar";
+
 import { HomeOutlined, EyeOutlined } from "@ant-design/icons";
 import { Roles } from "@/utils/enums";
 import { Button, Col, Form, Row, Table, Tag } from "antd";
@@ -178,7 +178,7 @@ const LabList = () => {
   };
 
   return (
-    <SidebarLayout role={Roles.RECEPTION}>
+    <>
       <PageHeader
         items={HeaderItems}
         titleContent="Patient Lab"
@@ -186,7 +186,7 @@ const LabList = () => {
         buttonCb={handleOpenLabPage}
       />
 
-      <Row className="ml-5 mr-10 mt-5">
+      <Row className=" mt-5">
         <Col span={24} className="bg-white p-5 ">
           <Table
             dataSource={data}
@@ -208,7 +208,7 @@ const LabList = () => {
           />
         </Col>
       </Row>
-    </SidebarLayout>
+    </>
   );
 };
 

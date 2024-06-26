@@ -1,15 +1,11 @@
 "use client";
 
 import PageHeader from "@/components/layout/PageHeader";
-import SidebarLayout from "@/components/layout/Sidebar";
+
 import { HomeOutlined, CalendarOutlined } from "@ant-design/icons";
-import { Roles } from "@/utils/enums";
 import { Button, Card, Col, Form, Input, Row, Select, Table, Tag } from "antd";
-import { useRef, useState } from "react";
-import { useReactToPrint } from "react-to-print";
+import { useState } from "react";
 import { BiWallet } from "react-icons/bi";
-import { NepaliDatePicker } from "nepali-datepicker-reactjs";
-import "nepali-datepicker-reactjs/dist/index.css";
 import { useRouter } from "next/navigation";
 
 const HeaderItems = [
@@ -115,14 +111,14 @@ const PatientRegister = () => {
   };
 
   return (
-    <SidebarLayout role={Roles.RECEPTION}>
+    <>
       <PageHeader
         items={HeaderItems}
         titleContent="Patient Registration"
         buttonLabel="Add New Patient"
         buttonCb={handlePatientRegistration}
       />
-      <div className="bg-white h-[auto] p-5 ml-5 mr-10  shadow-lg">
+      <div className="bg-white h-[auto] p-5   shadow-lg">
         <Form layout="vertical">
           <Row gutter={{ sm: 16, md: 24, lg: 32 }}>
             <Col span={5} xs={24} sm={12} md={12} lg={5}>
@@ -161,18 +157,7 @@ const PatientRegister = () => {
                 />
               </Form.Item>
             </Col>
-            <Col span={5} xs={24} sm={12} md={12} lg={5}>
-              <Form.Item className="rounded-md datePickerWrapper" name="doctor">
-                <NepaliDatePicker
-                  inputClassName="form-control-date-picker"
-                  className="datePickerInput"
-                  value={date}
-                  onChange={(value: string) => setDate(value)}
-                  options={{ calenderLocale: "en", valueLocale: "en" }}
-                />
-                <CalendarOutlined className="calendarIcon" />
-              </Form.Item>
-            </Col>
+            <Col span={5} xs={24} sm={12} md={12} lg={5}></Col>
 
             <Col span={4} xs={24} sm={24} lg={4}>
               <Form.Item>
@@ -193,7 +178,7 @@ const PatientRegister = () => {
         </Form>
       </div>
 
-      <Row className="ml-5 mr-10 mt-5">
+      <Row className=" mt-5">
         <Col lg={18} md={24} xs={24} sm={24} className="bg-white p-5 ">
           <Table
             dataSource={dataSource}
@@ -214,7 +199,7 @@ const PatientRegister = () => {
           </Card>
         </Col>
       </Row>
-    </SidebarLayout>
+    </>
   );
 };
 

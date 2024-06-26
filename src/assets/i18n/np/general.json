@@ -1,7 +1,39 @@
 {
-    "language": {
-        "Language": "भाषा",
-        "en": "अंग्रेजी",
-        "np": "नेपाली"
-    }
+  "appTitle": "अस्पताल व्यवस्थापन सूचना प्रणाली",
+  "stat": "तथ्याङ्क",
+  "language": {
+    "Language": "भाषा",
+    "en": "अंग्रेजी",
+    "np": "नेपाली"
+  },
+  "menu": {
+    "dashboard": "ड्यासबोर्ड",
+    "outPatient": "आउट पेटिएन्ट",
+    "outPatientList": "आउट पेटिएन्ट सूची",
+    "addNewOutPatient": "नयाँ आउट पेटिएन्ट थप्नुहोस्",
+    "inPatient": "इन पेटिएन्ट",
+    "inPatientList": "इन पेटिएन्ट सूची",
+    "admitNewPatient": "नयाँ पेटिएन्ट भर्नुहोस्",
+    "discharge": "रिलिज",
+    "wardManagement": "वार्ड प्रबन्धन",
+    "ot": "ओ.टी.",
+    "patientOpd": "रोगी ओपि.डि.",
+    "lab": "प्रयोगशाला",
+    "testList": "परीक्षण सूची",
+    "labTest": "प्रयोगशाला",
+    "labReport": "प्रयोगशाला रिपोर्ट",
+    "pharmacy": "फार्मेसी",
+    "supplier": "सप्लाइयर",
+    "medicineClassification": "औषधि वर्गीकरण",
+    "receiving": "स्वीकृती",
+    "receivingList": "स्वीकृती सूची",
+    "addNewReceiving": "नयाँ स्वीकृती थप्नुहोस्",
+    "inventory": "इन्भेन्टरी",
+    "inventoryList": "इन्भेन्टरी सूची",
+    "expiredMedicineList": "समय समाप्त औषधि सूची",
+    "lowQuantityMedicine": "कम मात्राको औषधि",
+    "sales": "बिक्री",
+    "salesList": "बिक्री सूची",
+    "staff": "कर्मचारीहरू"
+  }
 }

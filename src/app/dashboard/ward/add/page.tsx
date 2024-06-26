@@ -1,7 +1,7 @@
 "use client";
 
 import PageHeader from "@/components/layout/PageHeader";
-import SidebarLayout from "@/components/layout/Sidebar";
+
 import PrintPatientRegistration, {
   PatientData,
 } from "@/components/print/PrintPatientRegistration";
@@ -83,9 +83,9 @@ const PatientRegister = () => {
   ) => (option?.label ?? "").toLowerCase().includes(input.toLowerCase());
 
   return (
-    <SidebarLayout role={Roles.RECEPTION}>
+    <>
       <PageHeader items={HeaderItems} titleContent="Patient Registration" />
-      <div className="bg-white h-[auto] p-5 ml-5 mr-10 rounded-md shadow-lg">
+      <div className="bg-white h-[auto] p-5  rounded-md shadow-lg">
         <div className="mb-4">
           <span className="text-lg font-bold">
             Total Patients Registered Today: {patientCount}
@@ -285,7 +285,7 @@ const PatientRegister = () => {
 
         <PrintPatientRegistration ref={printRef} patientData={data} />
       </div>
-    </SidebarLayout>
+    </>
   );
 };
 

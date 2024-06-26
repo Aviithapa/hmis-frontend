@@ -2,11 +2,8 @@
 
 import React, { useState } from "react";
 import PageHeader from "@/components/layout/PageHeader";
-import SidebarLayout from "@/components/layout/Sidebar";
 import { HomeOutlined } from "@ant-design/icons";
-import { Roles } from "@/utils/enums";
 import { Button, Col, Form, Input, Modal, Row, Select, Table } from "antd";
-import "nepali-datepicker-reactjs/dist/index.css";
 import { useRouter } from "next/navigation";
 
 const HeaderItems = [
@@ -24,26 +21,24 @@ const HeaderItems = [
   },
 ];
 
-
-
 const initialSuppliers = [
   {
-    key: '1',
-    supplier_name: 'Supplier 1',
-    contact_person: 'John Doe',
-    email: 'john@example.com',
-    phone_number: '1234567890',
-    pan_vat_number: 'PAN123456',
-    address: '123 Main St, City',
+    key: "1",
+    supplier_name: "Supplier 1",
+    contact_person: "John Doe",
+    email: "john@example.com",
+    phone_number: "1234567890",
+    pan_vat_number: "PAN123456",
+    address: "123 Main St, City",
   },
   {
-    key: '2',
-    supplier_name: 'Supplier 2',
-    contact_person: 'Jane Smith',
-    email: 'jane@example.com',
-    phone_number: '0987654321',
-    pan_vat_number: 'PAN654321',
-    address: '456 Elm St, City',
+    key: "2",
+    supplier_name: "Supplier 2",
+    contact_person: "Jane Smith",
+    email: "jane@example.com",
+    phone_number: "0987654321",
+    pan_vat_number: "PAN654321",
+    address: "456 Elm St, City",
   },
 ];
 
@@ -73,7 +68,7 @@ const SupplierList = () => {
     setIsModalVisible(true);
   };
 
-  const handleEditSupplier = (record : any) => {
+  const handleEditSupplier = (record: any) => {
     setIsEdit(true);
     form.setFieldsValue(record);
     setIsModalVisible(true);
@@ -84,9 +79,13 @@ const SupplierList = () => {
   };
 
   const handleOk = () => {
-    form.validateFields().then(values => {
+    form.validateFields().then((values) => {
       if (isEdit) {
-        setSuppliers(suppliers.map(supplier => supplier.key === values.key ? values : supplier));
+        setSuppliers(
+          suppliers.map((supplier) =>
+            supplier.key === values.key ? values : supplier
+          )
+        );
       } else {
         setSuppliers([...suppliers, { ...values, key: suppliers.length + 1 }]);
       }
@@ -97,53 +96,55 @@ const SupplierList = () => {
 
   const columns = [
     {
-      title: 'Supplier Name',
-      dataIndex: 'supplier_name',
-      key: 'supplier_name',
+      title: "Supplier Name",
+      dataIndex: "supplier_name",
+      key: "supplier_name",
     },
     {
-      title: 'Contact Person',
-      dataIndex: 'contact_person',
-      key: 'contact_person',
+      title: "Contact Person",
+      dataIndex: "contact_person",
+      key: "contact_person",
     },
     {
-      title: 'Email',
-      dataIndex: 'email',
-      key: 'email',
+      title: "Email",
+      dataIndex: "email",
+      key: "email",
     },
     {
-      title: 'Phone Number',
-      dataIndex: 'phone_number',
-      key: 'phone_number',
+      title: "Phone Number",
+      dataIndex: "phone_number",
+      key: "phone_number",
     },
     {
-      title: 'Pan/Vat Number',
-      dataIndex: 'pan_vat_number',
-      key: 'pan_vat_number',
+      title: "Pan/Vat Number",
+      dataIndex: "pan_vat_number",
+      key: "pan_vat_number",
     },
     {
-      title: 'Address',
-      dataIndex: 'address',
-      key: 'address',
+      title: "Address",
+      dataIndex: "address",
+      key: "address",
     },
     {
-      title: 'Action',
-      key: 'action',
-      render: (_text : string, record : any) => (
-        <Button type="primary" onClick={() => handleEditSupplier(record)}>Edit</Button>
+      title: "Action",
+      key: "action",
+      render: (_text: string, record: any) => (
+        <Button type="primary" onClick={() => handleEditSupplier(record)}>
+          Edit
+        </Button>
       ),
     },
   ];
 
   return (
-    <SidebarLayout role={Roles.RECEPTION}>
+    <>
       <PageHeader
         items={HeaderItems}
         titleContent="Supplier List"
         buttonLabel="Add New Supplier"
         buttonCb={handleAddSupplier}
       />
-      <div className="bg-white h-[auto] p-5 ml-5 mr-10 shadow-lg">
+      <div className="bg-white h-[auto] p-5  shadow-lg">
         <Form layout="vertical">
           <Row gutter={{ sm: 16, md: 24, lg: 32 }}>
             <Col span={6} xs={24} sm={12} md={12} lg={6}>
@@ -201,7 +202,7 @@ const SupplierList = () => {
         </Form>
       </div>
 
-      <Row className="ml-5 mr-10 mt-5">
+      <Row className=" mt-5">
         <Col lg={24} md={24} xs={24} sm={24} className="bg-white p-5 ">
           <Table
             dataSource={suppliers}
@@ -211,40 +212,88 @@ const SupplierList = () => {
         </Col>
       </Row>
 
-      <Modal title={isEdit ? "Edit Supplier" : "Add New Supplier"} visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
+      <Modal
+        title={isEdit ? "Edit Supplier" : "Add New Supplier"}
+        visible={isModalVisible}
+        onOk={handleOk}
+        onCancel={handleCancel}
+      >
         <Form form={form} layout="vertical">
           <Row gutter={16}>
             <Col span={12}>
-              <Form.Item name="supplier_name" label="Supplier Name" rules={[{ required: true, message: 'Please input the supplier name!' }]}>
+              <Form.Item
+                name="supplier_name"
+                label="Supplier Name"
+                rules={[
+                  {
+                    required: true,
+                    message: "Please input the supplier name!",
+                  },
+                ]}
+              >
                 <Input />
               </Form.Item>
             </Col>
             <Col span={12}>
-              <Form.Item name="contact_person" label="Contact Person" rules={[{ required: true, message: 'Please input the contact person!' }]}>
+              <Form.Item
+                name="contact_person"
+                label="Contact Person"
+                rules={[
+                  {
+                    required: true,
+                    message: "Please input the contact person!",
+                  },
+                ]}
+              >
                 <Input />
               </Form.Item>
             </Col>
           </Row>
           <Row gutter={16}>
             <Col span={12}>
-              <Form.Item name="email" label="Email" rules={[{ required: true, message: 'Please input the email!' }]}>
+              <Form.Item
+                name="email"
+                label="Email"
+                rules={[{ required: true, message: "Please input the email!" }]}
+              >
                 <Input />
               </Form.Item>
             </Col>
             <Col span={12}>
-              <Form.Item name="phone_number" label="Phone Number" rules={[{ required: true, message: 'Please input the phone number!' }]}>
+              <Form.Item
+                name="phone_number"
+                label="Phone Number"
+                rules={[
+                  { required: true, message: "Please input the phone number!" },
+                ]}
+              >
                 <Input />
               </Form.Item>
             </Col>
           </Row>
           <Row gutter={16}>
             <Col span={12}>
-              <Form.Item name="pan_vat_number" label="Pan/Vat Number" rules={[{ required: true, message: 'Please input the pan/vat number!' }]}>
+              <Form.Item
+                name="pan_vat_number"
+                label="Pan/Vat Number"
+                rules={[
+                  {
+                    required: true,
+                    message: "Please input the pan/vat number!",
+                  },
+                ]}
+              >
                 <Input />
               </Form.Item>
             </Col>
             <Col span={12}>
-              <Form.Item name="address" label="Address" rules={[{ required: true, message: 'Please input the address!' }]}>
+              <Form.Item
+                name="address"
+                label="Address"
+                rules={[
+                  { required: true, message: "Please input the address!" },
+                ]}
+              >
                 <Input />
               </Form.Item>
             </Col>
@@ -254,7 +303,7 @@ const SupplierList = () => {
           </Form.Item>
         </Form>
       </Modal>
-    </SidebarLayout>
+    </>
   );
 };
 

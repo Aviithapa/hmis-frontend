@@ -1,7 +1,39 @@
 {
-    "language": {
-        "Language": "Language",
-        "en": "English",
-        "np": "Nepali"
-    }
+  "appTitle": "Hospital Management Information System",
+  "stat": "Stats",
+  "language": {
+    "Language": "Language",
+    "en": "English",
+    "np": "Nepali"
+  },
+  "menu": {
+    "dashboard": "Dashboard",
+    "outPatient": "Out Patient",
+    "outPatientList": "Out Patient List",
+    "addNewOutPatient": "Add New Out Patient",
+    "inPatient": "In Patient",
+    "inPatientList": "In Patient List",
+    "admitNewPatient": "Admit New Patient",
+    "discharge": "Discharge",
+    "wardManagement": "Ward Management",
+    "ot": "OT",
+    "patientOpd": "Patient Opd",
+    "lab": "Lab",
+    "testList": "Test List",
+    "labTest": "Lab",
+    "labReport": "Lab Report",
+    "pharmacy": "Pharmacy",
+    "supplier": "Supplier",
+    "medicineClassification": "Medicine Classification",
+    "receiving": "Receiving",
+    "receivingList": "Receiving List",
+    "addNewReceiving": "Add New Receiving",
+    "inventory": "Inventory",
+    "inventoryList": "Inventory List",
+    "expiredMedicineList": "Expired Medicine List",
+    "lowQuantityMedicine": "Low quantity medicine",
+    "sales": "Sales",
+    "salesList": "Sales List",
+    "staff": "Staff"
+  }
 }

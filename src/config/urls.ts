@@ -10,7 +10,7 @@ import {
   FileTextOutlined,
   UserAddOutlined,
   AlertOutlined,
-  MedicineBoxOutlined
+  MedicineBoxOutlined,
 } from "@ant-design/icons";
 import { ImLab } from "react-icons/im";
 
@@ -21,7 +21,7 @@ const urls = {
   changePassword: "auth/change-password",
   commonNavItems: [
     {
-      title: "Dashboard",
+      title: "dashboard",
       path: "/dashboard",
       icon: HomeOutlined,
       color: "bg-purple",
@@ -29,146 +29,145 @@ const urls = {
   ],
   receptionNavItems: [
     {
-      title: "Out Patient",
+      title: "outPatient",
       icon: UserOutlined,
       children: [
         {
-          title: "Out Patient List",
+          title: "outPatientList",
           path: "/dashboard/opd-patient",
           key: "opd-patient",
         },
         {
-          title: "Add New Out Patient",
+          title: "addNewOutPatient",
           path: "/dashboard/opd-patient/add",
           key: "opd-patient-add",
         },
       ],
     },
     {
-      title: "In Patient",
+      title: "inPatient",
       icon: UserAddOutlined,
       children: [
         {
-          title: "In Patient List",
+          title: "inPatientList",
           path: "/dashboard/in-patient",
           key: "in-patient",
         },
         {
-          title: "Admit New Patient",
+          title: "admitNewPatient",
           path: "/dashboard/in-patient/add",
           key: "opd-patient-add",
         },
         {
-          title: "Discharge",
+          title: "discharge",
           path: "/dashboard/opd-patient/add",
           key: "opd-patient-add",
         },
         {
-          title: "Ward Management",
+          title: "wardManagement",
           path: "/dashboard/ward",
           key: "ward",
         },
       ],
     },
     {
-      title: "OT",
-      icon: AlertOutlined ,
+      title: "ot",
+      icon: AlertOutlined,
       path: "/dashboard/operation-theater",
     },
     {
-      title: "Patient Opd",
+      title: "patientOpd",
       path: "/dashboard/patientOpd",
       icon: FileTextOutlined,
       color: "bg-green",
     },
     {
-      title: "Lab",
+      title: "lab",
       icon: ImLab,
       children: [
         {
-          title: "Test List",
+          title: "testList",
           path: "/dashboard/lab/test",
           key: "test",
         },
         {
-          title: "Lab ",
+          title: "lab",
           path: "/dashboard/lab",
           key: "lab",
         },
         {
-          title: "Lab Report",
+          title: "labReport",
           path: "/dashboard/lab/result",
           key: "lab-result",
         },
       ],
     },
     {
-      title: "Pharmacy",
+      title: "pharmacy",
       icon: MedicineBoxOutlined,
       children: [
         {
-          title: "Supplier",
+          title: "supplier",
           path: "/dashboard/pharmacy/supplier",
           key: "supplier",
         },
         {
-          title: "Medicine Classification ",
+          title: "medicineClassification",
           path: "/dashboard/pharmacy/medicine-classification",
           key: "medicine-classification",
         },
         {
-          title: "Receiving",
+          title: "receiving",
           key: "medicine",
           children: [
             {
-              title: "Receiving List",
+              title: "receivingList",
               path: "/dashboard/pharmacy/receiving",
               key: "receiving",
             },
             {
-              title: "Add New Receiving",
+              title: "addNewReceiving",
               path: "/dashboard/pharmacy/receiving/add",
               key: "receiving-add",
             },
-          
           ],
         },
         {
-          title: "Inventory",
+          title: "inventory",
           key: "inventory",
           children: [
             {
-              title: "Inventory List",
+              title: "inventoryList",
               path: "/dashboard/pharmacy/inventory",
               key: "receiving",
             },
             {
-              title: "Expired Medicine List",
+              title: "expiredMedicineList",
               path: "/dashboard/pharmacy/inventory/expired",
               key: "expired",
             },
             {
-              title: "Low quantity medicine",
+              title: "lowQuantityMedicine",
               path: "/dashboard/pharmacy/inventory/low-quantity-medicine",
               key: "low-quantity-medicine",
             },
           ],
         },
         {
-          title: "Sales",
+          title: "sales",
           key: "sales",
           children: [
             {
-              title: "Sales List",
+              title: "salesList",
               path: "/dashboard/pharmacy/sales",
               key: "sales",
-            }
+            },
           ],
         },
       ],
     },
     {
-      title: "Staff",
+      title: "staff",
       key: "staff",
       icon: MedicineBoxOutlined,
       path: "/dashboard/staff",

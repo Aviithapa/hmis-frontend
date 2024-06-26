@@ -2,11 +2,8 @@
 
 import React, { useState } from "react";
 import PageHeader from "@/components/layout/PageHeader";
-import SidebarLayout from "@/components/layout/Sidebar";
 import { HomeOutlined } from "@ant-design/icons";
-import { Roles } from "@/utils/enums";
-import { Button, Col, Form, Input, Modal, Row, Select, Table } from "antd";
-import "nepali-datepicker-reactjs/dist/index.css";
+import { Button, Col, Form, Input, Row, Select, Table } from "antd";
 import { useRouter } from "next/navigation";
 
 const HeaderItems = [
@@ -24,28 +21,26 @@ const HeaderItems = [
   },
 ];
 
-
-
 const initialSuppliers = [
   {
-    key: '1',
-    customer_name: 'Ram Gopal',
-    phone_number: '1234567890',
-    address: '123 Main St, City',
-    patient_type: 'in-patient',
-    total_amount: '500',
+    key: "1",
+    customer_name: "Ram Gopal",
+    phone_number: "1234567890",
+    address: "123 Main St, City",
+    patient_type: "in-patient",
+    total_amount: "500",
     status: "Paid",
-    payment_mode: "cash"
+    payment_mode: "cash",
   },
   {
-    key: '2',
-    customer_name: 'Ramesh',
-    phone_number: '1234567890',
-    address: '123 Main St, City',
-    patient_type: 'out-patient',
-    total_amount: '500',
+    key: "2",
+    customer_name: "Ramesh",
+    phone_number: "1234567890",
+    address: "123 Main St, City",
+    patient_type: "out-patient",
+    total_amount: "500",
     status: "Paid",
-    payment_mode: "esewa"
+    payment_mode: "esewa",
   },
 ];
 
@@ -70,10 +65,10 @@ const SalesList = () => {
   ) => (option?.label ?? "").toLowerCase().includes(input.toLowerCase());
 
   const handleAddSupplier = () => {
-    router.push('/dashboard/pharmacy/sales/add');
+    router.push("/dashboard/pharmacy/sales/add");
   };
 
-  const handleEditSupplier = (record : any) => {
+  const handleEditSupplier = (record: any) => {
     setIsEdit(true);
     form.setFieldsValue(record);
     setIsModalVisible(true);
@@ -84,9 +79,13 @@ const SalesList = () => {
   };
 
   const handleOk = () => {
-    form.validateFields().then(values => {
+    form.validateFields().then((values) => {
       if (isEdit) {
-        setSuppliers(suppliers.map(supplier => supplier.key === values.key ? values : supplier));
+        setSuppliers(
+          suppliers.map((supplier) =>
+            supplier.key === values.key ? values : supplier
+          )
+        );
       } else {
         setSuppliers([...suppliers, { ...values, key: suppliers.length + 1 }]);
       }
@@ -97,59 +96,61 @@ const SalesList = () => {
 
   const columns = [
     {
-      title: 'Name',
-      dataIndex: 'customer_name',
-      key: 'customer_name',
+      title: "Name",
+      dataIndex: "customer_name",
+      key: "customer_name",
     },
-    
+
     {
-      title: 'Phone Number',
-      dataIndex: 'phone_number',
-      key: 'phone_number',
-    },
-    {
-      title: 'Patient Type',
-      dataIndex: 'patient_type',
-      key: 'patient_type',
+      title: "Phone Number",
+      dataIndex: "phone_number",
+      key: "phone_number",
     },
     {
-        title: 'Total Amount',
-        dataIndex: 'total_amount',
-        key: 'total_amount',
+      title: "Patient Type",
+      dataIndex: "patient_type",
+      key: "patient_type",
     },
     {
-      title: 'Address',
-      dataIndex: 'address',
-      key: 'address',
+      title: "Total Amount",
+      dataIndex: "total_amount",
+      key: "total_amount",
     },
     {
-        title: 'Status',
-        dataIndex: 'status',
-        key: 'status',
+      title: "Address",
+      dataIndex: "address",
+      key: "address",
     },
     {
-        title: 'Payment Mode',
-        dataIndex: 'payment_mode',
-        key: 'payment_mode',
+      title: "Status",
+      dataIndex: "status",
+      key: "status",
     },
     {
-      title: 'Action',
-      key: 'action',
-      render: (_text : string, record : any) => (
-        <Button type="primary" onClick={() => handleEditSupplier(record)}>Edit</Button>
+      title: "Payment Mode",
+      dataIndex: "payment_mode",
+      key: "payment_mode",
+    },
+    {
+      title: "Action",
+      key: "action",
+      render: (_text: string, record: any) => (
+        <Button type="primary" onClick={() => handleEditSupplier(record)}>
+          Edit
+        </Button>
       ),
     },
   ];
 
   return (
-    <SidebarLayout role={Roles.RECEPTION}>
+    <>
       <PageHeader
         items={HeaderItems}
         titleContent="Sales List"
         buttonLabel="Add New Sale"
         buttonCb={handleAddSupplier}
       />
-      <div className="bg-white h-[auto] p-5 ml-5 mr-10 shadow-lg">
+      <div className="bg-white h-[auto] p-5  shadow-lg">
         <Form layout="vertical">
           <Row gutter={{ sm: 16, md: 24, lg: 32 }}>
             <Col span={6} xs={24} sm={12} md={12} lg={6}>
@@ -207,7 +208,7 @@ const SalesList = () => {
         </Form>
       </div>
 
-      <Row className="ml-5 mr-10 mt-5">
+      <Row className=" mt-5">
         <Col lg={24} md={24} xs={24} sm={24} className="bg-white p-5 ">
           <Table
             dataSource={suppliers}
@@ -216,9 +217,7 @@ const SalesList = () => {
           />
         </Col>
       </Row>
-
-      
-    </SidebarLayout>
+    </>
   );
 };
 

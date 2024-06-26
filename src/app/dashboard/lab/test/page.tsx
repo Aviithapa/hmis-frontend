@@ -1,14 +1,10 @@
 "use client";
 
 import PageHeader from "@/components/layout/PageHeader";
-import SidebarLayout from "@/components/layout/Sidebar";
-import { HomeOutlined, CalendarOutlined } from "@ant-design/icons";
-import { Roles } from "@/utils/enums";
-import { Button, Card, Col, Form, Input, Row, Select, Table, Tag } from "antd";
+
+import { HomeOutlined } from "@ant-design/icons";
+import { Col, Row, Table, Tag } from "antd";
 import { useState } from "react";
-import { BiWallet } from "react-icons/bi";
-import { NepaliDatePicker } from "nepali-datepicker-reactjs";
-import "nepali-datepicker-reactjs/dist/index.css";
 import { useRouter } from "next/navigation";
 import AddTestModal from "@/components/modal/AddTestModal";
 
@@ -229,7 +225,7 @@ const TestList = () => {
   };
 
   return (
-    <SidebarLayout role={Roles.RECEPTION}>
+    <>
       <PageHeader
         items={HeaderItems}
         titleContent="Test List"
@@ -237,7 +233,7 @@ const TestList = () => {
         buttonCb={handleModalOpenClose}
       />
 
-      <Row className="ml-5 mr-10 mt-5">
+      <Row className=" mt-5">
         <Col span={24}>
           <Table
             dataSource={dataSource}
@@ -250,7 +246,7 @@ const TestList = () => {
         isModalOpen={isModalOpen}
         handleCancel={handleModalOpenClose}
       />
-    </SidebarLayout>
+    </>
   );
 };
 

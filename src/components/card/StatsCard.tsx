@@ -8,7 +8,6 @@ import {
   ShopOutlined,
   WalletOutlined,
 } from "@ant-design/icons";
-import { useTranslation } from "react-i18next";
 
 const stats = [
   {
@@ -93,7 +92,7 @@ const stats = [
 
 const StatsCards = () => {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 p-4">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 p-4">
       {stats.map((stat, index) => (
         <Card
           key={index}

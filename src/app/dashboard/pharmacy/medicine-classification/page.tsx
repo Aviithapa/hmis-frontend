@@ -2,11 +2,10 @@
 
 import React, { useState } from "react";
 import PageHeader from "@/components/layout/PageHeader";
-import SidebarLayout from "@/components/layout/Sidebar";
+
 import { HomeOutlined } from "@ant-design/icons";
 import { Roles } from "@/utils/enums";
 import { Button, Col, Form, Input, Modal, Row, Select, Table } from "antd";
-import "nepali-datepicker-reactjs/dist/index.css";
 import { useRouter } from "next/navigation";
 import TextArea from "antd/es/input/TextArea";
 
@@ -34,29 +33,28 @@ const HeaderItems = [
   },
 ];
 
-
-
 const initialClassifications: MedicalClassification[] = [
   {
-    key: '1',
-    classification_name: 'Tablet',
-    label: 'Tablet',
-    slug:'tablet',
-    type: 'Type',
+    key: "1",
+    classification_name: "Tablet",
+    label: "Tablet",
+    slug: "tablet",
+    type: "Type",
   },
   {
-    key: '2',
-    classification_name: 'Pain Killer',
-    label: 'Pain Killer',
-    slug:'pain-killer',
-    type: 'Category',
+    key: "2",
+    classification_name: "Pain Killer",
+    label: "Pain Killer",
+    slug: "pain-killer",
+    type: "Category",
   },
-  
 ];
 
 const MedicalClassificationList = () => {
   const router = useRouter();
-  const [classifications, setClassifications] = useState<MedicalClassification[]>(initialClassifications);
+  const [classifications, setClassifications] = useState<
+    MedicalClassification[]
+  >(initialClassifications);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
   const [form] = Form.useForm();
@@ -78,11 +76,18 @@ const MedicalClassificationList = () => {
   };
 
   const handleOk = () => {
-    form.validateFields().then(values => {
+    form.validateFields().then((values) => {
       if (isEdit) {
-        setClassifications(classifications.map(classification => classification.key === values.key ? values : classification));
+        setClassifications(
+          classifications.map((classification) =>
+            classification.key === values.key ? values : classification
+          )
+        );
       } else {
-        setClassifications([...classifications, { ...values, key: (classifications.length + 1).toString() }]);
+        setClassifications([
+          ...classifications,
+          { ...values, key: (classifications.length + 1).toString() },
+        ]);
       }
       form.resetFields();
       setIsModalVisible(false);
@@ -91,43 +96,45 @@ const MedicalClassificationList = () => {
 
   const columns = [
     {
-      title: 'Classification Name',
-      dataIndex: 'classification_name',
-      key: 'classification_name',
+      title: "Classification Name",
+      dataIndex: "classification_name",
+      key: "classification_name",
     },
     {
-      title: 'Label',
-      dataIndex: 'label',
-      key: 'label',
+      title: "Label",
+      dataIndex: "label",
+      key: "label",
     },
     {
-      title: 'Slug',
-      dataIndex: 'slug',
-      key: 'slug',
+      title: "Slug",
+      dataIndex: "slug",
+      key: "slug",
     },
     {
-      title: 'Type',
-      dataIndex: 'type',
-      key: 'type',
+      title: "Type",
+      dataIndex: "type",
+      key: "type",
     },
     {
-      title: 'Action',
-      key: 'action',
-      render: (text : string, record : MedicalClassification) => (
-        <Button type="primary" onClick={() => handleEditClassification(record)}>Edit</Button>
+      title: "Action",
+      key: "action",
+      render: (text: string, record: MedicalClassification) => (
+        <Button type="primary" onClick={() => handleEditClassification(record)}>
+          Edit
+        </Button>
       ),
     },
   ];
 
   return (
-    <SidebarLayout role={Roles.RECEPTION}>
+    <>
       <PageHeader
         items={HeaderItems}
         titleContent="Medical Classification"
         buttonLabel="Add New Classification"
         buttonCb={handleAddClassification}
       />
-      <div className="bg-white h-[auto] p-5 ml-5 mr-10 shadow-lg">
+      <div className="bg-white h-[auto] p-5  shadow-lg">
         <Form layout="vertical">
           <Row gutter={{ sm: 16, md: 24, lg: 32 }}>
             <Col span={6} xs={24} sm={12} md={12} lg={20}>
@@ -154,7 +161,7 @@ const MedicalClassificationList = () => {
         </Form>
       </div>
 
-      <Row className="ml-5 mr-10 mt-5">
+      <Row className=" mt-5">
         <Col lg={24} md={24} xs={24} sm={24} className="bg-white p-5 ">
           <Table
             dataSource={classifications}
@@ -164,11 +171,25 @@ const MedicalClassificationList = () => {
         </Col>
       </Row>
 
-      <Modal title={isEdit ? "Edit Classification" : "Add New Classification"} visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
+      <Modal
+        title={isEdit ? "Edit Classification" : "Add New Classification"}
+        visible={isModalVisible}
+        onOk={handleOk}
+        onCancel={handleCancel}
+      >
         <Form form={form} layout="vertical">
           <Row gutter={16}>
             <Col span={12}>
-              <Form.Item name="classification_name" label="Classification Name" rules={[{ required: true, message: 'Please input the classification name!' }]}>
+              <Form.Item
+                name="classification_name"
+                label="Classification Name"
+                rules={[
+                  {
+                    required: true,
+                    message: "Please input the classification name!",
+                  },
+                ]}
+              >
                 <Input />
               </Form.Item>
             </Col>
@@ -178,7 +199,11 @@ const MedicalClassificationList = () => {
               </Form.Item>
             </Col>
             <Col span={12}>
-              <Form.Item name="type" label="Type" rules={[{ required: true, message: 'Please select the type!' }]}>
+              <Form.Item
+                name="type"
+                label="Type"
+                rules={[{ required: true, message: "Please select the type!" }]}
+              >
                 <Select>
                   <Select.Option value="type">Type</Select.Option>
                   <Select.Option value="category">Category</Select.Option>
@@ -186,15 +211,20 @@ const MedicalClassificationList = () => {
               </Form.Item>
             </Col>
             <Col span={24}>
-              <Form.Item name="description" label="Description" rules={[{ required: true, message: 'Please input the description!' }]}>
+              <Form.Item
+                name="description"
+                label="Description"
+                rules={[
+                  { required: true, message: "Please input the description!" },
+                ]}
+              >
                 <TextArea />
               </Form.Item>
             </Col>
           </Row>
-          
         </Form>
       </Modal>
-    </SidebarLayout>
+    </>
   );
 };
 
